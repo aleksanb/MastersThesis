@@ -18,25 +18,13 @@
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{fancyhdr}
 \usepackage{times}
-%\usepackage[intoc]{nomencl}
-%\renewcommand{\nomname}{List of Abbreviations}
-%\makenomenclature
-%%\usepackage{natbib}
 \usepackage{float}
-%\floatstyle{boxed}
 \restylefloat{figure}
 
+% Setup references
 \usepackage[backend=bibtex]{biblatex}
-\bibliography{bibfiles/bibtexlibs.bib}
+\addbibresource{bibfiles/bibtexlibs.bib}
 
-%%\usepackage[number=none]{glossary}
-%%\makeglossary
-%%\newglossarytype[abr]{abbr}{abt}{abl}
-%%\newglossarytype[alg]{acronyms}{acr}{acn}
-%%\newcommand{\abbrname}{Abbreviations} 
-%%\newcommand{\shortabbrname}{Abbreviations}
-
-%%\makeabbr
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \renewcommand*\contentsname{Table of Contents}
@@ -48,3 +36,47 @@
 \renewcommand{\headrulewidth}{0.1ex}
 \renewcommand{\footrulewidth}{0.1ex}
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[LE,RO]{\thepage}\renewcommand{\headrulewidth}{0ex}}
+
+\usepackage[caption=false,font=footnotesize]{subfig}
+
+
+% My custom directives
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, fit, calc}
+\tikzset{vertex/.style = {shape=circle,draw,minimum size=2em}}
+\tikzset{edge/.style = {->, > = latex'}}
+\tikzset{box/.style = {shape=rectangle,draw, minimum size=1.5cm}}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{statistics}
+
+% #1=\addplots #2=scalefactor for ticks
+\newcommand{\myboxplot}[2]{
+  \begin{tikzpicture}
+    \pgfplotsset{
+      boxplot/every box/.style={fill=gray},
+      boxplot/every whisker/.style={fill=black, color=black},
+      boxplot/box extend=0.7
+    }
+    \begin{axis}
+      [
+        axis x line=bottom,
+        axis y line=left,
+        xmin=-1,
+        xmax=11,
+        xtick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+        ymin=0.4,
+        ymax=1.05,
+        ytick={0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
+        scaled x ticks={real:#2},
+        axis y discontinuity=crunch,
+        xtick scale label code/.code={},
+        boxplot/draw direction=y,
+        xlabel=Input connectivity,
+        ylabel=Accuarcy
+      ]
+      #1
+    \end{axis}
+  \end{tikzpicture}
+}
