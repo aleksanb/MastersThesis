@@ -39,8 +39,13 @@
 
 \usepackage[caption=false,font=footnotesize]{subfig}
 
-
 % My custom directives
+
+\usepackage{todonotes}
+
+\newcommand{\cm}[1]{
+    \todo[inline, color=cyan]{Citation missing: #1} 
+}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows, fit, calc}
@@ -52,7 +57,7 @@
 \usepgfplotslibrary{statistics}
 
 % #1=\addplots #2=scalefactor for ticks
-\newcommand{\myboxplot}[2]{
+\newcommand{\myboxplot}[3]{
   \begin{tikzpicture}
     \pgfplotsset{
       boxplot/every box/.style={fill=gray},
@@ -64,8 +69,6 @@
         axis x line=bottom,
         axis y line=left,
         xmin=-1,
-        xmax=11,
-        xtick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
         ymin=0.4,
         ymax=1.05,
         ytick={0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
@@ -73,7 +76,7 @@
         axis y discontinuity=crunch,
         xtick scale label code/.code={},
         boxplot/draw direction=y,
-        xlabel=Input connectivity,
+        xlabel=#3,
         ylabel=Accuarcy
       ]
       #1
