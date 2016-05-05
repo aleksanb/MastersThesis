@@ -105,9 +105,7 @@ forwarded to the readout layer.
 
 To find a suitable mapping from the set of reservoir states and the correct input classification,
 ridge regression \cite{hoerl1970ridge} is used.
-This version of least squares regression is more accurate when faced with input colinearities,
-as well as always being at least as accurate as ordinary least squares.
-
+This version of least squares regression is more accurate when faced with input colinearities, as well as always being at least as accurate as ordinary least squares.  
 This process is repeated for all the datasets,
 and the final regression parameters are chosen as a combination of the parameters obtained for each individual dataset.
 Finally we measure the normalized accuracy of the trained reservoir on the test dataset,
@@ -117,17 +115,55 @@ Accuracy = 1 - \dfrac{sum(actual\_output \neq expected\_output)}{len(correct\_ou
 \label{formula:accuracy}
 \end{equation}
 
-\section{Reservoir configurations}
+\section{Minimum required reservoir size}
+
+As shown in \cite{MyPreviousPaper},
+there are a plethora of RRC systems with $N=100, K=\{2, 3\}$ that solve the temporal parity task for a window size of both 3 and 5.
+The reservoirs with $K=3$ had a higher density of success.
+
+Presumably the same tasks can be solved with smaller reservoirs,
+the question being how small they can be while retaining accurarcy.
+
 
 \begin{table}[ht]
     \centering
-    \caption{Parameters for temporal density}
-    \label{tab:parameters-temporal-density}
+    \caption{Reservoir parameters for optimal input connectivity}
     \begin{tabular}{ll}
-        Connectivity        & 3                         \\
-        Nodes               & 10 to 50                  \\
-        Input connectivity  & 0 to Nodes (10 step size) \\
-        Output connectivity & Nodes                     \\
-        Sample size         & 30
+        Nodes               & [10..50], step size=5         \\
+        Connectivity        & 3                             \\
+        Input connectivity  & [0..n\_nodes], step size = 10 \\
+		Output connectivity & n\_nodes                      \\
+        Sample size         & 50
+    \end{tabular}
+\end{table}
+
+
+As the optimal reservoir size and input connectivity might depend on the task at hand,
+we test our reservoirs on both the Temporal Parity and Temporal Density tasks with window sizes of both 3 and 5 (as specified in table \ref{tab:tasks}).
+
+\begin{table}[ht]
+  \centering
+  \caption{Task parameters}
+  \label{tab:tasks}
+  \begin{tabular}{ll}
+    Task type               & Temporal Parity and Density \\
+    Training dataset length & 4 000                       \\
+    Test dataset length     & 200                         \\
+    $N$ (window size)       & 3 and 5                     \\
+    $t$ (offset)            & 0
+  \end{tabular} 
+\end{table} 
+
+\section{Optimal output connectivyt}
+
+\begin{table}[ht]
+    \centering
+    \caption{Reservoir parameters for optimal output connectivity}
+    \begin{tabular}{ll}
+        Nodes               & [10..100], step size=10           \\
+        Connectivity        & 3                                 \\
+        Input connectivity  & $ n\_nodes / 2 $                  \\
+        Output connectivity & [0..n\_nodes], step size=10       \\
+        Sample size         & 50
     \end{tabular}
 \end{table}
