@@ -114,4 +114,6 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
+# ruby
 .bundle
+vendor
