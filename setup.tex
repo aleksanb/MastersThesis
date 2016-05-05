@@ -1,0 +1,125 @@
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage[Rejne]{fncychap}
+\usepackage[pdftex,bookmarks=true]{hyperref}
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{fancyhdr}
+\usepackage{times}
+\usepackage{float}
+\restylefloat{figure}
+
+% Setup references
+\usepackage[backend=bibtex]{biblatex}
+\addbibresource{bibfiles/bibtexlibs.bib}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\renewcommand*\contentsname{Table of Contents}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\renewcommand{\headrulewidth}{0.1ex}
+\renewcommand{\footrulewidth}{0.1ex}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[LE,RO]{\thepage}\renewcommand{\headrulewidth}{0ex}}
+
+\usepackage[caption=false,font=footnotesize]{subfig}
+
+% My custom directives
+
+\usepackage{todonotes}
+
+\newcommand{\cm}[1]{
+    \todo[inline, color=cyan]{Citation missing: #1} 
+}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, fit, calc}
+\tikzset{vertex/.style = {shape=circle,draw,minimum size=2em}}
+\tikzset{edge/.style = {->, > = latex'}}
+\tikzset{box/.style = {shape=rectangle,draw, minimum size=1.5cm}}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+
+% #1=\addplots #2=scalefactor for ticks #3=Label
+\newcommand{\myboxplot}[3]{
+  \begin{tikzpicture}
+    \pgfplotsset{
+      boxplot/every box/.style={fill=gray},
+      boxplot/every whisker/.style={fill=black, color=black},
+      boxplot/box extend=0.7
+    }
+    \begin{axis}
+      [
+        axis x line=bottom,
+        axis y line=left,
+        xmin=-1,
+        ymin=0.4,
+        ymax=1.05,
+        ytick={0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
+        scaled x ticks={real:#2},
+        axis y discontinuity=crunch,
+        xtick scale label code/.code={},
+        boxplot/draw direction=y,
+        xlabel=#3,
+        ylabel=Accuarcy
+      ]
+      #1
+    \end{axis}
+  \end{tikzpicture}
+}
+
+
+% #1=table data #2=xlabel
+\newcommand{\myscatterplot}[2]{
+    \begin{tikzpicture}
+        \begin{axis}
+            [
+                axis x line=bottom,
+                axis y line=left,
+                axis y discontinuity=crunch,
+                ymin=0.3, ymax=1.1,
+                ytick={0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
+                ylabel=Accuracy,
+                xlabel=#2
+            ]
+            \addplot[scatter src=explicit, only marks, mark size=0.5pt]
+            table {#1};
+        \end{axis}
+    \end{tikzpicture}
+}
+
+% #1=data #2=xlabel #3=ylabel
+\newcommand{\myheatmap}[3]{
+    \begin{tikzpicture}
+        \begin{axis}
+            [
+                xlabel=#2,
+                ylabel=#3,
+                ymax=25,
+                xmax=15,
+                colormap/jet,
+                colorbar,
+                view={0}{90}
+            ]
+            \addplot3[surf, shader=flat]
+            file {#1};
+        \end{axis}
+    \end{tikzpicture}
+}
