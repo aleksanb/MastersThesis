@@ -38,6 +38,8 @@ A correlation between these properties might be interesting, and help to explain
 The final RRC system is shown as a block diagram in Figure \ref{figure:rrc-block},
 and the actual network topology is equivalent to the one in Figure \ref{figure:rbn-reservoir}.
 
+\todo{gotta add moar stuffz here, nemlig varierende input/output cocnnectivitet støtte}
+
 \begin{figure}
   \centering
   \begin{tikzpicture}
@@ -90,8 +92,8 @@ which is then tasked with finding a linear combination of the RBN states that re
 
 \subsection{Training}
 
-To train the RRC system we require a number of training datasets,
-as well as different testing datasets to test the trained system.
+To train the RRC system we require large training datasets,
+as well as different, smaller datasets for testing the trained system.
 We will use the datasets described in section \ref{subsection:rbn-reservoir-systems}.
 
 We then either create a new RBN (initialize it randomly),
@@ -115,31 +117,18 @@ Accuracy = 1 - \dfrac{sum(actual\_output \neq expected\_output)}{len(correct\_ou
 \label{formula:accuracy}
 \end{equation}
 
-\section{Minimum required reservoir size}
+\section{Finding the minimum required reservoir size, optimal input connectivity}
 
-As shown in \cite{MyPreviousPaper},
-there are a plethora of RRC systems with $N=100, K=\{2, 3\}$ that solve the temporal parity task for a window size of both 3 and 5.
-The reservoirs with $K=3$ had a higher density of success.
+As shown in my previous paper \cite{MyPreviousPaper},
+there are a plethora of RRC systems with $N=100, K=\{2, 3\}$ that solve the Temporal Parity task for a window size of both 3 and 5,
+The reservoirs with $K=3$ had a higher density of success in general,
+and the larger reservoirs fared better on the task with window size 5.
 
 Presumably the same tasks can be solved with smaller reservoirs,
 the question being how small they can be while retaining accurarcy.
-
-
-\begin{table}[ht]
-    \centering
-    \caption{Reservoir parameters for optimal input connectivity}
-    \begin{tabular}{ll}
-        Nodes               & [10..50], step size=5         \\
-        Connectivity        & 3                             \\
-        Input connectivity  & [0..n\_nodes], step size = 10 \\
-		Output connectivity & n\_nodes                      \\
-        Sample size         & 50
-    \end{tabular}
-\end{table}
-
-
 As the optimal reservoir size and input connectivity might depend on the task at hand,
-we test our reservoirs on both the Temporal Parity and Temporal Density tasks with window sizes of both 3 and 5 (as specified in table \ref{tab:tasks}).
+we test our reservoirs on both the Temporal Parity \ref{missing} and Temporal Density \ref{missing}
+tasks with window sizes of both 3 and 5 (as specified in table \ref{tab:tasks}).
 
 \begin{table}[ht]
   \centering
@@ -151,14 +140,58 @@ we test our reservoirs on both the Temporal Parity and Temporal Density tasks wi
     Test dataset length     & 200                         \\
     $N$ (window size)       & 3 and 5                     \\
     $t$ (offset)            & 0
-  \end{tabular} 
-\end{table} 
+  \end{tabular}
+\end{table}
 
-\section{Optimal output connectivyt}
+To find the optimal reservoir size and input connectivity,
+we'll randomly initialize 50 reservoirs for each combination of the reservoir parameters in table \ref{tab:ic-reservoir-parameters}.
+
+For our experiments we'll only be looking at reservoirs with $K=3$.
+As well as being more useful due to the homogenous degree of the network (to simulate $\langle K \rangle = 2 $) and
+having a higher population accuracy, it reduces the number of parameter combination we have to simulate.
+
+\begin{table}[ht]
+    \centering
+    \caption{Reservoir parameters for optimal input connectivity}
+    \label{tab:ic-reservoir-parameters}
+    \begin{tabular}{ll}
+        Nodes               & [10..50], step size=5         \\
+        Connectivity        & 3                             \\
+        Input connectivity  & [0..n\_nodes], step size = 5  \\
+		Output connectivity & n\_nodes                      \\
+        Sample size         & 50
+    \end{tabular}
+\end{table}
+
+After plotting the resulting accuracies on the previously mentioned tasks,
+one should be able to visually identify the minimum required reservoir size for the given task,
+as well as what the optimal input connectivity might be, as a function of reservoir size and task.
+
+\section{Minimum required output connectivity}
+
+How few connections can one have from the reservoir itself to the readout layer,
+while staying accurate on the task at hand?
+As the reservoir prediction is computed by regressing the states of the network nodes against the expected output bits,
+reducing the number of nodes used in the regression can never give a higher accuracy than using all of the nodes.
+If there is redundant information in the network, quite a few nodes could be cut off from the readout layer while maintaining the best accuracy for this specific reservoir.
+This does require a sufficient amount of linear independence between the remaining nodes of the network.
+
+As shown in the previous section, different problems require different reservoir sizes.
+Past a certain reservoir size, all reservoirs have a sufficient accuracy on the given task.
+One could postulate that for reservoirs larger than the 95\% accuracy breakpoint,
+it suffices to read out a number of nodes equal to the breakpoint.
+If this is the case, one can safely use growing reservoirs without having to change the output connections,
+given that the reservoir was able to solve the given task in the first place.
+
+The results from the previous section show a correlation between input connectivity and accuracy,
+with the reservoirs having a input connectivity of $n\_nodes / 2$ having the highest population accuracy.
+Using this information, we can reduce our search space for minimum required output connectivity considerably.
+The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simulation.
 
 \begin{table}[ht]
     \centering
     \caption{Reservoir parameters for optimal output connectivity}
+    \label{tab:oc-reservoir-parameters}
     \begin{tabular}{ll}
         Nodes               & [10..100], step size=10           \\
         Connectivity        & 3                                 \\
@@ -167,3 +200,5 @@ we test our reservoirs on both the Temporal Parity and Temporal Density tasks wi
         Sample size         & 50
     \end{tabular}
 \end{table}
+
+\section{Analyzing reservoir dynamics}
