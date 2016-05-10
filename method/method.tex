@@ -184,6 +184,7 @@ If this is the case, one can safely use growing reservoirs without having to cha
 given that the reservoir was able to solve the given task in the first place.
 
 The results from the previous section show a correlation between input connectivity and accuracy,
+\todo{As this information isn't really obtained before i've presented the results section for the previous task, i'm not sure how to structure it. Probably method->experiment->result for each task in succession?}
 with the reservoirs having a input connectivity of $n\_nodes / 2$ having the highest population accuracy.
 Using this information, we can reduce our search space for minimum required output connectivity considerably.
 The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simulation.
@@ -202,3 +203,29 @@ The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simul
 \end{table}
 
 \section{Analyzing reservoir dynamics}
+
+Analysis of Random Boolean Networks often focuses on their dymanical properties.
+These include whether the network is chaotic, stable or critical,
+the number of attractors, attractor size, basin size, and transient times.
+For a given set of RBN parameters, one can analytically obtain bounds on the statistical averages of these values.
+
+The accuracies of reservoirs for a given set of parameters also follow some distribution.
+To find out if there is a correlation between a reservoirs dynamical properties and its accuracy on a task,
+the number of attractors, their length, and transient times will be calculated alongside its accuracy on the task.
+
+To find the number of attractors in a Random Boolean Network, there are two choices:
+To exhaustively search all trajectories from all initial states untill a cycle is found,
+or exploring only a subset of initial states.
+For larger networks, an exhaustive search may be computationally infeasible,
+with the number of initial states exponential in the size of the RBN.
+
+As shown in paper \cm{that paper},
+the means of the number of attractors and their lengths when calculated from a subset of initial states is in fact representative of the actual means for reservoirs with $K=2$.
+As our reservoirs have a connectivity of $K = 3$, exhaustive search will have to be conducted instead.
+\cm{Fact-check this, there's also that algorithm thats much faster than exhaustive search in that paper you found that time}.
+Emprical testing shows that this limits us to reservoirs of a maximum number of 16 nodes,
+enough to solve the Temporal Parity task with a window size of 3, but not for 5.
+In section \ref{results-of-required-size} we see that the minimum required reservoir size for that task is closer to SOMENUNMBER.
+The computationally easier Temporal Density task \ref{task-description-section},
+with window sizes of both 3 and 5,
+will therefore be used instead.
