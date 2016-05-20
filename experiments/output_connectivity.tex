@@ -1,0 +1,115 @@
+\section{Minimum required output connectivity}
+
+How few connections can one have from the reservoir itself to the readout layer,
+while staying accurate on the task at hand?
+As the reservoir prediction is computed by regressing the states of the network nodes against the expected output bits,
+reducing the number of nodes used in the regression can never give a higher accuracy than using all of the nodes.
+If there is redundant information in the network, quite a few nodes could be cut off from the readout layer while maintaining the best accuracy for this specific reservoir.
+This does require a sufficient amount of linear independence between the remaining nodes of the network.
+
+As shown in the previous section, different problems require different reservoir sizes.
+Past a certain reservoir size, all reservoirs have a sufficient accuracy on the given task.
+One could postulate that for reservoirs larger than the 95\% accuracy breakpoint,
+it suffices to read out a number of nodes equal to the breakpoint.
+If this is the case, one can safely use growing reservoirs without having to change the output connections,
+given that the reservoir was large enough to solve the given task in the first place.
+
+As shown in section \ref{experiments:1:results}, there is a correlation between input connectivity and accuracy.
+For our reservoirs with $K=3$, the optimal input connectivity was found to be $n\_nodes/2$.
+Using this information, we can reduce our search space for minimum required output connectivity.
+The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simulation.
+
+\begin{table}[ht]
+    \centering
+    \caption{Reservoir parameters for optimal output connectivity}
+    \label{tab:oc-reservoir-parameters}
+    \begin{tabular}{ll}
+        Nodes               & [10..150], step size=10           \\
+        Connectivity        & 3                                 \\
+        Input connectivity  & $ n\_nodes / 2 $                  \\
+        Output connectivity & [0..n\_nodes], step size=10       \\
+        Sample size         & 50
+    \end{tabular}
+\end{table}
+
+\subsection{Results}
+
+%\begin{figure*}[ht]
+%    \centering
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=10]{
+%            \input{results/figures/t5-optimal-out/boxplot-N10-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=20]{
+%            \input{results/figures/t5-optimal-out/boxplot-N20-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=30]{
+%            \input{results/figures/t5-optimal-out/boxplot-N30-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=40]{
+%            \input{results/figures/t5-optimal-out/boxplot-N40-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=50]{
+%            \input{results/figures/t5-optimal-out/boxplot-N50-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=60]{
+%            \input{results/figures/t5-optimal-out/boxplot-N60-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \caption{Plots for optimal input task 2 - part 1}
+%\end{figure*}
+
+%\begin{figure*}[ht]
+%    \centering
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=70]{
+%            \input{results/figures/t5-optimal-out/boxplot-N70-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=80]{
+%            \input{results/figures/t5-optimal-out/boxplot-N80-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=90]{
+%            \input{results/figures/t5-optimal-out/boxplot-N90-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=100]{
+%            \input{results/figures/t5-optimal-out/boxplot-N100-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=110]{
+%            \input{results/figures/t5-optimal-out/boxplot-N110-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=120]{
+%            \input{results/figures/t5-optimal-out/boxplot-N120-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \caption{Plots for optimal input task 2 - part 2}
+%\end{figure*}
+%
+%\begin{figure*}[ht]
+%    \centering
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=130]{
+%            \input{results/figures/t5-optimal-out/boxplot-N130-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=140]{
+%            \input{results/figures/t5-optimal-out/boxplot-N140-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \resizebox{0.5\textwidth}{!}{
+%        \subfloat[N=150]{
+%            \input{results/figures/t5-optimal-out/boxplot-N150-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \caption{Plots for optimal input task 2 - part 3}
+%\end{figure*}
+
+\subsection{Discussion}
+
+LOL PLZ NO

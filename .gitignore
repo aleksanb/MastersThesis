@@ -117,3 +117,9 @@ sympy-plots-for-*.tex/
 # ruby
 .bundle
 vendor
+
+
+# Symlinks
+experiments/figures
+experiments/results
+results/temporal-density
