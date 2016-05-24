@@ -36,10 +36,10 @@ having a higher population accuracy, it reduces the number of parameter combinat
     \caption{Reservoir parameters for optimal input connectivity}
     \label{tab:ic-reservoir-parameters}
     \begin{tabular}{ll}
-        Nodes               & [10..100], step size=10       \\
-        Connectivity        & 3                             \\
-        Input connectivity  & [0..n\_nodes], step size = 5  \\
-		Output connectivity & n\_nodes                      \\
+        Nodes               & [10..(100, 140)], step size=10 \\
+        Connectivity        & 3                              \\
+        Input connectivity  & [0..n\_nodes], step size = 5   \\
+		Output connectivity & n\_nodes                       \\
         Sample size         & 50
     \end{tabular}
 \end{table}
@@ -87,7 +87,7 @@ First we president
     \caption{Plots of input connectivity against accuracy on TP3 - Part 1 of 2}
 \end{figure*}
 
-\begin{figure*}[h]
+\begin{figure*}[ht]
     \centering
     \resizebox{\textwidth}{!}{
         \subfloat[N=70]{
@@ -111,36 +111,28 @@ First we president
 
 \begin{figure*}[ht]
     \centering
-    %\resizebox{\textwidth}{!}{
-    %    \subfloat[N=10]{
-    %        \input{experiments/results/TP5-IO/boxplot-input_connectivity-N10-K3-S50.tex}
-    %    }
-    %    \subfloat[N=20]{
-    %        \input{experiments/results/TP5-IO/boxplot-input_connectivity-N20-K3-S50.tex}
-    %    }
-    %}
     \resizebox{\textwidth}{!}{
+        \subfloat[N=30]{
+            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N30-K3-S50.tex}
+        }
         \subfloat[N=40]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N40-K3-S50.tex}
         }
+    }
+    \resizebox{\textwidth}{!}{
         \subfloat[N=50]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N50-K3-S50.tex}
         }
-    }
-    \resizebox{\textwidth}{!}{
         \subfloat[N=60]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N60-K3-S50.tex}
         }
+    }
+    \resizebox{\textwidth}{!}{
         \subfloat[N=70]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N70-K3-S50.tex}
         }
-    }
-    \resizebox{\textwidth}{!}{
         \subfloat[N=80]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N80-K3-S50.tex}
-        }
-        \subfloat[N=90]{
-            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N90-K3-S50.tex}
         }
     }
     \caption{Plots of input connectivity against accuracy on TP5 - Part 1 of 2}
@@ -149,27 +141,27 @@ First we president
 \begin{figure*}[ht]
     \centering
     \resizebox{\textwidth}{!}{
+        \subfloat[N=90]{
+            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N90-K3-S50.tex}
+        }
         \subfloat[N=100]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N100-K3-S50.tex}
         }
+    }
+    \resizebox{\textwidth}{!}{
         \subfloat[N=110]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N110-K3-S50.tex}
         }
-    }
-    \resizebox{\textwidth}{!}{
         \subfloat[N=120]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N120-K3-S50.tex}
         }
+    }
+    \resizebox{\textwidth}{!}{
         \subfloat[N=130]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N130-K3-S50.tex}
         }
-    }
-    \resizebox{\textwidth}{!}{
         \subfloat[N=140]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N140-K3-S50.tex}
-        }
-        \subfloat[N=150]{
-            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N150-K3-S50.tex}
         }
     }
     \caption{Plots of input connectivity against accuracy on TP5 - Part 2 of 2}

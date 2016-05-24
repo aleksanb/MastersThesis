@@ -15,7 +15,7 @@ upload:
 
 .PHONY: open
 open:
-	evince $(pdffile) &
+	evince $(pdffile)
 
 .PHONY: clean
 clean:

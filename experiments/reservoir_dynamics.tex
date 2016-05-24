@@ -30,7 +30,23 @@ will therefore be used instead.
 
 \subsection{Results}
 
-PICS COME HERE
+\begin{figure*}
+    \centering
+    \resizebox{\textwidth}{!}{
+        \myheatmap
+            {experiments/results/temporal-density/3/3-600.dat}
+            {Number of attractors}
+            {Mean attractor length}
+        \myheatmap
+            {experiments/results/temporal-density/5/5-600.dat}
+            {Number of attractors}
+            {Mean attractor length}
+    }
+    \caption{
+        600 samples. The left one has 116 with at least 95\% accuracy,
+        the right one has 129 over 81\% accuracy.
+    }
+\end{figure*}
 
 \subsection{Discussion}
 
