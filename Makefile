@@ -23,7 +23,7 @@ clean:
 
 .PHONY: build
 build: clean
-	pdflatex $(file)
+	pdflatex -shell-escape $(file)
 	bibtex $(bibfile)
-	pdflatex $(file)
-	pdflatex $(file)
+	pdflatex -shell-escape $(file)
+	pdflatex -shell-escape $(file)

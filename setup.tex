@@ -40,14 +40,22 @@
 \usepackage[caption=false,font=footnotesize]{subfig}
 
 % My custom directives
-
-\usepackage{todonotes}
+%\usepackage{todonotes}
 
 \newcommand{\cm}[1]{
-    \todo[inline, color=cyan]{Citation missing: #1} 
+    CITATION MISSING: #1
+    %\todo[inline, color=cyan]{Citation missing: #1}
+}
+
+\newcommand{\todo}[1]{
+    TODO: #1
 }
 
 \usepackage{tikz}
+
+\usetikzlibrary{external}
+\tikzexternalize[prefix=precompiled-figures/]
+
 \usetikzlibrary{shapes, arrows, fit, calc}
 \tikzset{vertex/.style = {shape=circle,draw,minimum size=2em}}
 \tikzset{edge/.style = {->, > = latex'}}

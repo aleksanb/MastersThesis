@@ -44,23 +44,24 @@ and the actual network topology is equivalent to the one in Figure \ref{figure:r
 \todo{gotta add moar stuffz here, nemlig varierende input/output cocnnectivitet støtte}
 
 \begin{figure}
-  \centering
-  \begin{tikzpicture}
-    \node (dataset) {Dataset};
-    \node[box, below=of dataset] (input) {Input layer};
-    \node[box, right=of input] (reservoir) {RBN Reservoir};
-    \node[box, right=of reservoir] (readout) {Readout layer};
-    \node[above=of readout] (classification) {Classification};
+    \centering
+    \tikzexternaldisable
+    \begin{tikzpicture}
+        \node (dataset) {Dataset};
+        \node[box, below=of dataset] (input) {Input layer};
+        \node[box, right=of input] (reservoir) {RBN Reservoir};
+        \node[box, right=of reservoir] (readout) {Readout layer};
+        \node[above=of readout] (classification) {Classification};
 
-    \node[draw,dotted,fit=(input) (reservoir) (readout), label={RRC}] {};
+        \node[draw,dotted,fit=(input) (reservoir) (readout), label={RRC}] {};
 
-    \draw[edge] (dataset) to (input);
-    \draw[edge] (input) to (reservoir);
-    \draw[edge] (reservoir) to (readout);
-    \draw[edge] (readout) to (classification);
-  \end{tikzpicture}
-  \caption{Block diagram of the RRC processing a dataset.}
-  \label{figure:rrc-block}
+        \draw[edge] (dataset) to (input);
+        \draw[edge] (input) to (reservoir);
+        \draw[edge] (reservoir) to (readout);
+        \draw[edge] (readout) to (classification);
+    \end{tikzpicture}
+    \caption{Block diagram of the RRC processing a dataset.}
+    \label{figure:rrc-block}
 \end{figure}
 
 \subsection{testing}

@@ -123,3 +123,5 @@ vendor
 experiments/figures
 experiments/results
 results/temporal-density
+precompiled-figures/*
+precompiled-figures/!.gitignore
