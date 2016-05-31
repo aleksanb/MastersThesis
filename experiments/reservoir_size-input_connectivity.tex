@@ -51,14 +51,10 @@ as well as what the optimal input connectivity might be, as a function of reserv
 \label{experiments:1:results}
 \subsection{Results}
 
-Parity3, for 10 to 100, 10 reservoir size, 5 input connectivity size
-Parity5, for 10 to 150, 10 reservoir size, 5 input connectivity size
-Sample size 50 for both
-
-First we president 
-
 \begin{figure*}[ht]
     \centering
+    \caption{Plots of input connectivity against accuracy on TP3 - Part 1 of 2}
+    \label{fig:TP3-IC-1}
     \resizebox{\textwidth}{!}{
         \subfloat[N=10]{
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N10-K3-S50.tex}
@@ -83,12 +79,12 @@ First we president
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N60-K3-S50.tex}
         }
     }
-    \label{fig:results:tp3-1}
-    \caption{Plots of input connectivity against accuracy on TP3 - Part 1 of 2}
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
+    \caption{Plots of input connectivity against accuracy on TP3 - Part 2 of 2}
+    \label{fig:TP3-IC-2}
     \resizebox{\textwidth}{!}{
         \subfloat[N=70]{
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N70-K3-S50.tex}
@@ -105,12 +101,12 @@ First we president
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N100-K3-S50.tex}
         }
     }
-    \label{fig:results:tp3-2}
-    \caption{Plots of input connectivity against accuracy on TP3 - Part 2 of 2}
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
+    \caption{Plots of input connectivity against accuracy on TP5 - Part 1 of 2}
+    \label{fig:TP5-IC-1}
     \resizebox{\textwidth}{!}{
         \subfloat[N=30]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N30-K3-S50.tex}
@@ -135,11 +131,12 @@ First we president
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N80-K3-S50.tex}
         }
     }
-    \caption{Plots of input connectivity against accuracy on TP5 - Part 1 of 2}
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
+    \caption{Plots of input connectivity against accuracy on TP5 - Part 2 of 2}
+    \label{fig:TP5-IC-2}
     \resizebox{\textwidth}{!}{
         \subfloat[N=90]{
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N90-K3-S50.tex}
@@ -164,8 +161,36 @@ First we president
             \input{experiments/results/TP5-IO/boxplot-input_connectivity-N140-K3-S50.tex}
         }
     }
-    \caption{Plots of input connectivity against accuracy on TP5 - Part 2 of 2}
 \end{figure*}
+
+\begin{table}[ht]
+    \centering
+    \caption{The smallest reservoir sizes where at least two reservoirs have the required accuracy}
+    \label{tab:accuracy-thresholds}
+    \begin{tabular}{lllll}
+                     & TP3 & TP5 & TD3 & TD5 \\
+    90\% accuracy threshold & 15  & 70  & 10  & 30  \\
+    98\% accuracy threshold & 20  & 90 & 10  & 55
+    \end{tabular}
+\end{table}
+
+
+We calculate the optimal input connectivity for each task as follows:
+$$ optimal\_ic^{task} = average(optimal\_ic_{n\_nodes}^{task} / n\_nodes) $$
+where $ optimal\_ic_{n\_nodes}^{task} $ is the connectivity which gives the highest number of high-accuracy reservoirs for that task and reservoir size.
+Results are created from the data behind figures \ref{fig:TP3-IC-1} through \ref{fig:TP5-IC-2},
+and tabulated in \ref{tab:optimal-ic}.
+
+\begin{table}[h]
+	\centering
+	\caption{Optimal input connectivities as fraction of reservoir size for task-window size combinations }
+	\label{tab:optimal-ic}
+	\begin{tabular}{lllll}
+						 & $T=3$  & $T=5$ \\
+        Temporal Parity  & 0.528          & 0.489         \\
+        Temporal Density & 0.439          & 0.443
+	\end{tabular}
+\end{table}
 
 \subsection{Discussion}
 
