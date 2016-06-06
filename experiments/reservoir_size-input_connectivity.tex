@@ -2,8 +2,9 @@
 
 As shown in my previous paper \cite{MyPreviousPaper},
 there are a plethora of RRC systems with $N=100, K=\{2, 3\}$ that solve the Temporal Parity task for a window size of both 3 and 5,
-The reservoirs with $K=3$ had a higher density of success in general,
-and the larger reservoirs fared better on the task with window size 5.
+
+The reservoirs with $K=3$ were found to have a higher density of accurate reservoirs,
+and will therefore be chosen as the connectivity for all the reservoirs we'll be creating here as well.
 
 Presumably the same tasks can be solved with smaller reservoirs,
 the question being how small they can be while retaining accurarcy.
@@ -13,7 +14,7 @@ tasks with window sizes of both 3 and 5 (as specified in table \ref{tab:tasks}).
 
 \begin{table}[ht]
   \centering
-  \caption{Task parameters}
+  \caption{Task parameters. They'll be referred to as TP3, TP5, TD3, and TD5 from now on.}
   \label{tab:tasks}
   \begin{tabular}{ll}
     Task type               & Temporal Parity and Temporal Density \\
