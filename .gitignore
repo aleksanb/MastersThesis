@@ -118,8 +118,6 @@ sympy-plots-for-*.tex/
 .bundle
 vendor
 
-
 # Symlinks
-results/temporal-density
 precompiled-figures/*
 precompiled-figures/!.gitignore
