@@ -54,9 +54,10 @@ with the $K=3$ reservoirs having a slight skew to the right.
 The Temporal Density task might have different input connectivity requirements to the Temporal Parity task.
 
 We calculate the optimal input connectivity for each task as follows:
-$$ optimal\_ic^{task} = average(optimal\_ic_{n\_nodes}^{task} / n\_nodes) $$
-\label{alg:optimal-ic}
-where $ optimal\_ic_{n\_nodes}^{task} $ is the connectivity which gives the highest number of high-accuracy reservoirs for that task and reservoir size.
+\begin{equation} \label{eq:optimal-ic}
+optimal\_ic^{task} = average(max\_accuracy\_ic_{n\_nodes}^{task} / n\_nodes)
+\end{equation}
+where $ max\_accuracy\_ic_{n\_nodes}^{task} $ is the connectivity which gives the highest number of high-accuracy reservoirs for that task and reservoir size.
 
 The resulting accuracies wil be plotted as boxplots, as previously done in \ref{background:my-previous-paper}.
 This should allow for visual identification of where the optimal reservoir size lies for each task,
@@ -64,14 +65,14 @@ as well as the optimal input connectivity.
 
 \subsection{Results}
 
-We now present an illustrative subset of all graphs generated showing the performance of the smallest generated reservoirs,
-reservoirs on the 98\% accuracy threshold, as well as the largest reservoirs generated for each task.
-Tabulated data of task accuracy thresholds and optimal input connectivities for the entire dataset is also presented.
-The entire dataset is available in appendix \ref{app:reservoir_size-input_connectivity} for those interested.
+The number of reservoir combinations resulting from tables \ref{tab:ic-reservoir-parameters} and \ref{tab:tasks} is quite large.
+Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the Temporal Parity 3 task is presented here (figure \ref{fig:TP3-IC}).
+In addition, plots for the reservoirs on the 98\% accuracy threshold for all four tasks is shown in figure \label{fig:accuracy-threshold-size}.
+The entire set of plots is available in appendix \ref{app:reservoir_size-input_connectivity}.
 
 Task accuracy thresholds,
 defined as the smallest reservoir size where at least two reservoirs have the requried accuracy,
-are presented in table \ref{tab:accuracy-thresholds}.
+is presented in table \ref{tab:accuracy-thresholds}.
 
 \begin{table}[ht]
     \centering
@@ -84,7 +85,7 @@ are presented in table \ref{tab:accuracy-thresholds}.
     \end{tabular}
 \end{table}
 
-Task optimal input connectivity (as defined in formula \ref{alg:optimal-ic}) is presented in table \ref{tab:optimal-ic}.
+Task optimal input connectivity (as defined in formula \ref{eq:optimal-ic}) is presented in table \ref{tab:optimal-ic}.
 
 \begin{table}[h]
 	\centering
@@ -99,72 +100,67 @@ Task optimal input connectivity (as defined in formula \ref{alg:optimal-ic}) is 
 
 \begin{figure}[ht]
     \centering
-    \caption{Accuracy plots for the smallest reservoirs created for each of the TP3, TP5, TD3, TD5 tasks.}
-
-    \label{fig:accuracy-min-size}
-    \resizebox{\textwidth}{!}{
-        \subfloat[TP3, N=10]{
-            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N10-K3-S50.tex}
-        }
-        \subfloat[TP5, N=10]{
-            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N10-K3-S50.tex}
-        }
+    \caption{
+        Accuracy plots for the required reservoir sizes to reach the 98\% accuracy threshold for each of the four tasks:
+        TP3 (Figure \ref{fig:threshold-TP3}), TP5 (Figure \ref{fig:threshold-TP5}), TD3 (Figure \ref{fig:threshold-TD3}) and TD5 (Figure \ref{fig:threshold-TD5}).
+        The x-axis for all plots has been set to the largest required reservoir size ($N=90$), to facilitate simple comparison.
     }
-    \resizebox{\textwidth}{!}{
-        \subfloat[TD3, N=5]{
-            \input{experiments/results/temporal-density/3/boxplot-input_connectivity-N5-K3-S50.tex}
-        }
-        \subfloat[TD5, N=10]{
-            \input{experiments/results/temporal-density/5/regen/boxplot-input_connectivity-N10-K3-S50.tex}
-        }
-    }
-\end{figure}
-
-\begin{figure}[ht]
-    \centering
-    \caption{Accuracy plots for the reservoirs on the 98\% accuracy threshold for each of the TP3, TP5, TD3, TD5 tasks.}
-
     \label{fig:accuracy-threshold-size}
     \resizebox{\textwidth}{!}{
         \subfloat[TP3, N=20]{
-            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N20-K3-S50.tex}
+            \input{experiments/results/normalized-threshold-plots/boxplot-input_connectivity-N20-K3-S50.tex}
+            \label{fig:threshold-TP3}
         }
         \subfloat[TP5, N=90]{
-            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N90-K3-S50.tex}
+            \input{experiments/results/normalized-threshold-plots/boxplot-input_connectivity-N90-K3-S50.tex}
+            \label{fig:threshold-TP5}
         }
     }
     \resizebox{\textwidth}{!}{
         \subfloat[TD3, N=10]{
-            \input{experiments/results/temporal-density/3/boxplot-input_connectivity-N10-K3-S50.tex}
+            \input{experiments/results/normalized-threshold-plots/boxplot-input_connectivity-N10-K3-S50.tex}
+            \label{fig:threshold-TD3}
         }
         \subfloat[TD5, N=55]{
-            \input{experiments/results/temporal-density/5/regen/boxplot-input_connectivity-N55-K3-S50.tex}
+            \input{experiments/results/normalized-threshold-plots/boxplot-input_connectivity-N55-K3-S50.tex}
+            \label{fig:threshold-TD5}
         }
     }
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure*}[ht]
     \centering
-    \caption{Accuracy plots for the largest reservoirs created for each of the TP3, TP5, TD3, TD5 tasks.}
-
-    \label{fig:accuracy-max-size}
+    \caption{
+        Plots of input connectivity against accuracy on TP3. Reservoir sizes $4[0...70]$ are omitted for brevity.
+        Note that the optimal input connectivity tends slightly to the right of the middle for all reservoir sizes.
+        The omitted plots are presented in figures \ref{fig:TP3-IC-1} and \ref{fig:TP3-IC-2} in appendix \ref{app:reservoir_size-input_connectivity}.
+        }
+    \label{fig:TP3-IC}
     \resizebox{\textwidth}{!}{
-        \subfloat[TP3, N=100]{
+        \subfloat[N=10]{
+            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N10-K3-S50.tex}
+        }
+        \subfloat[N=80]{
+            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N80-K3-S50.tex}
+        }
+    }
+    \resizebox{\textwidth}{!}{
+        \subfloat[N=20]{
+            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N20-K3-S50.tex}
+        }
+        \subfloat[N=90]{
+            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N90-K3-S50.tex}
+        }
+    }
+    \resizebox{\textwidth}{!}{
+        \subfloat[N=30]{
+            \input{experiments/results/TP3-IO/boxplot-input_connectivity-N30-K3-S50.tex}
+        }
+        \subfloat[N=100]{
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N100-K3-S50.tex}
         }
-        \subfloat[TP5, N=140]{
-            \input{experiments/results/TP5-IO/boxplot-input_connectivity-N140-K3-S50.tex}
-        }
     }
-    \resizebox{\textwidth}{!}{
-        \subfloat[TD3, N=30]{
-            \input{experiments/results/temporal-density/3/boxplot-input_connectivity-N30-K3-S50.tex}
-        }
-        \subfloat[TD5, N=65]{
-            \input{experiments/results/temporal-density/5/regen/boxplot-input_connectivity-N65-K3-S50.tex}
-        }
-    }
-\end{figure}
+\end{figure*}
 
 \subsection{Discussion}
 
