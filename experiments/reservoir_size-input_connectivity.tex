@@ -53,57 +53,23 @@ the optimal input connectivity seemed to lie at roughly $ 0.5*n\_nodes $,
 with the $K=3$ reservoirs having a slight skew to the right.
 The Temporal Density task might have different input connectivity requirements to the Temporal Parity task.
 
-We calculate the optimal input connectivity for each task as follows:
-\begin{equation} \label{eq:optimal-ic}
-optimal\_ic^{task} = average(max\_accuracy\_ic_{n\_nodes}^{task} / n\_nodes)
-\end{equation}
-where $ max\_accuracy\_ic_{n\_nodes}^{task} $ is the connectivity which gives the highest number of high-accuracy reservoirs for that task and reservoir size.
-
 The resulting accuracies wil be plotted as boxplots, as previously done in \ref{background:my-previous-paper}.
 This should allow for visual identification of where the optimal reservoir size lies for each task,
 as well as the optimal input connectivity.
 
 \subsection{Results}
 
-The number of reservoir combinations resulting from tables \ref{tab:ic-reservoir-parameters} and \ref{tab:tasks} is quite large.
-Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the Temporal Parity 3 task is presented here (figure \ref{fig:TP3-IC}).
-In addition, plots for the reservoirs on the 98\% accuracy threshold for all four tasks is shown in figure \label{fig:accuracy-threshold-size}.
-The entire set of plots is available in appendix \ref{app:reservoir_size-input_connectivity}.
-
 Task accuracy thresholds,
-defined as the smallest reservoir size where at least two reservoirs have the requried accuracy,
-is presented in table \ref{tab:accuracy-thresholds}.
-
-\begin{table}[ht]
-    \centering
-    \caption{Accuracy thresholds for all four tasks.}
-    \label{tab:accuracy-thresholds}
-    \begin{tabular}{lllll}
-                     & TP3 & TP5 & TD3 & TD5 \\
-    90\% accuracy threshold & 15  & 70  & 10  & 30  \\
-    98\% accuracy threshold & 20  & 90 & 10  & 55
-    \end{tabular}
-\end{table}
-
-Task optimal input connectivity (as defined in formula \ref{eq:optimal-ic}) is presented in table \ref{tab:optimal-ic}.
-
-\begin{table}[h]
-	\centering
-	\caption{Optimal input connectivities as fraction of reservoir size.}
-	\label{tab:optimal-ic}
-	\begin{tabular}{lllll}
-						 & $T=3$  & $T=5$ \\
-        Temporal Parity  & 0.528          & 0.489         \\
-        Temporal Density & 0.439          & 0.443
-	\end{tabular}
-\end{table}
+defined as the smallest reservoir size where at least two reservoirs have the required accuracy,
+are presented in figure \ref{fig:accuracy-threshold-size} and table \ref{tab:accuracy-thresholds}.
+The 90\% accuracy threshold is also included in table \ref{tab:accuracy-thresholds} as it appears quite a bit earlier than the 98\% threshold for tasks with a window size of 5.
 
 \begin{figure}[ht]
     \centering
     \caption{
         Accuracy plots for the required reservoir sizes to reach the 98\% accuracy threshold for each of the four tasks:
         TP3 (Figure \ref{fig:threshold-TP3}), TP5 (Figure \ref{fig:threshold-TP5}), TD3 (Figure \ref{fig:threshold-TD3}) and TD5 (Figure \ref{fig:threshold-TD5}).
-        The x-axis for all plots has been set to the largest required reservoir size ($N=90$), to facilitate simple comparison.
+        The x-axis for all plots has been normalized to the largest reservoir size, $N=90$.
     }
     \label{fig:accuracy-threshold-size}
     \resizebox{\textwidth}{!}{
@@ -127,6 +93,22 @@ Task optimal input connectivity (as defined in formula \ref{eq:optimal-ic}) is p
         }
     }
 \end{figure}
+
+\begin{table}[ht]
+    \centering
+    \caption{Accuracy thresholds for all four tasks.}
+    \label{tab:accuracy-thresholds}
+    \begin{tabular}{lllll}
+                            & TP3 & TP5 & TD3 & TD5 \\
+    90\% accuracy threshold & ~15 & 70  & 10  & 30  \\
+    98\% accuracy threshold & 20  & 90  & 10  & 55
+    \end{tabular}
+\end{table}
+
+The number of input connectivity plots resulting from the reservoir (table \ref{tab:ic-reservoir-parameters}) and task parameter (table \ref{tab:tasks}) combinations is quite large.
+Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the Temporal Parity 3 task is shown here (figure \ref{fig:TP3-IC}).
+There is a slight skew to each side of $ 0.5 * n\ _nodes $ dependent on whether the task chosen is Temporal Parity or Temporal Density.
+This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:reservoir_size-input_connectivity} figures \label{fig:TP3-IC-1} through \label{fig:TD5-IC-2} for the remaining tasks.
 
 \begin{figure*}[ht]
     \centering
@@ -162,15 +144,51 @@ Task optimal input connectivity (as defined in formula \ref{eq:optimal-ic}) is p
     }
 \end{figure*}
 
+We confirm this skew by calculating the optimal input connectivity for each task as follows:
+\begin{equation} \label{eq:optimal-ic}
+optimal\_ic^{task} = average(max\_accuracy\_ic_{n\_nodes}^{task} / n\_nodes)
+\end{equation}
+where $ max\_accuracy\_ic_{n\_nodes}^{task} $ is the connectivity which gives the highest number of high-accuracy reservoirs for that task and reservoir size.
+The results are presented in table \ref{tab:optimal-ic}.
+
+\begin{table}[h]
+	\centering
+	\caption{Optimal input connectivities as fraction of reservoir size.}
+	\label{tab:optimal-ic}
+	\begin{tabular}{lllll}
+						 & $T=3$  & $T=5$ \\
+        Temporal Parity  & 0.528          & 0.489         \\
+        Temporal Density & 0.439          & 0.443
+	\end{tabular}
+\end{table}
+
 \subsection{Discussion}
 
-As seen in figures \ref{fig:results:tp3-1}–\ref{fig:results:tp3-2},
-a reservoir size of XX is sufficient to solve the Temporal Parity 3 task.
-In figures \ref{fig:results:tp5-1}–\ref{fig:results:tp5-4},
-a reservoir size of XX is sufficient to solve the Temporal Parity 5 task.
+\subsubsection{Required reservoir size}
 
-Notice for all plots, that the highest population accuracies are found when the input connectivity is roughly half of the reservoir size, or $IC=n\_nodes/2$.
-As this holds for both tasks (Temporal Parity 3 and 5), there seems to be no correlation between task difficulty and required input connectivity.
-In \cm{thatpaperwiththeoreticalcomputationsforinputconnectivity}, the reservoir connectivity is the main factor in how large a perturbance of the is required.
-In my previous paper, \cm{prevpaper}, a larger connectivity resulted in a higher required connectivity.
-These findings might therefore not be generalizable to reservoirs with other connectivities.
+In section \ref{my previous paper} Temporal Density was experimentally found to be the more difficult task, and therefore chosen for benchmarking the reservoirs.
+Reservoirs with $N=100, K=3$ were found to be overkill for TP3, while being on the edge of solving TP5.
+The expected relationship between the relative difficulties of the four tasks is therefore $ TD3 <= TP3 <= TD5 <= TP5 $.
+Figure \label{fig:threshold-TP3} and table \ref{tab:accuracy-thresholds} confirms this suspicion.
+For the same window size, Temporal Parity requires a larger reservoir.
+The additional computational requirements of being able to remember five timesteps into the past requires quite a ramp up in reservoir size.
+
+A reservoir of size 20 is large enough for TP3 (a bit lower than the 100 nodes used in my previous paper).
+$ n\_nodes = 90 $ appears sufficient for TP5, slightly lower than in the previous experiments,
+although the entire accuracy distribution doesn't increase significantly untill $ n\_nodes = 120 $, as shown in figure \ref{fig:TP5-IC-2}.
+For TD3, a tiny reservoir of size 10 is sufficient, with a reservoir of size 5 achieving 90\% accuracy!
+There is a corresponding ramp-up in required reservoir size to 55 to achieve 98\% accuracy on TD5.
+
+Using this knowledge and the RRC system as an abstraction over a physical RC device,
+one can simulate roughly the required size of a reservoir based on the pysical reservoirs estimated connectivity.
+With this knowledge, one can create a physical reservoir just the right size for the computational problem at hand.
+
+\subsubsection{Optimal input connectivity}
+
+Temporal Density had an optimal input connectivity of roughly 0.44, while Temporal Parity lay around 0.50.
+These values differ relatively little across tasks,
+which is to be expected as the reservoir connectivity is the main factor in how large a reservoir perturbance is required \cm{thatpaperwiththeoreticalcomputationsforinputconnectivity},
+with higher connectivities requiring larger perturbances lest the input be lost in the chaotic transitions of the reservoir.
+This knowledge can be used to assist in choosing the degree of perturbance of a real-life reservoir computing system.
+If one is able to measure the connectivity of the reservoir,
+one can select a reasonable starting point for the amount of reservoir perturbance.
