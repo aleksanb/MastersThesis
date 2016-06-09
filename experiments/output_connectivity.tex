@@ -24,7 +24,7 @@ The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simul
     \caption{Reservoir parameters for optimal output connectivity}
     \label{tab:oc-reservoir-parameters}
     \begin{tabular}{ll}
-        Nodes               & [10..(100, 140)], step size=10 \\
+        Nodes               & 10 to (100, 140) for TP, step size=10 \\
         Connectivity        & 3                              \\
         Input connectivity  & $ n\_nodes / 2 $               \\
         Output connectivity & [0..n\_nodes], step size=10    \\
@@ -36,116 +36,78 @@ The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simul
 
 \begin{figure*}[ht]
     \centering
+    \caption{
+        O shit.
+        Comparison of accuracy of all reservoirs <= 100 to a single reservoir of size 100 where one chooses to read out a subset of the data.
+    }
+    \label{fig:output-connectivity-TP3}
     \resizebox{\textwidth}{!}{
-        \subfloat[N=10]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N10-K3-S50.tex}
-        }
-        \subfloat[N=20]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N20-K3-S50.tex}
-        }   
-    }   
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=30]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N30-K3-S50.tex}
-        }   
-        \subfloat[N=40]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N40-K3-S50.tex}
-        }   
-    }   
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=50]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N50-K3-S50.tex}
-        }   
-        \subfloat[N=60]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N60-K3-S50.tex}
-        }   
-    }   
-    \caption{Plots of output connectivity against accuracy on TP3 - Part 1 of 2}
+        \input{experiments/results/TP3-IO/boxplot-best-per-size.tex}
+        \input{experiments/results/TP3-OC/boxplot-output_connectivity-N100-K3-S50.tex}
+    }
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
+    \caption{
+        It da boy!
+        Comparison of accuracy of all reservoirs <= 140 to a single reservoir of size 140 where one chooses to read out a subset of the data.
+    }
+    \label{fig:output-connectivity-TP5}
     \resizebox{\textwidth}{!}{
-        \subfloat[N=70]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N70-K3-S50.tex}
-        }
-        \subfloat[N=80]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N80-K3-S50.tex}
-        }   
-    }   
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=90]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N90-K3-S50.tex}
-        }   
-        \subfloat[N=100]{
-            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N100-K3-S50.tex}
-        }   
-    }   
-    \caption{Plots of output connectivity against accuracy on TP3 - Part 1 of 2}
+        \input{experiments/results/TP5-IO/boxplot-best-per-size.tex}
+        \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
+    }
 \end{figure*}
 
-%% BRekkku
-%% BRekkku
-%% BRekkku
-%% BRekkku
+        %\subfloat[N=20]{
+        %    \input{experiments/results/TP3-OC/boxplot-output_connectivity-N20-K3-S50.tex}
+        %}
+        %\subfloat[N=90]{
+        %    \input{experiments/results/TP5-OC/boxplot-N90-K3-S50-output_connectivity.tex}
+        %}
+    %\resizebox{\textwidth}{!}{
+    %    \subfloat[N=60]{
+    %        \input{experiments/results/TP3-OC/boxplot-output_connectivity-N60-K3-S50.tex}
+    %    }
+    %    \subfloat[N=120]{
+    %        \input{experiments/results/TP5-OC/boxplot-N120-K3-S50-output_connectivity.tex}
+    %    }
+    %}
+    %\resizebox{\textwidth}{!}{
+    %    \subfloat[N=100]{
+    %        \input{experiments/results/TP3-OC/boxplot-output_connectivity-N100-K3-S50.tex}
+    %    }
+    %    \subfloat[N=140]{
+    %        \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
+    %    }
+    %}
 
-\begin{figure*}[ht]
-    \centering
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=30]{
-            \input{experiments/results/TP5-OC/boxplot-N30-K3-S50-output_connectivity.tex}
-        }
-        \subfloat[N=40]{
-            \input{experiments/results/TP5-OC/boxplot-N40-K3-S50-output_connectivity.tex}
-        }
-    }
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=50]{
-            \input{experiments/results/TP5-OC/boxplot-N50-K3-S50-output_connectivity.tex}
-        }
-        \subfloat[N=60]{
-            \input{experiments/results/TP5-OC/boxplot-N60-K3-S50-output_connectivity.tex}
-        }
-    }
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=70]{
-            \input{experiments/results/TP5-OC/boxplot-N70-K3-S50-output_connectivity.tex}
-        }
-        \subfloat[N=80]{
-            \input{experiments/results/TP5-OC/boxplot-N80-K3-S50-output_connectivity.tex}
-        }
-    }
-    \caption{Plots of output connectivity against accuracy on TP5 - Part 1 of 2}
-\end{figure*}
-
-\begin{figure*}[ht]
-    \centering
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=90]{
-            \input{experiments/results/TP5-OC/boxplot-N90-K3-S50-output_connectivity.tex}
-        }
-        \subfloat[N=100]{
-            \input{experiments/results/TP5-OC/boxplot-N100-K3-S50-output_connectivity.tex}
-        }
-    }
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=110]{
-            \input{experiments/results/TP5-OC/boxplot-N110-K3-S50-output_connectivity.tex}
-        }
-        \subfloat[N=120]{
-            \input{experiments/results/TP5-OC/boxplot-N120-K3-S50-output_connectivity.tex}
-        }
-    }
-    \resizebox{\textwidth}{!}{
-        \subfloat[N=130]{
-            \input{experiments/results/TP5-OC/boxplot-N130-K3-S50-output_connectivity.tex}
-        }
-        \subfloat[N=140]{
-            \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
-        }
-    }
-    \caption{Plots of output connectivity against accuracy on TP5 - Part 2 of 2}
-\end{figure*}
+%\begin{figure*}[ht]
+%    \centering
+%    \caption{
+%        Plots of output connectivity against accuracy on TP5. Reservoir sizes below the 98\% accuracy threshold ($[..80]$) are omitted.
+%        \todo{short witty sentence?}
+%        The omitted plots are presented in figures \ref{fig:TP5-OC-1} and \ref{fig:TP5-OC-2} in appendix \ref{app:minimum_output-connectivity}.
+%    }
+%    \label{fig:TP5-OC}
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=90]{
+%            \input{experiments/results/TP5-OC/boxplot-N90-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=100]{
+%            \input{experiments/results/TP5-OC/boxplot-N100-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%    \resizebox{\textwidth}{!}{
+%        \subfloat[N=130]{
+%            \input{experiments/results/TP5-OC/boxplot-N130-K3-S50-output_connectivity.tex}
+%        }
+%        \subfloat[N=140]{
+%            \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
+%        }
+%    }
+%\end{figure*}
 
 \subsection{Discussion}
 
