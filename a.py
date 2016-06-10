@@ -14,8 +14,24 @@ def average(optimums):
 #print("OptimumD3", average(optimumsD3))
 #print("OptimumD5", average(optimumsD5))
 
-for (a,b) in optimumsP5:
-    print "% {} of {}".format(a,b)
+#for (a,b) in optimumsP5:
+#    print "% {} of {}".format(a,b)
+#
+#for a in map(lambda (x,y): (x/5, y), optimumsP5):
+#    print a
 
-for a in map(lambda (x,y): (x/5, y), optimumsP5):
-    print a
+for i in range(5, 145, 5):
+    p3 = filter(lambda (x,y): y==i, optimumsP3)
+    p5 = filter(lambda (x,y): y==i, optimumsP5)
+    d3 = filter(lambda (x,y): y==i, optimumsD3)
+    d5 = filter(lambda (x,y): y==i, optimumsD5)
+
+    nums = [str(i)]
+
+    for arr in [p3, p5, d3, d5]:
+        if arr:
+            nums.append(str(arr[0][0]))
+        else:
+            nums.append("-")
+
+    print " & ".join(nums) + "\\\\"

@@ -41,7 +41,7 @@ we can expect a smaller required reservoir size.
         Node step size      & 10 for TP, 5 for TD \\
         Connectivity        & 3                              \\
         Input connectivity  & [0..n\_nodes], step size = 5   \\
-		Output connectivity & n\_nodes                       \\
+        Output connectivity & n\_nodes                       \\
         Sample size         & 50
     \end{tabular}
 \end{table}
@@ -108,7 +108,7 @@ The 90\% accuracy threshold is also included in table \ref{tab:accuracy-threshol
 The number of input connectivity plots resulting from the reservoir (table \ref{tab:ic-reservoir-parameters}) and task parameter (table \ref{tab:tasks}) combinations is quite large.
 Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the Temporal Parity 3 task is shown here (figure \ref{fig:TP3-IC}).
 There is a slight skew to each side of $ 0.5 * n\ _nodes $ dependent on whether the task chosen is Temporal Parity or Temporal Density.
-This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:reservoir_size-input_connectivity} figures \label{fig:TP3-IC-1} through \label{fig:TD5-IC-2} for the remaining tasks.
+This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:reservoir_size-input_connectivity} figures \ref{fig:TP3-IC-1} through \ref{fig:TD5-IC-2} for the remaining tasks.
 
 \begin{figure*}[ht]
     \centering
@@ -149,17 +149,18 @@ We confirm this skew by calculating the optimal input connectivity for each task
 optimal\_ic^{task} = average(max\_accuracy\_ic_{n\_nodes}^{task} / n\_nodes)
 \end{equation}
 where $ max\_accuracy\_ic_{n\_nodes}^{task} $ is the connectivity which gives the highest number of high-accuracy reservoirs for that task and reservoir size.
-The results are presented in table \ref{tab:optimal-ic}.
+The results are presented in table \ref{tab:optimal-ic},
+with the chosen values of $ max\_accuracy\_ic_{n\_nodes}^{task} $ presented in table \ref{tab:chosen-optimal-ic-values} in appendix \ref{app:reservoir_size-input_connectivity}.
 
 \begin{table}[h]
-	\centering
-	\caption{Optimal input connectivities as fraction of reservoir size.}
-	\label{tab:optimal-ic}
-	\begin{tabular}{lllll}
-						 & $T=3$  & $T=5$ \\
+    \centering
+    \caption{Optimal input connectivities as fraction of reservoir size.}
+    \label{tab:optimal-ic}
+    \begin{tabular}{lllll}
+                         & $T=3$          & $T=5$         \\
         Temporal Parity  & 0.528          & 0.489         \\
         Temporal Density & 0.439          & 0.443
-	\end{tabular}
+    \end{tabular}
 \end{table}
 
 \subsection{Discussion}
