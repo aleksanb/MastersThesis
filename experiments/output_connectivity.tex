@@ -1,32 +1,40 @@
 \section{Minimum required output connectivity}
 
-How few connections can one have from the reservoir itself to the readout layer,
-while staying accurate on the task at hand?
-As the reservoir prediction is computed by regressing the states of the network nodes against the expected output bits,
-reducing the number of nodes used in the regression can never give a higher accuracy than using all of the nodes.
-If there is redundant information in the network, quite a few nodes could be cut off from the readout layer while maintaining the best accuracy for this specific reservoir.
-This does require a sufficient amount of linear independence between the remaining nodes of the network.
+\subsection{Description}
 
-As shown in the previous section, different problems require different reservoir sizes.
-Past a certain reservoir size, all reservoirs have a sufficient accuracy on the given task.
-One could postulate that for reservoirs larger than the 95\% accuracy breakpoint,
-it suffices to read out a number of nodes equal to the breakpoint.
-If this is the case, one can safely use growing reservoirs without having to change the output connections,
-given that the reservoir was large enough to solve the given task in the first place.
+One might not always be able to sufficiently instrument a substrate used for reservoir computing (chapter \ref{chapter:methodology}).
+It could be prohibitively expensive, physically impractival, or the substrate may act in such a way that one can only make approximate readings from parts of the reservoir.
+These situations could result in less computational power being exposed to the user than what the reservoir is actually capable of.
 
-As shown in section \ref{experiments:1:results}, there is a correlation between input connectivity and accuracy.
-For our reservoirs with $K=3$, the optimal input connectivity was found to be $n\_nodes/2$.
-Using this information, we can reduce our search space for minimum required output connectivity.
-The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simulation.
+As the reservoir prediction is chosen by a linear regression model over the states of the network nodes,
+a subset of all nodes from an RRC system cannot give a better prediction than all of the nodes \cm,
+as information has been removed from the problem.
+Comparing chosen subsets of larger reservoirs to reservoirs of the same size of the chosen subset should shed light on the situation.
+The question becomes in what way the nodes not used in the regression affect the performance of those who are included.
 
-\ref{tab:chosen-optimal-ic-values}
+If the interference effect is neutral or positive,
+the hypothesis becomes that a subset $n \subset n\_nodes$ should perform at least as well as a reservoir which consisted only of $|n|$ nodes.
+Negative interference should lead to subsets performing worse.
+
+A second concern is whether an increase in reservoir size after it has been instrumented will affect the performance of the subset monitored.
+If one uses a growing batch stem cells for computation,
+will one have to reinstrument the reservoir, and retrain the readout layer?
+This case will not be considered in this thesis, as a fixed model for RRCs has been used, with no support for extending the reservoir.
+
+To reduce the search space, only the Temporal Parity task will be used for these experiments.
+In addition, all reservoirs will have a fixed input connectivity of 50\%,
+backed by the findings of table \ref{tab:accuracy-thresholds} from section \ref{section:required_reservoir_size}.
+All reservoir parameters are shown in table \ref{tab:oc-reservoir-parameters},
+and task parameters will be the same as in table \ref{tab:tasks},
+but only for TP3 and TP5.
 
 \begin{table}[ht]
     \centering
     \caption{Reservoir parameters for optimal output connectivity}
     \label{tab:oc-reservoir-parameters}
     \begin{tabular}{ll}
-        Nodes               & 10 to (100, 140) for TP, step size=10 \\
+        Task                & Temporal Parity 3 and 5        \\
+        Nodes               & 10 to (100, 140), step size=10 \\
         Connectivity        & 3                              \\
         Input connectivity  & $ n\_nodes / 2 $               \\
         Output connectivity & [0..n\_nodes], step size=10    \\
@@ -36,32 +44,88 @@ The parameters in table \ref{tab:oc-reservoir-parameters} will be used for simul
 
 \subsection{Results}
 
+Plots showing the best accuracy distributions for each reservoir size for tasks TP3 and TP5 are created based on the optimal input connectivities for each reservoir size-task combination in table \ref{tab:chosen-optimal-ic-values} of appendix \ref{app:reservoir_size-input_connectivity}).
+These are then compared to the subset-accuracy plots created from the parameters of table \ref{tab:oc-reservoir-parameters}.
+
+Figure \ref{fig:output-connectivity-TP3} visualizes the best reservoir performances on task TP3 against same-sized subsets of a reservoir of size 100.
+Figure \ref{fig:output-connectivity-TP5} shows the same for task TP5, up to a reservoir size of 140.
+The accuracy-subset plots not presented here are shown in figures \ref{fig:TP3-OC-1} through \ref{fig:TP5-OC-2} in appendix \ref{app:minimum_output-connectivity}.
+
 \begin{figure*}[ht]
     \centering
     \caption{
-        O shit.
-        Comparison of accuracy of all reservoirs <= 100 to a single reservoir of size 100 where one chooses to read out a subset of the data.
+        N-sized reservoir to subset comparison plots for task TP3 up to a reservoir size of 100.
+        N-subset performance is practically identical to a same-sized reservoir.
+        Subfigure \ref{fig:output-connectivity-TP3-composite} shows best n-sized reservoir performance,
+        while subfigure \ref{fig:output-connectivity-TP3-subset} shows reservoir subset performance.
     }
     \label{fig:output-connectivity-TP3}
     \resizebox{\textwidth}{!}{
-        \input{experiments/results/TP3-IO/boxplot-best-per-size.tex}
-        \input{experiments/results/TP3-OC/boxplot-output_connectivity-N100-K3-S50.tex}
+        \subfloat[Best n-sized reservoir performance]{
+            \input{experiments/results/TP3-IO/boxplot-best-per-size.tex}
+            \label{fig:output-connectivity-TP3-composite}
+        }
+        \subfloat[Reservoir subset performance]{
+            \input{experiments/results/TP3-OC/boxplot-output_connectivity-N100-K3-S50.tex}
+            \label{fig:output-connectivity-TP3-subset}
+        }
     }
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
     \caption{
-        It da boy!
-        Comparison of accuracy of all reservoirs <= 140 to a single reservoir of size 140 where one chooses to read out a subset of the data.
+        N-sized reservoir to subset comparison plots for task TP5 up to a reservoir size of 140.
+        N-subset performance is practically identical to a same-sized reservoir.
+        Subfigure \ref{fig:output-connectivity-TP5-composite} shows best n-sized reservoir performance,
+        while subfigure \ref{fig:output-connectivity-TP5-subset} shows reservoir subset performance.
     }
     \label{fig:output-connectivity-TP5}
     \resizebox{\textwidth}{!}{
-        \input{experiments/results/TP5-IO/boxplot-best-per-size.tex}
-        \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
+        \subfloat[Best n-sized reservoir performance]{
+            \input{experiments/results/TP5-IO/boxplot-best-per-size.tex}
+            \label{fig:output-connectivity-TP5-composite}
+        }
+        \subfloat[Reservoir subset performance]{
+            \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
+            \label{fig:output-connectivity-TP5-subset}
+        }
     }
 \end{figure*}
 
+\todo{Should i have a Q-Q test (quartile comparison test) or similar here? To quantify why these distributions are hella similar in a larger degree than the plots just show visually?}
+\label{tab:accuracy-similarity-table}
+
 \subsection{Discussion}
 
-LOL PLZ NO
+The resulting distributions from reservoir subsets and same-sized reservoirs are extremely similar.
+This is seen in plots \ref{fig:output-connectivity-TP3} andd \ref{fig:output-connectivity-TP5},
+and numerated in table \ref{tab:accuracy-similarity-table}.
+
+\todo{Following sections need emprical backing, as visuals point to subsets having a slight advantage over same-sized reservoirs for small N.}
+
+The fact that reservoir subsets perform roughly as well as same-sized subsets indicates that any interference from the unused parts of the reservoir may be minimal.
+There seems to be a slight increase in population accuracy for small values of N (10, 20),
+but a larger sample size would probably be needed to discern whether this is randomness or positive interference.
+\todo{Maybe the above can be answered by more statistical tests?}
+
+In a continiously growing and expaning reservoir system,
+computational capability would probably grow monotonically in correlation with the increase in substrate.
+These results show that as long as one has instrumented a large enough part of the resvoir in the first place,
+one will not have to re-instrument it in the future as long as the task doesn't change to a more complex one.
+
+One might have to recalibrate the readout layer however,
+as a regression model trained on a certain graph might not work on a slightly modified one.
+In my pre-project thesis \ref{MYPREPRPOJTHESIS},
+it was found that there is a certain neutrality in the set of RRC systems.
+That is, if one were to re-use a readout layer from a well-performing reservoir,
+there will be a number of other reservoirs that can perform accurately with the same readout layer.
+It was not investigated however whether these hotswappable reservoirs were structurally similar.
+If they were, one might not have to retrain the model every time the substrate evolves.
+
+Finally, there's a possibility that slightly better overall performance could have been achieved by generating reservoirs for all ICs instead of using a flat IC of 50\%.
+Even though the average optimal IC is quite close to 50\%,
+the backing data may lie slightly to either side,
+as optimal IC table \ref{tab:oc-reservoir-parameters} shows.
+
+The conclusion becomes that reservoir-subsets perform at least as well as their same-sized reservoir counterparts.
