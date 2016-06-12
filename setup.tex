@@ -43,12 +43,15 @@
 %\usepackage{todonotes}
 
 \newcommand{\cm}[1]{
-    \textbf{\emph{CITATION MISSING}: #1}
-    %\todo[inline, color=cyan]{Citation missing: #1}
+    \be{CITATION MISSING}{#1}
 }
 
 \newcommand{\todo}[1]{
-    TODO: #1
+    \be{TODO}{#1}
+}
+
+\newcommand{\be}[2]{
+    \textbf{\emph{#1}: #2}
 }
 
 \usepackage{tikz}
