@@ -2,33 +2,71 @@
 
 \subsection{Description}
 
-Analysis of Random Boolean Networks often focuses on their dymanical properties.
-These include whether the network is chaotic, stable or critical,
-the number of attractors, attractor size, basin size, and transient times.
-For a given set of RBN parameters, one can analytically obtain bounds on the statistical averages of these values.
+When analyzing Random Boolean Networks one often does so in aggregate,
+looking at the population averages of the attributes of RBNs of a certain construction.
+This as there can be large variance in individual RBN dynamics.
+One often looks at whether the average network is chaotic, stable, or critical,
+and the number of attractors, their size, their basins, and state-space transient times.
+One can obtain expected values of the averages of these values if given a networks connectivity and size.
 
-The accuracies of reservoirs for a given set of parameters also follow some distribution.
-To find out if there is a correlation between a reservoirs dynamical properties and its accuracy on a task,
-the number of attractors, their length, and transient times will be calculated alongside its accuracy on the task.
+In my pre-thesis project (section \ref{section:pre-thesis-project}),
+computational capability (section \ref{section:computational-capability}) is used as an indicator of reservoir performance.
+Could there be a deeper link between the computational capability of an RBN used in a RRCs related to the RBNs dynamical properties?
+What correlation is there between these dynamical properties (number of attractors, their lenght, transient times)
+and how effective the RBN is as the basis of an RRC system?
+If a relationship is found, does a change in task complexity constrain what values are required in aggregate?
+Such findings can aid in the construction of RRCs by guiding the evolution of generative genomes used to create the backing RBN.
 
-To find the number of attractors in a Random Boolean Network, there are two choices:
-To exhaustively search all trajectories from all initial states untill a cycle is found,
-or exploring only a subset of initial states.
-For larger networks, an exhaustive search may be computationally infeasible,
-with the number of initial states exponential in the size of the RBN.
+There are a number of ways to calculate a RBNs attractors and their properties.
+They generally fall somewhere on the spectrum between exact enumeration (exhaustively searching for attractors from all initial states) and numerical sampling (searching from a subset only).
+As the number of RBN states is exponential in the number of nodes ($ 2^{n\_nodes} $),
+an exhaustive search can become computationally infeasible for larger networks.
+Numerical sampling has the downside that it is biased for CRBNs with $ K != 2 $ \ref{berdahl2009random},
+and we're using RBNs with $ K = 3$.
 
-As shown in paper \cm{that paper},
-the means of the number of attractors and their lengths when calculated from a subset of initial states is in fact representative of the actual means for reservoirs with $K=2$.
-As our reservoirs have a connectivity of $K = 3$, exhaustive search will have to be conducted instead.
-\cm{Fact-check this, there's also that algorithm thats much faster than exhaustive search in that paper you found that time}.
-Emprical testing shows that this limits us to reservoirs of a maximum number of 16 nodes,
-enough to solve the Temporal Parity task with a window size of 3, but not for 5.
-In section \ref{results-of-required-size} we see that the minimum required reservoir size for that task is closer to SOMENUNMBER.
-The computationally easier Temporal Density task \ref{task-description-section},
-with window sizes of both 3 and 5,
-will therefore be used instead.
+A simple implementation (listing \ref{lst:attractors}) of the exhaustive search algorithm allows for analysis of reservoirs with size $ n\_nodes <= 15 $.
+We therefore use the computationally simple Temporal Density 3 and 5 tasks instead to investigate the attractor-accuracy relationship.
+TD5 requires a size of at least 55 for 98\% accuracy \ref{tab:accuracy-thresholds}),
+so results might require som interpretation.
+Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-parameters}
 
-\todo{Beskrive hovdan gjøre eksperimentene mye mer detaljert, med grafer}
+\begin{table}[ht]
+    \centering
+    \caption{Parameters for analysis of reservoir dynamics}
+    \label{tab:reservoir-dynamics-parameters}
+    \begin{tabular}{ll}
+        Task                & Temporal Density 3 and 5  \\
+        Nodes               & 15                        \\
+        Connectivity        & 3                         \\
+        Input connectivity  & 7                         \\
+        Output connectivity & 15                        \\
+        Sample size         & 600
+    \end{tabular}
+\end{table}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[
+    caption=
+        Simplified version of exhaustive-search attractor length script.
+        Executed for all initial states of all generated RRCs.,
+    frame=single,
+    label=lst:attractors]
+current_state = initial_state
+visited_states = set()
+
+loop {
+    visited_states.add(current_state)
+    current_state = get_next_state()
+
+    if current_state in visited_states {
+        attractor_length =
+            len(visited_states)
+            - visited_states.indexOf(current_state)
+        return attractor_length
+    }
+}
+\end{lstlisting}
+\end{minipage}
 
 \subsection{Results}
 
