@@ -19,15 +19,15 @@ Such findings can aid in the construction of RRCs by guiding the evolution of ge
 
 There are a number of ways to calculate a RBNs attractors and their properties.
 They generally fall somewhere on the spectrum between exact enumeration (exhaustively searching for attractors from all initial states) and numerical sampling (searching from a subset only).
-As the number of RBN states is exponential in the number of nodes ($ 2^{n\_nodes} $),
-an exhaustive search can become computationally infeasible for larger networks.
-Numerical sampling has the downside that it is biased for CRBNs with $ K != 2 $ \ref{berdahl2009random},
-and we're using RBNs with $ K = 3$.
+Numerical sampling is biased for $K\neq2$ \cite{berdahl2009random}, and cannot be used by us.
+A brute-force exhaustive search quickly becomes infeasible, as the number of RBN states is exponential in the number of nodes.
+The authors home-cooked exhaustive searcher times out for RBNs with more than 15 nodes.
+A SAT-Based algorithm for finding attractors in CRBNs is therefore used instead (as introduced in \cite{dubrova2011sat}).
+It allows an increase from 15 to 25 nodes, with the source being available online at \cite{dubrova2011sat-online}.
 
-A simple implementation (listing \ref{lst:attractors}) of the exhaustive search algorithm allows for analysis of reservoirs with size $ n\_nodes <= 15 $.
-We therefore use the computationally simple Temporal Density 3 and 5 tasks instead to investigate the attractor-accuracy relationship.
-TD5 requires a size of at least 55 for 98\% accuracy \ref{tab:accuracy-thresholds}),
-so results might require som interpretation.
+Temporal Density will be used to investigate the attractor-accuracy relationship,
+as $ n\_nodes = 25 $ is on the verge of solving TD5 with 90\% accuracy,
+Temporal Parity would require much larger reservoirs \ref{tab:accuracy-thresholds}.
 Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-parameters}
 
 \begin{table}[ht]
@@ -36,37 +36,37 @@ Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-par
     \label{tab:reservoir-dynamics-parameters}
     \begin{tabular}{ll}
         Task                & Temporal Density 3 and 5  \\
-        Nodes               & 15                        \\
+        Nodes               & 25                        \\
         Connectivity        & 3                         \\
-        Input connectivity  & 7                         \\
-        Output connectivity & 15                        \\
-        Sample size         & 600
+        Input connectivity  & $ n\_nodes / 2 $          \\
+        Output connectivity & $ n\_nodes $              \\
+        Sample size         & 500
     \end{tabular}
 \end{table}
 
-\begin{minipage}{\linewidth}
-\begin{lstlisting}[
-    caption=
-        Simplified version of exhaustive-search attractor length script.
-        Executed for all initial states of all generated RRCs.,
-    frame=single,
-    label=lst:attractors]
-current_state = initial_state
-visited_states = set()
-
-loop {
-    visited_states.add(current_state)
-    current_state = get_next_state()
-
-    if current_state in visited_states {
-        attractor_length =
-            len(visited_states)
-            - visited_states.indexOf(current_state)
-        return attractor_length
-    }
-}
-\end{lstlisting}
-\end{minipage}
+%\begin{minipage}{\linewidth}
+%\begin{lstlisting}[
+%    caption=
+%        Simplified version of exhaustive-search attractor length script.
+%        Executed for all initial states of all generated RRCs.,
+%    frame=single,
+%    label=lst:attractors]
+%current_state = initial_state
+%visited_states = set()
+%
+%loop {
+%    visited_states.add(current_state)
+%    current_state = get_next_state()
+%
+%    if current_state in visited_states {
+%        attractor_length =
+%            len(visited_states)
+%            - visited_states.indexOf(current_state)
+%        return attractor_length
+%    }
+%}
+%\end{lstlisting}
+%\end{minipage}
 
 \subsection{Results}
 
