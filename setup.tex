@@ -121,7 +121,7 @@
 }
 
 % #1=data #2=xlabel #3=ylabel
-\newcommand{\myheatmap}[3]{
+\newcommand{\myheatmap}[4]{
     \begin{tikzpicture}
         \begin{axis}
             [
@@ -131,7 +131,9 @@
                 xmax=15,
                 colormap/jet,
                 colorbar,
-                view={0}{90}
+                view={0}{90},
+                point meta min=0,
+                point meta max=#4
             ]
             \addplot3[surf, shader=flat]
             file {#1};

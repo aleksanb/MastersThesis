@@ -12,7 +12,7 @@ One can obtain expected values of the averages of these values if given a networ
 In my pre-thesis project (section \ref{section:pre-thesis-project}),
 computational capability (section \ref{section:computational-capability}) is used as an indicator of reservoir performance.
 Could there be a deeper link between the computational capability of an RBN used in a RRCs related to the RBNs dynamical properties?
-What correlation is there between these dynamical properties (number of attractors, their lenght, transient times)
+What correlation is there between these dynamical properties (number of attractors and their lenght)
 and how effective the RBN is as the basis of an RRC system?
 If a relationship is found, does a change in task complexity constrain what values are required in aggregate?
 Such findings can aid in the construction of RRCs by guiding the evolution of generative genomes used to create the backing RBN.
@@ -22,12 +22,13 @@ They generally fall somewhere on the spectrum between exact enumeration (exhaust
 Numerical sampling is biased for $K\neq2$ \cite{berdahl2009random}, and cannot be used by us.
 A brute-force exhaustive search quickly becomes infeasible, as the number of RBN states is exponential in the number of nodes.
 The authors home-cooked exhaustive searcher times out for RBNs with more than 15 nodes.
-A SAT-Based algorithm for finding attractors in CRBNs is therefore used instead (as introduced in \cite{dubrova2011sat}).
-It allows an increase from 15 to 25 nodes, with the source being available online at \cite{dubrova2011sat-online}.
+A SAT-Based algorithm for finding attractors in CRBNs (introduced in \cite{dubrova2011sat}) is therefore used,
+and allows for an increase from 15 to 26 nodes.
+The source code is available online at \cite{dubrova2011sat-online}.
 
 Temporal Density will be used to investigate the attractor-accuracy relationship,
-as $ n\_nodes = 25 $ is on the verge of solving TD5 with 90\% accuracy,
-Temporal Parity would require much larger reservoirs \ref{tab:accuracy-thresholds}.
+as $ n\_nodes = 26 $ is on the verge of solving TD5 with 90\% accuracy \ref{tab:accuracy-thresholds}.
+Temporal Parity would require too large a reservoir (at least 70).
 Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-parameters}
 
 \begin{table}[ht]
@@ -35,59 +36,114 @@ Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-par
     \caption{Parameters for analysis of reservoir dynamics}
     \label{tab:reservoir-dynamics-parameters}
     \begin{tabular}{ll}
+        \hline
+        \textbf{Parameter} & \textbf{Configuration} \\
+        \hline
+        \hline
         Task                & Temporal Density 3 and 5  \\
-        Nodes               & 25                        \\
+        Nodes               & 26                        \\
         Connectivity        & 3                         \\
         Input connectivity  & $ n\_nodes / 2 $          \\
         Output connectivity & $ n\_nodes $              \\
-        Sample size         & 500
+        Sample size         & 500 \\
+        \hline
     \end{tabular}
 \end{table}
 
-%\begin{minipage}{\linewidth}
-%\begin{lstlisting}[
-%    caption=
-%        Simplified version of exhaustive-search attractor length script.
-%        Executed for all initial states of all generated RRCs.,
-%    frame=single,
-%    label=lst:attractors]
-%current_state = initial_state
-%visited_states = set()
-%
-%loop {
-%    visited_states.add(current_state)
-%    current_state = get_next_state()
-%
-%    if current_state in visited_states {
-%        attractor_length =
-%            len(visited_states)
-%            - visited_states.indexOf(current_state)
-%        return attractor_length
-%    }
-%}
-%\end{lstlisting}
-%\end{minipage}
-
 \subsection{Results}
+
+Figure \ref{fig:attractor-overview} plots the attractor/length distributions for the 500 RBNs generated on the TD3 and TD5 tasks,
+as well as the attractor/lengths of the RBNs scoring more than 95\% and 85\% accuracy on their respective tasks.
+It is difficult to find theoretical estimates for the means of attractor/lengths for connectivities other than 1 \cite{drossel2005number} and 2 \cite{samuelsson2003superpolynomial}.
+Figure \ref{fig:attractor-results}, showing the combined 1000 RBNs, is therefore used to get an intuition of which attractor/length combinations are common for reservoirs with $ K=3, p=0.5, N=26 $.
+Table \ref{tab:attractor-values} shows the means of the attractor lengths and number of attractors for each RBN population subset.
 
 \begin{figure*}
     \centering
-    \resizebox{\textwidth}{!}{
-        \myheatmap
-            {experiments/results/temporal-density/3/3-600.dat}
-            {Number of attractors}
-            {Mean attractor length}
-        \myheatmap
-            {experiments/results/temporal-density/5/5-600.dat}
-            {Number of attractors}
-            {Mean attractor length}
-    }
     \caption{
-        600 samples. The left one has 116 with at least 95\% accuracy,
-        the right one has 129 over 81\% accuracy.
+        Figures \ref{fig:attractor-overview-TD3} and \ref{fig:attractor-results-TD3} show the distribution of the 500 RBNs generated for TD3,
+        and the 273 of 500 that had an $ accuracy >= 0.95\% $ on TD3, respectively.
+        Figures \ref{fig:attractor-overview-TD5} and \ref{fig:attractor-results-TD5} show the distribution of the 500 RBNs generated for TD5,
+        and the 116 of 500 that had an $ accuracy >= 0.85\% $ on TD5, respectively.
+    }
+    \label{fig:attractor-overview}
+    \resizebox{\textwidth}{!}{
+        \subfloat[TD3 distribution]{
+            \label{fig:attractor-overview-TD3}
+            \myheatmap
+                {experiments/results/sat-3/all-rbns-heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+        }
+        \subfloat[TD3, $accuracy >= 95\%$]{
+            \label{fig:attractor-results-TD3}
+            \myheatmap
+                {experiments/results/sat-3/heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+        }
+    }
+    \resizebox{\textwidth}{!}{
+        \subfloat[TD5]{
+            \label{fig:attractor-overview-TD5}
+            \myheatmap
+                {experiments/results/sat-5/all-rbns-heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+        }
+        \subfloat[TD5, $accuracy >= 85\%$]{
+            \label{fig:attractor-results-TD5}
+            \myheatmap
+                {experiments/results/sat-5/heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+        }
     }
 \end{figure*}
 
+\begin{figure*}
+    \centering
+    \caption{
+        Combined distribution of mean attractor lengths and number of attractors for for all 1000 generated RBNs
+        (500 from TD3 \ref{fig:attractor-overview-TD3} and 500 from TD5 \ref{fig:attractor-overview-TD5}).
+    }
+    \label{fig:attractor-results}
+    \resizebox{0.5\textwidth}{!}{
+        \myheatmap
+            {experiments/results/sat-5/combined-3-5-data.dat}
+            {Number of attractors}
+            {Mean attractor length}
+            {10}
+    }
+\end{figure*}
+
+\begin{table}[]
+    \centering
+    \caption{Means and medians of the different RBN subsets' attractor lengths and number of attractors}
+    \label{tab:attractor-values}
+    \begin{tabular}{llllll}
+        \hline
+        \hline
+        & \textbf{Minimum} & \multicolumn{2}{l}{\textbf{Attractor length}} & \multicolumn{2}{l}{\textbf{Number of attractors}} \\
+        & \textbf{Accuracy} & Mean & Median & Mean & Median \\
+        \hline
+        TD3 & 95\% & 13.90 & 8.67 & 5.97 & 5.00 \\
+            & ALL  & 13.45 & 8.50 & 5.98 & 5.00 \\
+
+        TD5 & 85\% & 11.79 & 7.90 & 6.20 & 5.00 \\
+            & ALL  & 12.44 & 7.67 & 6.09 & 5.00 \\
+
+        TD3+TD5 & ALL & 12.95 & 8.12 & 6.04 & 5.00 \\
+        \hline
+    \end{tabular}
+\end{table}
+
 \subsection{Discussion}
 
-LOL PLZ NO
+Well, who'da thunk it's such a small difference? \ref{tab:attractor-values}.
+Seems like just tighter bounds based on visual.
+Table data confirms just tighter bounds aroundd the same values, no apperent connection between the different stuffz.
