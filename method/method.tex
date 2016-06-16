@@ -1,41 +1,6 @@
 \chapter{Methodology}
 \label{chapter:methodology}
 
-\todo{This section can now be hidden, as it has been incorporated into the introduction!}
-
-We have shown that reservoir computing using Random Boolean Networks is a feasible approach to solving binary time-series problems.
-We now wish to investigate which parameters and characteristics of the reservoir lead to optimal performance and resource usage.
-
-The following questions arise:
-
-\begin{enumerate}
-    \item How small can a RBN Reservoir System be while still solving a given task at close to 100\% accuracy?
-    \item How many connections from the input layer are required to sufficiently perturb the reservoir?
-    \item How few reservoir nodes can be connected to the readout layer while maintaining task accuracy?
-    \item Is there a correlation between the dynamical characteristics of the RBN (number of attractors, attractor length) and its performance as a reservoir?
-\end{enumerate}
-
-The answers to these questions aren't 'just' of theoretical interest,
-they also give us insight to how physical reservoir computing devices have to be instrumented.
-
-In a physical substrate it might be prohibitively expensive or technologically infeasible to read the state of the entire reservoir,
-and the nodes you are able to measure might be affected by the 'values' of the nodes next to it.
-In the case of a growing and modifying reservoir, such as a stem-cell based reservoir,
-the topology of the network might change over time without having the ability to reinstrument the device.
-A finding that it's enough to use a subset of the available nodes for regression in the readout layer,
-regardless of reservoir size, would be of practical interest.
-
-There are two factors affecting optimal reservoir perturbance:
-There might be a problem-specific optimal perturbance dependent on the task at hand as well as connectivity of the reservoir and number of runs after each perturbance.
-For physical devices one is in addition limited by the physical characteristics of the reservoir,
-such as cost and the number of available electrodes for instrumenting limited by physical space.
-
-Finding the minimum required size of a RBN Reservoir for a given task allows us to create physical reservoirs with adequate computational abilities guided by the theoretical foundations described herein ("Helmax setning, Egon! Helmax!").
-
-Finally, we attempt to explain the performance of RBN Reservoirs through their dynamical properties,
-calculating the number of attractors and their length for reservoirs against their accuracy on a given task.
-A correlation between these properties might be interesting, and help to explain why some reservoirs perform better than others.
-
 \section{Experimental setup}
 
 The final RRC system is shown as a block diagram in Figure \ref{figure:rrc-block},
