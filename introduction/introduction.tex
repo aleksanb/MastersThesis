@@ -1,15 +1,66 @@
 \chapter{Introduction}
+%Working title: "RBN as A Model for Matter Reservoirs".
 
-Working title: "RBN as A Model for Matter Reservoirs".
-In this masters thesis, the properties of RBN Reservoir Computing systems (RRCs) are investigated,
-with the motivation of using the results as a template for instrumenting and performing computations on physical reservoir computing systems.
+%\textbf{Introducing reservoir computing}
+Reservoir Computing (RC) is a category of machine learning that sprang out from the study of recurrent neural networks (RNNs).
+In short, it utilizes the dynamics of some complex system dubbed a 'reservoir' to preprocess a timeseries problem,
+transforming it from a temporal to a spacial one in the reservoir,
+making it separable with a simple readout layer \cite{lukovsevivcius2012reservoir}.
 
-Having already created working RRCs for my pre-thesis project,
-focus is now shifted towards what the optimal values of reservoir size, input connectivity, and output connectivity might be.
-Finally we attempt to explain why some reservoirs perform better than others,
-by looking at the backing Boolean Networks dynamical properties.
+%\textbf{Theoretical RESERVOIRS}
+Reservoir Computing can be used both with physical and theoretical reservoirs.
+The original theoretical Echo State Networks \cite{jaeger2002adaptive} and Liquid State Machines \cite{natschlager2002liquid} provided the original basis for theoretical Reservoir Computing systems.
+As an alternative abstraction to RRNs,
+Random Boolean Networks \cite{gershenson2004introduction} were introduced and sucessfully used in \cite{rbn-reservoir}.
+RBNs are a useful abstraction over many physical phenomena, most famously used by Kauffman \cite{kauffman1969metabolic} as a model for the genetic regulatory network.
+In my pre-thesis paper, the author reproduces findings from \cite{rbn-reservoir} as well as investigating the reusability of trained readout layers,
+discovering a neturality in the state-space of possible RBNs.
 
-When using nontraditional physical devices for computation (Evolution in Materio) one is often limited in how one can perturb and read out the underlying substrate.
-\todo{Move things from beginning of method to here?}
+%\textbf{PHYSICAL RESERVOIRS}
+Physical reservoirs take many shapes and forms.
+In the ever-so-cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
+the authors use a bucket of water to successfully perform speech recognition.
+In \cite{farstad2016towards},
+a carbon-nanotube based substrate is successfully used to evolve binary logic gates as well as stable cellular automata.
+These can then be used to build a CA-based computing paradigm over this unconventional hardware.
+As Cellular Automata are a special case of Random Boolean Networks,
+any general findings of the latter may be applicable to RC systems using the former.
+The wider category of attempting to harness the power of unconventional physical devices for computation,
+usually aided by artificial evolution,
+is known as evolution-in-materio \cite{miller2002evolution}.
+
+%\textbf{PROBLEM}
+When using nontraditional physical devices for computation, as in evo-materio,
+one is often restricted in how one can perturb and read out the underlying substrate.
+It might be prohibitively expensive or technologically infeasible to read the entire state of the entire reservoir,
+and the values sampled might be affected by its neighborhood in unknown ways to us.
+In a stem-cell based system \cm{Har du no sitering for dette, gunnar. Tenker St.Olavs},
+the topology and size of the network might change over time.
+Having to reinstrument such a system might be impractical,
+so the question becomes how the unused parts of the reservoir impact the parts used for computation.
+Finding the minimum required size of a reservoir for given tasks allows us to create physical reservoirs with no-more-than-needed computational abilities,
+saving on physical cost.
+
+%\textbf{HYPOTHESIS}
+It has been shown that Reservoir Computing using Random Boolean Networks is a feasible approach to solving binary time-series problems,
+as well as being a potentially useful abstraction over physical Reservoir Computing devices.
+In this thesis, the properties of these RRC systems are further investigated,
+with the motivation of using the results as a template for instrumenting and performing computations on physical Reservoir Computing systems.
+
+%\textbf{MY WORK}
+The following questions will be answered in this thesis:
+\begin{enumerate}
+    \item How small can a RRC system be while still solving its task at $ \geq 98\% $ accuracy?
+    \item Does the optimal amount of reservoir perturbation depend on the task at hand?
+    \item Does one have to read the state of the entire reservoir to maintain task accuracy?
+    \item Is there a correlation between the topological characteristics of the RBN (number of attractors, attractor length) and its performance as a reservoir?
+\end{enumerate}
+
+The thesis is structured as follows:
+Chapter \ref{chapter:background} provides background information on reservoir computing, random boolean networks, evo-materio, and using random boolean networks for reservoir computing (my pre-project thesis amongst others).
+Chapter \ref{chapter:methodology} describes the experimental setup and methodology used for performing experiments.
+Chapter \ref{chapter:experiments} contains an in-depth descriptions of each experiment,
+the results obtained, and a discussion thereof.
+Chapter \ref{chapter:conclusion} contains further work and concludes the thesis.
 
 \cleardoublepage
