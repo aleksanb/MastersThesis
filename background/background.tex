@@ -3,19 +3,21 @@
 
 \section{A Brief Introduction to Reservoir Computing}
 
-Recurrent Neural Networks, as opposed to feed-forward neural networks,
-are notoriously time consuming and difficult to \cm{train}.
-This is \cm{due to} feedback from the recurrent connections during the training process,
+Recurrent Neural Networks (RNNs), as opposed to feed-forward neural networks,
+are notoriously time consuming and difficult to train \cite{Schrauwen2007}.
+This is due to feedback from the recurrent connections during the training process,
 allowing small topology changes to drastically change a network's position in the fitness landscape.
 
-It was therefore proposed both in \cite{jaeger2002adaptive} (as Echo State Networks, or ESN)
+It was therefore proposed in both \cite{jaeger2002adaptive} (as Echo State Networks, or ESN)
 and \cite{natschlager2002liquid} (as Liquid State Machines, or LSM) to separate the RNN into two parts,
 the untrained reccurrent reservoir, and the trained readout layer.
 Both of these methods have been unified into the field of Reservoir Computing,
 now focusing on the separate training and evolution of the recurrent and readout parts \cite{lukovsevivcius2012reservoir}.
-
 Exiting applications of Reservoir Computing include speech and handwriting recognition,
 as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
+
+The general structure of a Reservoir Computing system is as follows:
+
 
 \section{Alternatives to classical reservoirs}
 
