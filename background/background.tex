@@ -16,8 +16,27 @@ now focusing on the separate training and evolution of the recurrent and readout
 Exiting applications of Reservoir Computing include speech and handwriting recognition,
 as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
 
-The general structure of a Reservoir Computing system is as follows:
+\begin{figure}[ht]
+    \caption{
+        Schematic of a general Reservoir Computing system containing adjustable biases, feedback loops, and reservoir and readout layers.
+        Inspired by the figures presented in \cite{Schrauwen2007}.
+    }
+    \label{fig:rc-schema}
+    \includegraphics[width=\columnwidth]{background/reservoir_computing_schema.pdf}
+\end{figure}
 
+The general structure of a Reservoir Computing system with all possible bells and whistles is shown in figure \ref{fig:rc-schema}.
+The main components are the reservoir and the readout layer.
+The reservoir can be any complex system with sufficient dynamics and nonlinearity.
+At each timestep, the reservoir receives the current input, bias,
+and the previous values of the reservoir and the previous readout layer classification.
+The readout layer receives a bias, the current input, the current reservoir state, as well as its previous prediction.
+The internal weights of the reservoir are randomized and left untrained,
+while the weights of the readout layer are adjusted based on some learning algorithm,
+ridge regression for instance.
+
+For a further dive into Reservoir Computing,
+consult papers \cite{Schrauwen2007} and \cite{lukovsevivcius2012reservoir}.
 
 \section{Alternatives to classical reservoirs}
 
