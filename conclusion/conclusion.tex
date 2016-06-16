@@ -1,0 +1,22 @@
+\chapter{Conclusion}
+
+This thesis covered three main topics within the field of RRC systems,
+all by experimentation and empirical observations:
+
+\begin{enumerate}
+    \item Required reservoir sizes and optimal input connectivities.
+    \item Required output connectivities.
+    \item Reservoir dynamics and their relation to task accuracy.
+\end{enumerate}
+
+Required reservoir sizes varied with the difficulty of the task at hand,
+the largest factor being how many timesteps the reservoir was required to remember back in time.
+
+It was found that for larger reservoirs, reading out a subset of equal size to the smallest sufficient reservoir is enough to complete the same task.
+Little interference from the unused part of the reservoir was observed,
+laying empirical evidence behind the fact that one doesn't have to read out an entire reservoir .
+
+Finally, there wasn't found a relationship between an RBNs attractors and its performance in a RRC system.
+One will have to continue to rely on RBN criticality as an indicator of RBN performance.
+
+\todo{Stuff about the connection to physical systems i guess?}
