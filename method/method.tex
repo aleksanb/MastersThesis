@@ -3,31 +3,28 @@
 
 \section{Experimental setup}
 
-The final RRC system is shown as a block diagram in Figure \ref{figure:rrc-block},
-and the actual network topology is equivalent to the one in Figure \ref{figure:rbn-reservoir}.
-
-\todo{Her kommer det stort bilde av mitt reservoir-setup med justerbar in- og ut-koblinger}
-
-\todo{gotta add moar stuffz here, nemlig varierende input/output cocnnectivitet støtte}
+The experimental setup used in this thesis is a further developed version of the RBN Reservoir Computing system used in my pre-thesis project.
+It has been extended too support variable output connectivity as well as input connectivity,
+and is visualized in figure \ref{figure:rbn-reservoir-subsets}.
+The software is written in the Python programming language,
+and is available online on GitHub \cite{masters-thesis-code-github}.
+It contains a fully functioning RRC system,
+the classification tasks from section \ref{section:tasks},
+RBN analytics tools,
+and a set of procedures for generating distribution statistics from experiment templates.
+The RRC system's readout layer uses scikit learn's lightweight ridge regression layer \cite{scikit-learn}.
+Statistical and numerical operations are supplied by the NumPy library \cite{van2011numpy}.
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}
-        \node (dataset) {Dataset};
-        \node[box, below=of dataset] (input) {Input layer};
-        \node[box, right=of input] (reservoir) {RBN Reservoir};
-        \node[box, right=of reservoir] (readout) {Readout layer};
-        \node[above=of readout] (classification) {Classification};
-
-        \node[draw,dotted,fit=(input) (reservoir) (readout), label={RRC}] {};
-
-        \draw[edge] (dataset) to (input);
-        \draw[edge] (input) to (reservoir);
-        \draw[edge] (reservoir) to (readout);
-        \draw[edge] (readout) to (classification);
-    \end{tikzpicture}
-    \caption{Block diagram of the RRC processing a dataset.}
-    \label{figure:rrc-block}
+    \caption{
+        Illustration of the RBN Reservoir system used in this thesis.
+        RRC parameters are Input Nodes = 1, Input Connectivity (IC) = 2, Output Connectivity (OC) = 3, Number of nodes (N) = 6.
+        The Input Connectivity and Output Connectivity is adjustable,
+        and is shown with a shaded background.
+    }
+    \label{figure:rbn-reservoir-subsets}
+    \includegraphics[width=\columnwidth]{method/rbn_reservoir_subsets.pdf}
 \end{figure}
 
 \subsection{RBN parameters and Sample sizes}
@@ -42,13 +39,13 @@ opposed to the heterogenous connectivity used in \cite{rbn-reservoir}.
 This changes the optimal RBN connectivity for Reservoir Computing from $ \langle K \rangle = 2 $ to $ K = 3$,
 as found in my pre-thesis project in section \ref{section:pre-thesis-project}.
 
-The RBN parameters common for all experiments are shown in table
-\ref{table:common-rbn-parameters}.
+The RBN parameters shared for all experiments are shown in table
+\ref{table:shared-rbn-parameters}.
 
 \begin{table}[h]
     \centering
     \caption{Common RBN parameters}
-    \label{table:common-rbn-parameters}
+    \label{table:shared-rbn-parameters}
     \begin{tabular}{ll}
         \hline
         \textbf{Parameter} & \textbf{Configuration} \\
