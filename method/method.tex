@@ -30,6 +30,37 @@ and the actual network topology is equivalent to the one in Figure \ref{figure:r
     \label{figure:rrc-block}
 \end{figure}
 
+\subsection{RBN parameters and Sample sizes}
+
+As the number of different RBNs per N-K combination is oppressively large,
+$(\frac{2^{2^{K}}N!}{(N-K)!})^N$ \cite{gershenson2004introduction},
+the reservoir size, input, and output connectivity experiments will sample 50 RBNs from each experiment parameter combination.
+For the attractor analysis, the number of samples is increased to 500 per experiment parameter combination.
+
+Note that all our RBNs are of homogenous connectivity,
+opposed to the heterogenous connectivity used in \cite{rbn-reservoir}.
+This changes the optimal RBN connectivity for Reservoir Computing from $ \langle K \rangle = 2 $ to $ K = 3$,
+as found in my pre-thesis project in section \ref{section:pre-thesis-project}.
+
+The RBN parameters common for all experiments are shown in table
+\ref{table:common-rbn-parameters}.
+
+\begin{table}[h]
+    \centering
+    \caption{Common RBN parameters}
+    \label{table:common-rbn-parameters}
+    \begin{tabular}{ll}
+        \hline
+        \textbf{Parameter} & \textbf{Configuration} \\
+        \hline
+        \hline
+        Connectivity $K$ & 3   \\
+        Bias $p$         & 0.5 \\
+        Operation mode & CRBN (Classical synchronous RBN) \\
+        \hline
+    \end{tabular}
+\end{table}
+
 \subsection{testing}
 
 To verify that RBN simulation is working,
