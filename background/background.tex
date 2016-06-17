@@ -38,7 +38,7 @@ ridge regression for instance.
 For a further dive into Reservoir Computing,
 consult papers \cite{Schrauwen2007} and \cite{lukovsevivcius2012reservoir}.
 
-\section{Alternatives to classical reservoirs}
+\section{Alternatives to Classical Reservoirs}
 
 Are there other types of complex systems that can be used as reservoirs?
 What properties must these reservoirs have to be able to solve problems?
@@ -62,6 +62,8 @@ leveraging extreme parallelism, simple components and local state \cite{sipper19
 The 'Water bucket' paper investigated the use of an actual bucket of water as a reservoir \cite{fernando2003pattern},
 successfully recognizing patterns and achieving decent performance at that.
 The RBN Reservoir approach has also been found to be viable \cite{rbn-reservoir} .
+
+\todo{Her skal jeg skrive litt kort om RBNs som base for reservoirs}
 
 \section{A Brief Introduction to Boolean Networks}
 \label{section:rbns}
@@ -188,6 +190,7 @@ and what dynamics must such a reservoir have to allow for the computation of int
 \subsection{A working system}
 
 In \cite{rbn-reservoir} the authors create and analyze functioning RBN-RC systems.
+\todo{Shortly mention my pre-thesis project here perhaps?}
 These RBN-RC systems have heterogenous connectivity,
 consume one bit of input at each timestep ($I=1$),
 perturbing $L$ of the $N$ nodes in the process.
@@ -272,14 +275,14 @@ but their inability to remember past perturbations renders them useless for many
 \textit{Critical reservoirs} require connectivity somewhere in the middle.
 Able to forget as well as remember, they perform accurately independent of task size.
 
-\section{Evo Materio}
-\todo{Gotta write about Evo Materio}
+\section{Evo Materio, water bucket}
+\todo{Gotta write about Evo Materio. I'm a bit unsure where to put this section in the background chapter,
+and what angle it should have-if any- that's different from just showing some physical reservoir systems}
 
 \section{Results from my forprosjekt}
 \label{section:pre-thesis-project}
 \todo{Gotta present results from my forprosjekt}
-
-\section{Write about the bucket of water}
-\todo{Gotta write about the bucket of water}
+\todo{That K=3 is better than 2 and 1, and the relation to coputational capability as measure}
+\todo{I can shortly mention the evolved readout layers as well?}
 
 \cleardoublepage
