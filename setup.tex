@@ -104,7 +104,7 @@
 
 
 % #1=table data #2=xlabel
-\newcommand{\myscatterplot}[2]{
+\newcommand{\myscatterplot}[1]{
     \begin{tikzpicture}
         \begin{axis}
             [
@@ -114,7 +114,7 @@
                 ymin=0.3, ymax=1.1,
                 ytick={0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
                 ylabel=Accuracy,
-                xlabel=#2
+                xlabel=Computational Capability
             ]
             \addplot[scatter src=explicit, only marks, mark size=0.5pt]
             table {#1};

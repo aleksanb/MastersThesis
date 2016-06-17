@@ -279,10 +279,128 @@ Able to forget as well as remember, they perform accurately independent of task 
 \todo{Gotta write about Evo Materio. I'm a bit unsure where to put this section in the background chapter,
 and what angle it should have-if any- that's different from just showing some physical reservoir systems}
 
-\section{Results from my forprosjekt}
+\section{RBN Reservoir Computing systems in the authors pre-thesis project}
 \label{section:pre-thesis-project}
-\todo{Gotta present results from my forprosjekt}
-\todo{That K=3 is better than 2 and 1, and the relation to coputational capability as measure}
-\todo{I can shortly mention the evolved readout layers as well?}
+
+In his pre-thesis paper, the author investigated the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC).
+A functioning RBN Reservoir Computing system was implemented,
+and its results validated against and found in accordance with those from \cite{rbn-reservoir}.
+This self-written framework serves as the basis for the simulations and analysis perfored in this thesis as well.
+
+A positive correlation between the computational capability (section \ref{section:computational-capability}) of a reservoir and its actual performance is found.
+The optimal connectivity for homogenous reservoirs is found to be $K=3$ as opposed to $\langle K \rangle = 2$ for heterogenous reservoirs \cite{rbn-reservoir}.
+Finally, the required input connectivity is found to rise with the presence of chaotic dynamics in the reservoir.
+The figures backing this conclusion are shown in \ref{figure:results:temporal-parity-3} and \ref{figure:results:temporal-parity-5}.
+
+Finally, a one-to-many mapping between the readout layer in an already-trained RRC system and different RBN reservoirs was found,
+with there being a seemingly large set of interchangeable reservoirs for each readout layer.
+This makes the potential use of a smaller generative genome for evolving RRC systems interesting.
+Even though it hits fewer points in the RBN fitness landscape than the fixed genome used in this paper,
+a large amount of these points are still usable for each instance of a working readout layer.
+
+\begin{table}[ht]
+    \centering
+    \caption{Task parameters for the pre-thesis project.}
+    \label{table:pre-thesis-tasks}
+    \begin{tabular}{ll}
+        \hline
+        \textbf{Parameter} & \textbf{Configuration} \\
+        \hline
+        \hline
+        Task type               & Temporal Parity \\
+        Training dataset length & 4 000                       \\
+        Test dataset length     & 200                         \\
+        $N$ (window size)       & 3 and 5                     \\
+        $t$ (offset)            & 0 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure*}[!t]
+    \centering
+    \caption{
+        Plots for Temporal Parity with $N=3$ (parameters in table \ref{section:tasks}).
+        Figures \ref{fig:res:d-100-3-1}--\ref{fig:res:d-100-3-3} plot the accuracies of the sampled RBNs against their input connectivity,
+        for K=1–3 respectively.
+        Figures \ref{fig:res:c-100-3-1}--\ref{fig:res:c-100-3-3} plot the accuracy of the previous figures against their Computational Capability ($T=100, t=3$).
+    }
+    \label{figure:results:temporal-parity-3}
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=1]{
+            \label{fig:res:d-100-3-1}
+            \input{background/pre-project/distribution-100-3-1.tex}
+        }
+        \subfloat[K=1]{
+            \label{fig:res:c-100-3-1}
+            \myscatterplot{background/pre-project/computational-power-100-3-1.dat}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=2]{
+            \label{fig:res:d-100-3-2}
+            \input{background/pre-project/distribution-100-3-2.tex}
+        }
+        \subfloat[K=2]{
+            \label{fig:res:c-100-3-2}
+            \myscatterplot{background/pre-project/computational-power-100-3-2.dat}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=3]{
+            \label{fig:res:d-100-3-3}
+            \input{background/pre-project/distribution-100-3-3.tex}
+        }
+        \subfloat[K=3]{
+            \label{fig:res:c-100-3-3}
+            \myscatterplot{background/pre-project/computational-power-100-3-3.dat}
+        }
+    }
+\end{figure*}
+
+\begin{figure*}[!t]
+    \centering
+    \caption{
+        Plots for Temporal Parity with $N=5$ (parameters in table \ref{section:tasks}).
+        Figures \ref{fig:res:d-100-5-1}--\ref{fig:res:d-100-5-3} plot the accuracies of the sampled RBNs against their input connectivity,
+        for K=1–3 respectively.
+        Figures \ref{fig:res:c-100-5-1}--\ref{fig:res:c-100-5-3} plot the accuracy of the previous figures against their Computational Capability ($T=100, t=3$).
+    }
+    \label{figure:results:temporal-parity-5}
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=1]{
+            \label{fig:res:d-100-5-1}
+            \input{background/pre-project/distribution-100-5-1.tex}
+        }
+        \subfloat[K=1]{
+            \label{fig:res:c-100-5-1}
+            \myscatterplot{background/pre-project/computational-power-100-5-1.dat}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=2]{
+            \label{fig:res:d-100-5-2}
+            \input{background/pre-project/distribution-100-5-2.tex}
+        }
+        \subfloat[K=2]{
+            \label{fig:res:c-100-5-2}
+            \myscatterplot{background/pre-project/computational-power-100-5-2.dat}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=3]{
+            \label{fig:res:d-100-5-3}
+            \input{background/pre-project/distribution-100-5-3.tex}
+        }
+        \subfloat[K=3]{
+            \label{fig:res:c-100-5-3}
+            \myscatterplot{background/pre-project/computational-power-100-5-3.dat}
+        }
+    }
+\end{figure*}
+
 
 \cleardoublepage
