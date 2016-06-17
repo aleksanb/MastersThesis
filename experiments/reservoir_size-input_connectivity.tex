@@ -1,26 +1,22 @@
-\section{Minimum required reservoir size, optimal input connectivity}
+\section{Minimum required reservoir size and optimal input connectivity}
 \label{section:required_reservoir_size}
 
 \subsection{Description}
 
-In the chapter summarizing my previous paper \ref{background:my-previous-paper},
-we saw that there was a plethora of RRC systems with $N=100, K=\{2, 3\}$ that were able to solve TP3 (Temporal Parity with a window size of 3).
+In my pre-thesis project described in section \ref{section:pre-thesis-project},
+a plethora of RRC systems with $N=100, K=\{2, 3\}$ were able to solve the Temporal Parity 3 task with an accuracy of at least 98\% (as shown in figure \ref{figure:results:temporal-parity-3}).
+For Temporal Parity 5, reservoirs with $N=100, K=3$ are just able to solve the task,
+with their $K=\{1, 2\}$ brethren being unable to classify the task correctly (as shown in figure \ref{figure:results:temporal-parity-5}).
 
-With TP5, $N=100, K=3$ was barely enough for a few of the generated reservoirs to reach an accuracy of over 95\%.
-In both cases the reservoirs with $K=3$ performed better than their $K=\{1, 2\}$ brethren,
-with $K=3$ being requried for TP5.
-A homogenous connectivity of $K=3$ will therefore be chosen as the only connectivity looked at in these experiments
-It more closely approximates $\langle K \rangle = 2 $, where most critical reservoirs are found,
-as well as reducing the size of the parameter space we have to search.
+To find the minimum required reservoir size, as well as how it changes with the temporal memory requirements and complexity of the task at hand,
+we create a number of reservoirs with parameters from \ref{tab:ic-reservoir-parameters}.
+The four tasks used to benchmark the generated reservoirs are Temporal Parity 3 and 5 (the number being the window size),
+as well as Temporal Density 3 and 5.
+These will sometimes be referred to as TP3, TP5, TD3, and TD5.
 
-To find the minimum required reservoir size,
-we'll be creating reservoirs with the parameters presented in table \ref{tab:ic-reservoir-parameters},
-for all four task combinations presented in table \ref{tab:tasks},
-namely TP3, TP5, TD3 and TD5 (TP = Temporal Parity, TD = Temporal Density, number equals window size).
-Presumably the TP3 task can be solved with a much smaller reservoir,
-while TP5 might require a slightly larger reservoir.
-As the TD task is computationally less expensive,
-we can expect a smaller required reservoir size.
+As the Temporal Density task is computationally less expensive \cite{rbn-reservoir},
+one can expect a smaller required reservoir size than for Temporal Parity.
+In addition, there should be a 'significant' bump in required reservoir size for larger task windows (section \ref{section:pre-thesis-project}).
 
 \begin{table}[ht]
     \centering
@@ -59,22 +55,22 @@ we can expect a smaller required reservoir size.
     \end{tabular}
 \end{table}
 
-For each reservoir size, we'll also iterate over the input connectivities,
-to find which input connectivity gives the greatest population accuracy.
-In my previous paper \ref{background:my-previous-paper},
-the optimal input connectivity seemed to lie at roughly $ 0.5*n\_nodes $,
-with the $K=3$ reservoirs having a slight skew to the right.
-The Temporal Density task might have different input connectivity requirements to the Temporal Parity task.
+To find which input connectivities give the greatest population accuracy,
+we iterates over the input connectivities, generating accuracy distributions for each one.
+In my pre-thesis project,
+the optimal input connectivity is empirically observed to lie around $ 0.5*n\_nodes $,
+with the chaotic reservoirs ($K=3$) having a slight skew to the right.
+In addition,
+the Temporal Density task might have different input connectivity requirements than the Temporal Parity task.
 
-The resulting accuracies wil be plotted as boxplots, as previously done in \ref{background:my-previous-paper}.
-This should allow for visual identification of where the optimal reservoir size lies for each task,
-as well as the optimal input connectivity.
+The resulting accuracy distributions wil be plotted as boxplots (as in section \ref{section:pre-thesis-project}).
+This should allow for visual identification of the minimun required reservoir sizes,
+as well as the optimal input connectivities.
 
 \subsection{Results}
 
-Task accuracy thresholds,
-defined as the smallest reservoir size where at least two reservoirs have the required accuracy,
-are presented in figure \ref{fig:accuracy-threshold-size} and table \ref{tab:accuracy-thresholds}.
+We define a 'Task accuracy threshold' as the smallest reservoir size where at least two reservoirs have the required accuracy on the task.
+These are presented in figure \ref{fig:accuracy-threshold-size} and table \ref{tab:accuracy-thresholds}.
 The 90\% accuracy threshold is also included in table \ref{tab:accuracy-thresholds} as it appears quite a bit earlier than the 98\% threshold for tasks with a window size of 5.
 
 \begin{figure}[ht]
