@@ -17,7 +17,7 @@ These will sometimes be referred to as TP3, TP5, TD3, and TD5.
 As the Temporal Density task is computationally less expensive than Temporal Parity \cite{rbn-reservoir},
 one can expect a smaller required reservoir size than for Temporal Parity.
 In addition, there should be a 'significant' bump in required reservoir size for larger task windows (section \ref{section:pre-thesis-project}).
-The expected relationship between the difficulties of the four tasks therefore becomes $ TD3 <= TP3 <= TD5 <= TP5 $.
+The expected relationship between the difficulties of the four tasks therefore becomes $ TD3 \leq TP3 \leq TD5 \leq TP5 $.
 
 \begin{table}[ht]
     \centering
@@ -59,7 +59,7 @@ The expected relationship between the difficulties of the four tasks therefore b
 To find which input connectivities give the greatest population accuracy,
 we iterates over the input connectivities, generating accuracy distributions for each one.
 In my pre-thesis project,
-the optimal input connectivity is empirically observed to lie around $ 0.5*n\_nodes $,
+the optimal input connectivity is empirically observed to lie around $ 0.5 \cdot n\_nodes $,
 with the chaotic reservoirs ($K=3$) having a slight skew to the right.
 In addition,
 the Temporal Density task might have different input connectivity requirements than the Temporal Parity task.
@@ -121,7 +121,7 @@ The 90\% accuracy threshold is also included in table \ref{tab:accuracy-threshol
 
 The number of input connectivity plots resulting from the reservoir (table \ref{tab:ic-reservoir-parameters}) and task parameter (table \ref{tab:tasks}) combinations is quite large.
 Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the Temporal Parity 3 task is shown here (figure \ref{fig:TP3-IC}).
-There is a slight skew to each side of $ 0.5 * n\ _nodes $ dependent on whether the task chosen is Temporal Parity or Temporal Density.
+There is a slight skew to each side of $ 0.5 \cdot n\ _nodes $ dependent on whether the task chosen is Temporal Parity or Temporal Density.
 This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:reservoir_size-input_connectivity} figures \ref{fig:TP3-IC-1} through \ref{fig:TD5-IC-2} for the remaining tasks.
 
 \begin{figure*}[ht]
@@ -186,7 +186,7 @@ with the chosen values of $ max\_accuracy\_ic_{n\_nodes}^{task} $ presented in t
 \subsubsection{Required reservoir size}
 
 The suspected ordering of the task difficulties,
-$ TD3 <= TP3 <= TD5 <= TP5 $,
+$ TD3 \leq TP3 \leq TD5 \leq TP5 $,
 is confirmed in figure \ref{fig:accuracy-threshold-size} and table \ref{tab:accuracy-thresholds}.
 For the same window size, Temporal Parity requires a larger reservoir than Temporal Density,
 and the additional computational requirements of remembering five timesteps into the past requires a significant ramp-up in reservoir size.
