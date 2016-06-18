@@ -193,7 +193,7 @@ In \cite{rbn-reservoir} the authors create and analyze functioning RBN-RC system
 \todo{Shortly mention my pre-thesis project here perhaps?}
 These RBN-RC systems have heterogenous connectivity,
 consume one bit of input at each timestep ($I=1$),
-perturbing $L$ of the $N$ nodes in the process.
+perturbing $IC$ of the $N$ nodes in the process.
 The readout layer can be any node performing some kind of regression of the reservoir state against expected outout for the current task, e.g. linear regression.
 Such a setup is shown in Figure \ref{figure:rbn-reservoir}.
 
@@ -201,7 +201,7 @@ Such a setup is shown in Figure \ref{figure:rbn-reservoir}.
   \centering
   \includegraphics[width=\columnwidth]{background/RBN-Reservoir.pdf}
   \caption{
-    RBN-Reservoir system with $I=1, L=2, K=2, N=5$.
+    RBN-Reservoir system with $I=1, IC=2, K=2, N=6$.
     The reservoir transforms the problem from a temporal one to a multidimentional spatial one.
     The readout layer the performs some kind of learning on the reservoir states against the expected output for the current task.}
   \label{figure:rbn-reservoir}
