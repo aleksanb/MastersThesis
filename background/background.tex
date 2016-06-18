@@ -54,34 +54,25 @@ consult papers \cite{Schrauwen2007}, \cite{lukovsevivcius2012reservoir}, and \ci
 
 \section{Alternatives to Classical Reservoirs}
 
-\todo{DIS SECTION BE IMPROVE SOON}
-
 Are there other types of complex systems that can be used as reservoirs?
 What properties must these reservoirs have to be able to solve problems?
 
-Complex networks similar to the sparsely connected RNNs used  ESN and LSM systems include Cellular Automata and Random Boolean Networks.
-
+Complex networks similar to the sparsely connected RNNs used  ESN and LSM systems include Cellular Automata \cite{wolfram2002new} and Random Boolean Networks \cite{kauffman1969metabolic}.
 Cellular Automata are regular grids of cells containing some state,
 each cell connected to its neighbors in the grid.
 Cells then update in lockstep according to some shared transition table,
 creating a new generation.
 RBNs can be seen upon as an abstraction over CAs again,
-allowing for nonlocal neighbors, and will be introduced in depth in \ref{section:rbns}.
+allowing for nonlocal neighbors and variable updating rules.
+They will be introduced in depth in section \ref{section:rbns}.
 
+Both CAs and RBNs have successfully been used in Reservoir Computing systems \cite{yilmaz2014reservoir} \cite{rbn-reservoir}.
 Both models are simple, and can be implemented in software,
-hardware (FPGAs), and in materio \cite{miller2002evolution}
-
-(for evolving CAs in materio, see \cite{farstad2015evolving}). \todo{change reference to new master thesis}
+hardware (FPGAs), and in materio \cite{miller2002evolution} \cite{farstad2015evolving}.
 
 This computational paradigm is known as Cellular Computing,
 and provides a potentially powerful alternative to classical computers,
 leveraging extreme parallelism, simple components and local state \cite{sipper1999emergence}.
-
-The 'Water bucket' paper investigated the use of an actual bucket of water as a reservoir \cite{fernando2003pattern},
-successfully recognizing patterns and achieving decent performance at that.
-The RBN Reservoir approach has also been found to be viable \cite{rbn-reservoir} .
-
-\todo{Her skal jeg skrive litt kort om RBNs som base for reservoirs}
 
 \section{A Brief Introduction to Boolean Networks}
 \label{section:rbns}
