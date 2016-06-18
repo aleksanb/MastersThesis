@@ -127,6 +127,16 @@ Figure \ref{figure:sample-homogenous-rbn} visualizes a homogenous RBN with $N=3,
 In the simplest RBN updating scheme, all nodes update in lockstep.
 This is known as the Classical RBN updating scheme (CRBN).
 The states of the RBN at the next timestep $t+1$ therefore only depend on the states at the previous timestep $t$.
+As the number of RBN states is finite ($2^{n\_nodes}$),
+the system will eventually revisit a previously visited state.
+This set of repeating states is known as an \emph{attractor},
+and a deterministic system cannot escape from it.
+If the attractor consists of a single state it is known as a point attractor,
+otherwise a cycle attractor.
+The set of states leading towards an attractor is known as its \emph{basin of attraction}.
+A cycle attractor can be observed in figure \ref{figure:rbn-critical},
+while a point attractor is observed in figure \ref{figure:rbn-ordered}.
+
 A criticism of the classical model is that gene regulation networks are updating continiously,
 as opposed to in lockstep.c
 There are therefore a number of alternate updating schemes which can be categorized by whether they are deterministic or nondeterministic, as well as synchronous and asynchronous.
