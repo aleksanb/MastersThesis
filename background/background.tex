@@ -208,8 +208,7 @@ and what dynamics must such a reservoir have to allow for the computation of int
 
 \subsection{A working system}
 
-In \cite{rbn-reservoir} the authors create and analyze functioning RBN-RC systems.
-\todo{Shortly mention my pre-thesis project here perhaps?}
+In \cite{rbn-reservoir} functioning RBN-RC systems are created and analyzed.
 These RBN-RC systems have heterogenous connectivity,
 consume one bit of input at each timestep ($I=1$),
 perturbing $IC$ of the $N$ nodes in the process.
@@ -230,7 +229,7 @@ Such a setup is shown in Figure \ref{figure:rbn-reservoir}.
 \label{section:tasks}
 
 To measure the real-life performance and accuracy of the RBN Reservoir systems,
-two tasks were introduced: Temporal Density and Temporal Parity \cite{rbn-reservoir}.
+two tasks are introduced: Temporal Density and Temporal Parity \cite{rbn-reservoir}.
 Both require the reservoir to be able to retain information for a sliding window of size $ n $,
 offset by some value $ t $, back through the input stream.
 The Temporal Parity task requires us to determine if there were an odd number of ones in the sliding window,
@@ -294,14 +293,20 @@ but their inability to remember past perturbations renders them useless for many
 \textit{Critical reservoirs} require connectivity somewhere in the middle.
 Able to forget as well as remember, they perform accurately independent of task size.
 
+
 \section{Evo Materio, water bucket}
 \todo{Gotta write about Evo Materio. I'm a bit unsure where to put this section in the background chapter,
 and what angle it should have-if any- that's different from just showing some physical reservoir systems}
 
-\section{RBN Reservoir Computing systems in the authors pre-thesis project}
+The 'Water bucket' paper investigated the use of an actual bucket of water as a reservoir \cite{fernando2003pattern},
+successfully recognizing patterns and achieving decent performance at that.
+The RBN Reservoir approach has also been found to be viable \cite{rbn-reservoir} .
+
+
+\section{Viability of RBNs for Reservoir Computing}
 \label{section:pre-thesis-project}
 
-In his pre-thesis paper, the author investigated the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC).
+In the authors pre-thesis paper, the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC) was investigated.
 A functioning RBN Reservoir Computing system was implemented,
 and its results validated against and found in accordance with those from \cite{rbn-reservoir}.
 This self-written framework serves as the basis for the simulations and analysis perfored in this thesis as well.
