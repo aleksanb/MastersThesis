@@ -115,6 +115,20 @@ Accuracy = 1 - \dfrac{sum(actual\_output \neq expected\_output)}{len(correct\_ou
 \label{formula:accuracy}
 \end{equation}
 
-\subsection{Attractor analysis}
+\subsection{Computing the attractors of RBNs}
+\label{section:computing-attractors}
 
-\todo{Should i present the theory on attractor analysis here instead of inline in section \ref{section:reservoir-dynamics}}?
+The number and length of attractors can vary greatly across different RBNs,
+but is largely determined by the connectivity of the system \cite{gershenson2004introduction}.
+There are a number of ways to estimate the numer of attractors and their properties of a specific RBN.
+They generally fall somewhere on the spectrum between exact enumeration (exhaustively searching for attractors from all initial states) and numerical sampling (searching from a subset only).
+Numerical sampling is biased for $K\neq2$ \cite{berdahl2009random}, and cannot be used for our $K=3$ RBNs.
+A brute-force exhaustive search quickly becomes infeasible, as the number of RBN states is exponential in the number of nodes.
+
+The authors home-cooked exhaustive searcher times out for RBNs with more than 15 nodes.
+A SAT-Based algorithm for finding attractors in CRBNs,
+which was introduced in \cite{dubrova2011sat},
+is therefore used.
+It allows for an increase from 15 to 26 nodes,
+which should aid in finding more meaningful results.
+Its source code is available online at \cite{dubrova2011sat-online}.

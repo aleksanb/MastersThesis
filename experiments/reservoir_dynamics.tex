@@ -18,16 +18,9 @@ and how effective the RBN is as the basis of an RRC system?
 If a relationship is found, does a change in task complexity constrain what values are required in aggregate?
 Such findings can aid in the construction of RRCs by guiding the evolution of generative genomes used to create the backing RBN.
 
-There are a number of ways to calculate a RBNs attractors and their properties.
-They generally fall somewhere on the spectrum between exact enumeration (exhaustively searching for attractors from all initial states) and numerical sampling (searching from a subset only).
-Numerical sampling is biased for $K\neq2$ \cite{berdahl2009random}, and cannot be used by us.
-A brute-force exhaustive search quickly becomes infeasible, as the number of RBN states is exponential in the number of nodes.
-The authors home-cooked exhaustive searcher times out for RBNs with more than 15 nodes.
-A SAT-Based algorithm for finding attractors in CRBNs (introduced in \cite{dubrova2011sat}) is therefore used,
-and allows for an increase from 15 to 26 nodes.
-The source code is available online at \cite{dubrova2011sat-online}.
-
-Temporal Density will be used to investigate the attractor-accuracy relationship,
+The number of attractors and their lengths will be calculated by help of the SAT-solver described in section \ref{section:computing-attractors},
+which allows reservoirs with a maximum reservoir size of 26 to be analyzed within reasonable time limits.
+The task Temporal Density will be used to investigate the attractor-accuracy relationship,
 as $ n\_nodes = 26 $ is on the verge of solving TD5 with 90\% accuracy \ref{tab:accuracy-thresholds}.
 Temporal Parity would require too large a reservoir (at least 70).
 Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-parameters}
