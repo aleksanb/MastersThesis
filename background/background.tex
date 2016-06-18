@@ -2,6 +2,7 @@
 \label{chapter:background}
 
 \section{A Brief Introduction to Reservoir Computing}
+\label{section:reservoir-computing-introduction}
 
 Recurrent Neural Networks (RNNs), as opposed to feed-forward neural networks,
 are notoriously time consuming and difficult to train \cite{Schrauwen2007}.
@@ -18,25 +19,38 @@ as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
 
 \begin{figure}[ht]
     \caption{
-        Schematic of a general Reservoir Computing system containing adjustable biases, feedback loops, and reservoir and readout layers.
-        Inspired by the figures presented in \cite{Schrauwen2007}.
+        Schematic of a general Reservoir Computing system containing adjustable biases, feedback loops, reservoir and readout layers,
+        which are described in section \ref{section:reservoir-computing-introduction}.
+        Inspired by figures from \cite{Schrauwen2007} and \cite{Jaeger:2007}.
     }
     \label{fig:rc-schema}
     \includegraphics[width=\columnwidth]{background/reservoir_computing_schema.pdf}
 \end{figure}
 
-The general structure of a Reservoir Computing system with all possible bells and whistles is shown in figure \ref{fig:rc-schema}.
+A generalized structure of a Reservoir Computing system with all bells and whistles is shown in figure \ref{fig:rc-schema}.
 The main components are the reservoir and the readout layer.
-The reservoir can be any complex system with sufficient dynamics and nonlinearity.
-At each timestep, the reservoir receives the current input, bias,
-and the previous values of the reservoir and the previous readout layer classification.
-The readout layer receives a bias, the current input, the current reservoir state, as well as its previous prediction.
-The internal weights of the reservoir are randomized and left untrained,
-while the weights of the readout layer are adjusted based on some learning algorithm,
-ridge regression for instance.
+At each timestep in the core model,
+the reservoir receives the current input signal as well as its previous state (it is recurrent after all).
+It transforms it, and passes it on to the readout layer.
+The output layer frequently receives the teacher input as well.
+The internal weights of the reservoir are usually randomized and left untrained,
+with the weights of the readout layer being adjusted by some learning algorithm.
+This can be linear or ridge regression for offline learning,
+or recursive least sqares for online learning \cite{Schrauwen2007}.
+
+There are many extensions to the base model.
+The reservoir and output layers can receive biases:
+The readout bias is used for regularizing the reservoir state in case the problem is ill-posed,
+but isn't needed when using a model like ridge regression, which performs regularization internally \cite{Schrauwen2007}.
+Reservoir bias is used for stabilizing models which feeds the output layer back into the reservoir,
+which may be needed if the problem entails producing oscillating output \cite{Jaeger:2007}.
+Teacher forcing,
+that is forcing the states of the output layer to those expected by the trainer for the first n timesteps,
+usually speed up the convergence of the learning method used,
+and may in some cases be required to at all achieve stability \cite{jaeger2002tutorial}.
 
 For a deeper dive into Reservoir Computing,
-consult papers \cite{Schrauwen2007} and \cite{lukovsevivcius2012reservoir}.
+consult papers \cite{Schrauwen2007}, \cite{lukovsevivcius2012reservoir}, and \cite{Jaeger:2007}.
 
 \section{Alternatives to Classical Reservoirs}
 
