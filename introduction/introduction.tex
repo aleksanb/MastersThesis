@@ -23,25 +23,27 @@ Physical reservoirs take many shapes and forms.
 In the ever-so-cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
 the authors use a bucket of water to successfully perform speech recognition.
 In \cite{farstad2015evolving},
-a carbon-nanotube based substrate is successfully used to evolve binary logic gates as well as stable cellular automata.
+a carbon-nanotube based substrate is successfully used to evolve binary logic gates as well as stable Cellular Automata.
 These can then be used to build a CA-based computing paradigm over this unconventional hardware.
 As Cellular Automata are a special case of Random Boolean Networks,
-any general findings of the latter may be applicable to RC systems using the former.
+any general findings about RBN RC systems may be applicable to RC systems using CAs.
 The wider category of attempting to harness the power of unconventional physical devices for computation,
 usually aided by artificial evolution,
 is known as evolution-in-materio \cite{miller2002evolution}.
 
 %\textbf{PROBLEM}
-When using nontraditional physical devices for computation, as in evo-materio,
+When using nontraditional physical devices for computation, as in evolution-in-materio,
 one is often restricted in how one can perturb and read out the underlying substrate.
-It might be prohibitively expensive or technologically infeasible to read the entire state of the entire reservoir,
+It might be prohibitively expensive or technologically infeasible to read the entire state of the reservoir,
 and the values sampled might be affected by its neighborhood in unknown ways to us.
-In a stem-cell based system \cm{Har du no sitering for dette, gunnar. Tenker St.Olavs},
-the topology and size of the network might change over time.
-Having to reinstrument such a system might be impractical,
-so the question becomes how the unused parts of the reservoir impact the parts used for computation.
-Finding the minimum required size of a reservoir for given tasks allows us to create physical reservoirs with no-more-than-needed computational abilities,
-saving on physical cost.
+In \cite{demarse2005adaptive} the authors use living rat neurons in a microelectrode array to control an airplane in a flight simulator.
+Only subsets of the computational substrate are used,
+and the neuronal connections even change over time.
+In addition, the microelectrode array presents a limited resolution view of the computational substrate.
+Reinstrumenting such systems after the substrate evolves might be impractical.
+Questions include how the unused parts of the reservoir impact the parts used for computation,
+and how large the reservoir actually needs to be to solve the task at hand.
+Cost and energy savings from smaller physical reservoirs are always welcome.
 
 %\textbf{HYPOTHESIS}
 It has been shown that Reservoir Computing using Random Boolean Networks is a feasible approach to solving binary time-series problems,
