@@ -56,7 +56,7 @@ Figure \ref{fig:output-connectivity-TP3} shows this comparison for task TP3, up 
 Figure \ref{fig:output-connectivity-TP5} shows the same comparison for task TP5, up to a reservoir size of 140.
 The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not presented here are shown in figures \ref{fig:TP3-OC-1} through \ref{fig:TP5-OC-2} in appendix \ref{app:minimum_output-connectivity}.
 
-\begin{figure*}[ht]
+\begin{figure*}[t]
     \centering
     \caption{
         Accuracy plots for task TP3.
@@ -77,7 +77,7 @@ The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not pr
     }
 \end{figure*}
 
-\begin{figure*}[ht]
+\begin{figure*}[t]
     \centering
     \caption{
         Accuracy plots for task TP5.
@@ -98,43 +98,48 @@ The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not pr
     }
 \end{figure*}
 
-\todo{Should i have a Q-Q test (quartile comparison test) or similar here? To quantify why these distributions are hella similar in a larger degree than the plots just show visually?}
-\label{tab:accuracy-similarity-table}
-
 \subsection{Discussion}
 
-An additional concern is in what way chosing a subset of regression variables and using them for regression affects the variance of the prediction result.
-Intuition might suggest that a smaller set of regression variables would lead to a strictly worse prediction,
-but this might not be the fact, as the field of \cite{} would show.
+The resulting distributions from reservoir subsets and same-sized reservoirs are extremely similar,
+as seen in figures \ref{fig:output-connectivity-TP3} and \ref{fig:output-connectivity-TP5}.
+The fact that reservoir subsets perform almost identically to the same-sized subsets indicates that any interference from the unused parts of the reservoir may be minimal.
+Additionally, as soon as the reservoir subset size is as large as the minimum required reservoir size,
+20 for TP3 and 90-100 for TP5 (table \ref{tab:accuracy-thresholds}),
+performance reaches a plateau with no need to further increase the size of the observed subset.
 
-The resulting distributions from reservoir subsets and same-sized reservoirs are extremely similar.
-This is seen in plots \ref{fig:output-connectivity-TP3} andd \ref{fig:output-connectivity-TP5},
-and numerated in table \ref{tab:accuracy-similarity-table}.
-
-\todo{Following sections need emprical backing, as visuals point to subsets having a slight advantage over same-sized reservoirs for small N.}
-
-The fact that reservoir subsets perform roughly as well as same-sized subsets indicates that any interference from the unused parts of the reservoir may be minimal.
-There seems to be a slight increase in population accuracy for small values of N (10, 20),
-but a larger sample size would probably be needed to discern whether this is randomness or positive interference.
-\todo{Maybe the above can be answered by more statistical tests?}
-
-In a continiously growing and expaning reservoir system,
-computational capability would probably grow monotonically in correlation with the increase in substrate.
-These results show that as long as one has instrumented a large enough part of the resvoir in the first place,
-one will not have to re-instrument it in the future as long as the task doesn't change to a more complex one.
-
-One might have to recalibrate the readout layer however,
-as a regression model trained on a certain graph might not work on a slightly modified one.
-In my pre-project thesis \ref{MYPREPRPOJTHESIS},
-it was found that there is a certain neutrality in the set of RRC systems.
-That is, if one were to re-use a readout layer from a well-performing reservoir,
-there will be a number of other reservoirs that can perform accurately with the same readout layer.
-It was not investigated however whether these hotswappable reservoirs were structurally similar.
-If they were, one might not have to retrain the model every time the substrate evolves.
-
-Finally, there's a possibility that slightly better overall performance could have been achieved by generating reservoirs for all ICs instead of using a flat IC of 50\%.
+There seems to be a slight increase in population accuracy for small values of N (10, 20) however.
+An even larger sample size would probably be needed to decide whether this is randomness or positive interferencce from the unused parts of the reservoir.
+Selecting 10 nodes from 100 or 140, of which 50 and 70 respectively rececive input each tick, might result in a heavy bias towards either side.
+Further, there is a possibility that slightly better subset performance could have been achieved by generating reservoirs for all ICs instead of using a flat IC of 50\%,
+and then selecting the best one.
 Even though the average optimal IC is quite close to 50\%,
 the backing data may lie slightly to either side,
-as optimal IC table \ref{tab:oc-reservoir-parameters} shows.
+as seen in table \ref{tab:oc-reservoir-parameters}.
 
-The conclusion becomes that reservoir-subsets perform at least as well as their same-sized reservoir counterparts.
+Another concern is in what way, if any, a smaller set of reservoir states affects the model used for learning the mapping from reservoir states to classification.
+Using too many predictor variables in a linear model might result in overfitting the problem,
+while too few may result in low accuracies.
+The problem of redundant or useless variables is lessened if one uses an algorithm which includes regularization,
+such as ridge regression \cite{hoerl1970ridge}.
+The regularization penalty rewards smaller coefficients which in turn leads to useless variables being eliminated almost completely,
+but they cannot be totally zeroed within this model.
+Algorithmic regression variable subset selection which completely eliminates unneeded variables exists \cite{miller2002subset},
+but may not be useful for systems with a small readout-to-reservoir ratio.
+Such a system is the sixty electrodes stuck into a large soup of rat neurons \cite{demarse2005adaptive}.
+Any redundancy in the neurons must surely be dominated by the nonlinearity each microelectrode aggregates from all nearby neurons,
+reducing the need for variable elimination.
+
+In a continiously growing and expaning reservoir,
+such as the one consisting of rat neurons,
+the computational capabilities of the system would presumably grow monotonically with the increase in matter to the system.
+These results indicate that as long as one has instrumented a large enough part of the resvoir in the first place,
+one will not have to re-instrument it in the future (as long as the task doesn't change to a significantly more complex one requiring additional data points).
+
+The readout layer might have to be recalibrated, however.
+A regression model trained on a certain reservoir might not work on one with slightly altered topology.
+In section \ref{section:pre-thesis-project} it is found that there exists a neutrality in the set of RBN Reservoirs.
+That is, if one were to re-use a trained readout layer from a well-performing reservoir,
+there will be a number of different RBNs that perform accurately together with the re-used readout layer.
+It was not investigated whether these hotswappable reservoirs were structurally similar.
+If they are, one might not have to retrain the model every time the substrate evolves,
+as small changes to the topology might jump to a similarly well-performing RBN.
