@@ -2,31 +2,28 @@
 
 \subsection{Description}
 
-One might not always be able to sufficiently instrument a substrate used for reservoir computing (chapter \ref{chapter:methodology}).
-It could be prohibitively expensive, physically impractival, or the substrate may act in such a way that one can only make approximate readings from parts of the reservoir.
-These situations could result in less computational power being exposed to the user than what the reservoir is actually capable of.
+One isn't always able to fully instrument a computational substrate used for reserervoir computing.
+While a microelectrode array gives coarse-grained access to smaller substrates than ever,
+one is still limited to a number of samples equal to the number of microelectrodes in the array.
+Other reasons can include instrumentation being prohibitively expensive,
+physically impractical or impossible,
+or quantum effects changing the material as one observes it.
+These situations result in less internal state and potentially less computational power being exposed to the user.
 
-As the reservoir prediction is chosen by a linear regression model over the states of the network nodes,
-a subset of all nodes from an RRC system cannot give a better prediction than all of the nodes \cm,
-as information has been removed from the problem.
-Comparing chosen subsets of larger reservoirs to reservoirs of the same size of the chosen subset should shed light on the situation.
-The question becomes in what way the nodes not used in the regression affect the performance of those who are included.
+How does this restricted viewing of the reservoir state affect its predictive behavior?
+If there is an interference effect between the unobserved parts of the reservoir,
+does this effect increase the computational ability of the observed subset or decrease it?
+To test this hypothesis,
+chosen subsets of larger reservoirs will be compared to separate reservoirs of that exact size.
+This subset should perform better, equal, or worse than the independent reservoir, and therefore answer the hypothesis.
 
-If the interference effect is neutral or positive,
-the hypothesis becomes that a subset $n \subset n\_nodes$ should perform at least as well as a reservoir which consisted only of $|n|$ nodes.
-Negative interference should lead to subsets performing worse.
-
-A second concern is whether an increase in reservoir size after it has been instrumented will affect the performance of the subset monitored.
-If one uses a growing batch stem cells for computation,
-will one have to reinstrument the reservoir, and retrain the readout layer?
-This case will not be considered in this thesis, as a fixed model for RRCs has been used, with no support for extending the reservoir.
-
-To reduce the search space, only the Temporal Parity task will be used for these experiments.
+To reduce the search space, only Temporal Parity 3 and 5 will be used for these experiments.
 In addition, all reservoirs will have a fixed input connectivity of 50\%,
-backed by the findings of table \ref{tab:accuracy-thresholds} from section \ref{section:required_reservoir_size}.
-All reservoir parameters are shown in table \ref{tab:oc-reservoir-parameters},
-and task parameters will be the same as in table \ref{tab:tasks},
-but only for TP3 and TP5.
+backed by the findings of optimal IC from the previous section (as summarized in table \ref{tab:accuracy-thresholds}).
+Reservoir subsets will be chosen randomly from all available nodes,
+which only seems fitting given the random nature of the RBN and the lack of a meaningful physical projection.
+The reservoir parameters used for this experiment are shown in table \ref{tab:oc-reservoir-parameters},
+with the parameters for Temporal Parity staying the as for the previous experiments (table \ref{tab:tasks}).
 
 \begin{table}[ht]
     \centering
@@ -41,7 +38,7 @@ but only for TP3 and TP5.
         Nodes               & 10 to (100, 140), step size=10 \\
         Connectivity        & 3                              \\
         Input connectivity  & $ n\_nodes / 2 $               \\
-        Output connectivity & [0..n\_nodes], step size=10    \\
+        Subset size         & [0..n\_nodes], step size=10    \\
         Sample size         & 50 \\
         \hline
     \end{tabular}
@@ -49,28 +46,31 @@ but only for TP3 and TP5.
 
 \subsection{Results}
 
-Plots showing the best accuracy distributions for each reservoir size for tasks TP3 and TP5 are created based on the optimal input connectivities for each reservoir size-task combination in table \ref{tab:chosen-optimal-ic-values} of appendix \ref{app:reservoir_size-input_connectivity}).
+For easier comparison of the performance of a reservoir subset against reservoirs of that exact size,
+plots aggregating the best accuracy distributions for each reservoir size are created.
+These are based on the accuracy distribution for the optimal input connectivity for that reservoir size,
+as shown in table \ref{tab:chosen-optimal-ic-values} in appendix \ref{app:reservoir_size-input_connectivity}.
 These are then compared to the subset-accuracy plots created from the parameters of table \ref{tab:oc-reservoir-parameters}.
 
-Figure \ref{fig:output-connectivity-TP3} visualizes the best reservoir performances on task TP3 against same-sized subsets of a reservoir of size 100.
-Figure \ref{fig:output-connectivity-TP5} shows the same for task TP5, up to a reservoir size of 140.
-The accuracy-subset plots not presented here are shown in figures \ref{fig:TP3-OC-1} through \ref{fig:TP5-OC-2} in appendix \ref{app:minimum_output-connectivity}.
+Figure \ref{fig:output-connectivity-TP3} shows this comparison for task TP3, up to a reservoir size of 100.
+Figure \ref{fig:output-connectivity-TP5} shows the same comparison for task TP5, up to a reservoir size of 140.
+The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not presented here are shown in figures \ref{fig:TP3-OC-1} through \ref{fig:TP5-OC-2} in appendix \ref{app:minimum_output-connectivity}.
 
 \begin{figure*}[ht]
     \centering
     \caption{
-        N-sized reservoir to subset comparison plots for task TP3 up to a reservoir size of 100.
-        N-subset performance is practically identical to a same-sized reservoir.
-        Subfigure \ref{fig:output-connectivity-TP3-composite} shows best n-sized reservoir performance,
-        while subfigure \ref{fig:output-connectivity-TP3-subset} shows reservoir subset performance.
+        Accuracy plots for task TP3.
+        Figure \ref{fig:output-connectivity-TP3-composite} shows the best performing n-sized reservoirs up to a size of 100.
+        Figure \ref{fig:output-connectivity-TP3-subset} shows reservoir performance for subsets of reservoirs of size 100.
+        All n-sized subsets perform virtually identical to their same-sized reservoirs.
     }
     \label{fig:output-connectivity-TP3}
     \resizebox{\textwidth}{!}{
-        \subfloat[Best n-sized reservoir performance]{
+        \subfloat[Best n-sized reservoir performance on TP3]{
             \input{experiments/results/TP3-IO/boxplot-best-per-size.tex}
             \label{fig:output-connectivity-TP3-composite}
         }
-        \subfloat[Reservoir subset performance]{
+        \subfloat[Reservoir subset performance on TP3]{
             \input{experiments/results/TP3-OC/boxplot-output_connectivity-N100-K3-S50.tex}
             \label{fig:output-connectivity-TP3-subset}
         }
@@ -80,18 +80,18 @@ The accuracy-subset plots not presented here are shown in figures \ref{fig:TP3-O
 \begin{figure*}[ht]
     \centering
     \caption{
-        N-sized reservoir to subset comparison plots for task TP5 up to a reservoir size of 140.
-        N-subset performance is practically identical to a same-sized reservoir.
-        Subfigure \ref{fig:output-connectivity-TP5-composite} shows best n-sized reservoir performance,
-        while subfigure \ref{fig:output-connectivity-TP5-subset} shows reservoir subset performance.
+        Accuracy plots for task TP5.
+        Figure \ref{fig:output-connectivity-TP5-composite} shows the best performing n-sized reservoirs up to a size of 140,
+        Figure \ref{fig:output-connectivity-TP5-subset} shows reservoir performance for subsets of reservoirs of size 140.
+        All n-sized subsets perform virtually identical to their same-sized reservoirs.
     }
     \label{fig:output-connectivity-TP5}
     \resizebox{\textwidth}{!}{
-        \subfloat[Best n-sized reservoir performance]{
+        \subfloat[Best n-sized reservoir performance on TP5]{
             \input{experiments/results/TP5-IO/boxplot-best-per-size.tex}
             \label{fig:output-connectivity-TP5-composite}
         }
-        \subfloat[Reservoir subset performance]{
+        \subfloat[Reservoir subset performance on TP5]{
             \input{experiments/results/TP5-OC/boxplot-N140-K3-S50-output_connectivity.tex}
             \label{fig:output-connectivity-TP5-subset}
         }
@@ -102,6 +102,10 @@ The accuracy-subset plots not presented here are shown in figures \ref{fig:TP3-O
 \label{tab:accuracy-similarity-table}
 
 \subsection{Discussion}
+
+An additional concern is in what way chosing a subset of regression variables and using them for regression affects the variance of the prediction result.
+Intuition might suggest that a smaller set of regression variables would lead to a strictly worse prediction,
+but this might not be the fact, as the field of \cite{} would show.
 
 The resulting distributions from reservoir subsets and same-sized reservoirs are extremely similar.
 This is seen in plots \ref{fig:output-connectivity-TP3} andd \ref{fig:output-connectivity-TP5},
