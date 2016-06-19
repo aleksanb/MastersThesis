@@ -1,25 +1,25 @@
 \chapter{Introduction}
 
 Reservoir Computing (RC) is a category of machine learning that sprang out from the study of recurrent neural networks (RNNs).
-In short, it utilizes the dynamics of some complex system dubbed a 'reservoir' to preprocess a timeseries problem,
+In short, it utilizes the dynamics of some complex system dubbed a 'reservoir' to preprocess a time series problem,
 transforming it from a temporal to a spacial one in the reservoir,
 making it separable with a simple readout layer \cite{lukovsevivcius2012reservoir}.
 
 Reservoir Computing can be used both with physical and theoretical reservoirs.
 The original theoretical Echo State Networks \cite{jaeger2002adaptive} and Liquid State Machines \cite{natschlager2002liquid} provided the original basis for theoretical Reservoir Computing systems.
-As alternative abstractions to RRNs,
-both Cellular Automata \cite{yilmaz2014reservoir} and Random Boolean Networks \cite{rbn-reservoir} were introduced and sucessfully used in reservoir computing frameworks.
-RBNs \cite{gershenson2004introduction} are an useful abstraction over many physical phenomena,
+As alternative abstractions to RNNs,
+both cellular automata \cite{yilmaz2014reservoir} and random Boolean networks \cite{rbn-reservoir} were introduced and successfully used in reservoir computing frameworks.
+Random Boolean networks \cite{gershenson2004introduction} are an useful abstraction over many physical phenomena,
 most famously used by Kauffman \cite{kauffman1969metabolic} as a model for the genetic regulatory network.
-In the authors pre-thesis paper,
+In the author's pre-thesis paper,
 findings from \cite{rbn-reservoir} were reproduced and the reusability of trained readout layers investigated.
-A a neturality in the state-space of possible RBNs was discovered.
+A neutrality in the state-space of possible RBNs was discovered.
 
 Physical reservoirs take many shapes and forms.
 In the ever-so-cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
 the authors use a bucket of water to successfully perform speech recognition.
 In \cite{farstad2015evolving},
-a carbon-nanotube based substrate is successfully used to evolve binary logic gates as well as stable Cellular Automata.
+a carbon nanotube based substrate is successfully used to evolve binary logic gates as well as stable Cellular Automata.
 These can then be used to build a CA-based computing paradigm over this unconventional hardware.
 As Cellular Automata are a special case of Random Boolean Networks,
 any general findings about RBN RC systems may be applicable to RC systems using CAs.
@@ -60,7 +60,7 @@ Their couplings to theoretical frameworks such as Reservoir Computing motivate t
 \section{Thesis structure}
 
 The thesis is structured as follows:
-Chapter \ref{chapter:background} provides background information on reservoir computing, random boolean networks, evo-materio, and using RBNs for Reservoir Computing.
+Chapter \ref{chapter:background} provides background information on reservoir computing, random Boolean networks, evolution-in-materio, and using RBNs for Reservoir Computing.
 Chapter \ref{chapter:methodology} describes the experimental setup and methodology used for performing experiments.
 Chapter \ref{chapter:experiments} contains an in-depth descriptions of each experiment,
 the results obtained, and a discussion thereof.
