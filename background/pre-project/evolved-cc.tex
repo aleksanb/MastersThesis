@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+    \begin{axis}
+        [
+            xlabel=Computational Capability,
+            ytick={1,2,3,4,5},
+            yticklabels={
+                {0.05},
+                {0.06},
+                {0.05},
+                {0.005},
+                {0.00}
+            },
+            yticklabel style={font=\small},
+            x tick label style={/pgf/number format/fixed},
+        ]
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/final-1-computational-power.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/final-2-computational-power.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/final-3-computational-power.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/N100K2L70-1-computational-power.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/N100K2L70-2-computational-power.dat};
+    \end{axis}
+\end{tikzpicture}

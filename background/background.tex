@@ -155,7 +155,7 @@ One way to obtain these phases analytically is by comparing the resulting states
 For visual identification, we plot the states of the RBN in a square lattice,
 with the network states plotted horizontally, and time flowing downwards.
 A node is drawn as white if its state is one, black otherwise.
-The phases are visualized in Figure \ref{figure:rbn-phases}.
+The phases are visualized in figure \ref{figure:rbn-phases}.
 
 \begin{figure}
   \subfloat[Ordered phase, K=1]{
@@ -213,7 +213,7 @@ These RBN-RC systems have heterogenous connectivity,
 consume one bit of input at each timestep ($I=1$),
 perturbing $IC$ of the $N$ nodes in the process.
 The readout layer can be any node performing some kind of regression of the reservoir state against expected outout for the current task, e.g. linear regression.
-Such a setup is shown in Figure \ref{figure:rbn-reservoir}.
+Such a setup is shown in figure \ref{figure:rbn-reservoir}.
 
 \begin{figure}
   \centering
@@ -295,6 +295,7 @@ Able to forget as well as remember, they perform accurately independent of task 
 
 
 \section{Evolution in Materio and physical reservoirs}
+\label{section:evo-materio-physical-reservoirs}
 
 The field of evolution-in-materio \cite{miller2002evolution} concerns the harnessing of unconventional and complex physical materials,
 using them to perform computation.
@@ -333,7 +334,7 @@ with varying degrees of perturbation ability and insight into the internal state
 are used for computation.
 Their couplings to theoretical frameworks such as Reservoir Computing motivate the exploration of the effects of limited perturbation and readout possibilities on reservoir performance.
 
-\section{Viability of RBNs for Reservoir Computing}
+\section{Validating RBNs for Reservoir Computing}
 \label{section:pre-thesis-project}
 
 In the authors pre-thesis paper, the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC) was investigated.
@@ -346,13 +347,37 @@ The optimal connectivity for homogenous reservoirs is found to be $K=3$ as oppos
 Finally, the required input connectivity is found to rise with the presence of chaotic dynamics in the reservoir.
 The figures backing this conclusion are shown in \ref{figure:results:temporal-parity-3} and \ref{figure:results:temporal-parity-5}.
 
-Finally, a one-to-many mapping between the readout layer in an already-trained RRC system and different RBN reservoirs was found,
+Finally, a one-to-many mapping between the readout layer of an already-trained RRC system and different RBN reservoirs is found,
 with there being a seemingly large set of interchangeable reservoirs for each readout layer.
-This makes the potential use of a smaller generative genome for evolving RRC systems interesting.
-Even though it hits fewer points in the RBN fitness landscape than the fixed genome used in this paper,
-a large amount of these points are still usable for each instance of a working readout layer.
+This neutrality in the space of possible RBNs make the potential use of a smaller generative genome for evolving RRC systems interesting.
+Even though such a genome will hit fewer points in the RBN fitness landscape than a fixed genome,
+a large amount of these points will still be usable for each instance of a working readout layer.
+There doesn't seem to be a tight correlation between the properties of the RBN from the original RRC system,
+and the equivalent RBNs found through artificial evolution.
+In fact, the connectivity distributions of figure \ref{figure:evolved-connectivity} and the computational capabilities of figure \ref{figure:evolved-ccs} seem much more representative of the general RBN population, as shown in figure \ref{fig:res:d-100-3-2}.
+This indicates that while there are many compatible reservoirs for a given readout layer,
+the distribution of these compatible reservoirs are likely the same as the distribution of reservoirs with the same connectivity in general.
 
-\begin{table}[ht]
+\begin{figure*}
+    \centering
+    \caption{
+        Computational Capability and Input Connectivity distributions for RBNs evolved from a fixed readout layer.
+        The Y-axis shows the CC and IC values for the readout layers original RBN.
+    }
+    \resizebox{\textwidth}{!}{
+        \subfloat[Evolved RBN input connectivity]{
+            \input{background/pre-project/evolved-cc.tex}
+            \label{figure:evolved-ccs}
+        }
+
+        \subfloat[Evolved RBN Computational Capability]{
+            \input{background/pre-project/evolved-ic.tex}
+            \label{figure:evolved-connectivity}
+        }
+    }
+\end{figure*}
+
+\begin{table}
     \centering
     \caption{Task parameters for the pre-thesis project.}
     \label{table:pre-thesis-tasks}

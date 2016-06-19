@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+    \begin{axis}
+        [
+            xmin=30, xmax=70,
+            axis x discontinuity=crunch,
+            xlabel=Input Connectivity,
+            ytick={1,2,3,4,5},
+            yticklabels={
+                {50},
+                {50},
+                {50},
+                {70},
+                {70}
+            },
+            yticklabel style={align=center, font=\small},
+        ]
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/final-1-connectivity.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/final-2-connectivity.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/final-3-connectivity.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/N100K2L70-1-connectivity.dat};
+
+        \addplot+[boxplot]
+        table[y index=0] {background/pre-project/N100K2L70-2-connectivity.dat};
+    \end{axis}
+\end{tikzpicture}
