@@ -5,27 +5,27 @@
 
 When analyzing Random Boolean Networks one often does so in aggregate,
 looking at the population averages of the attributes of RBNs of a certain construction.
-This as there can be large variance in individual RBN dynamics.
+This due to there being large variances in individual RBN dynamics \cite{gershenson2004introduction}.
 One often looks at whether the average network is chaotic, stable, or critical,
 and the number of attractors, their size, their basins, and state-space transient times.
-One can obtain expected values of the averages of these values if given a networks connectivity and size.
+The expected averages of these properties can then be obtained given a networks connectivity and size.
 
-In my pre-thesis project (section \ref{section:pre-thesis-project}),
-computational capability (section \ref{section:computational-capability}) is used as an indicator of reservoir performance.
-Could there be a deeper link between the computational capability of an RBN used in a RRCs related to the RBNs dynamical properties?
-What correlation is there between these dynamical properties (number of attractors and their lenght)
-and how effective the RBN is as the basis of an RRC system?
-If a relationship is found, does a change in task complexity constrain what values are required in aggregate?
-Such findings can aid in the construction of RRCs by guiding the evolution of generative genomes used to create the backing RBN.
+One indicator of reservoir performance used both in \cite{rbn-reservoir} and in section \ref{section:pre-thesis-project} is Computational Capability,
+but what others are there?
+Is there a deeper link between a well-performing RBN used for computation and its topology and dynamical properties?
+What correlation, if any, is there between a RBNs number of attractors, their lengths, and its computational powers?
+If a relationship is found, does a change in task complexity constrain what the averages of those values are?
+Such a finding can aid in the construction of RBNs by generative genomes,
+by favoring those which generate an optimal set of attractors for instance.
 
-The number of attractors and their lengths will be calculated by help of the SAT-solver described in section \ref{section:computing-attractors},
-which allows reservoirs with a maximum reservoir size of 26 to be analyzed within reasonable time limits.
+The number of attractors and their lengths will be calculated by help of the SAT-solver described in section \ref{section:computing-attractors}.
+It allows for reservoirs with a size of up to 26 to be analyzed within reasonable time limits.
 The task Temporal Density will be used to investigate the attractor-accuracy relationship,
 as $ n\_nodes = 26 $ is on the verge of solving TD5 with 90\% accuracy \ref{tab:accuracy-thresholds}.
 Temporal Parity would require too large a reservoir (at least 70).
 Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-parameters}
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
     \caption{Parameters for analysis of reservoir dynamics}
     \label{tab:reservoir-dynamics-parameters}
@@ -37,8 +37,8 @@ Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-par
         Task                & Temporal Density 3 and 5  \\
         Nodes               & 26                        \\
         Connectivity        & 3                         \\
-        Input connectivity  & $ n\_nodes / 2 $          \\
-        Output connectivity & $ n\_nodes $              \\
+        Input connectivity  & 13                        \\
+        Output connectivity & 26                        \\
         Sample size         & 500 \\
         \hline
     \end{tabular}
