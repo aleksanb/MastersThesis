@@ -294,14 +294,44 @@ but their inability to remember past perturbations renders them useless for many
 Able to forget as well as remember, they perform accurately independent of task size.
 
 
-\section{Evo Materio, water bucket}
-\todo{Gotta write about Evo Materio. I'm a bit unsure where to put this section in the background chapter,
-and what angle it should have-if any- that's different from just showing some physical reservoir systems}
+\section{Evolution in Materio and physical reservoirs}
 
-The 'Water bucket' paper investigated the use of an actual bucket of water as a reservoir \cite{fernando2003pattern},
-successfully recognizing patterns and achieving decent performance at that.
-The RBN Reservoir approach has also been found to be viable \cite{rbn-reservoir} .
+The field of evolution-in-materio \cite{miller2002evolution} concerns the harnessing of unconventional and complex physical materials,
+using them to perform computation.
+The process is usualy aided by Artificial Evolution for finding reasonable input-substrate-output mappings.
+The difference from classical computation is that the computation is moved from an abstraction over the hardware (e.g. a modern CPU), and into the material itself.
+This material can be anything from grown dendritic iron wires which discriminate sound \cite{pask1958physical} to carbon nanotubes used for evolving CA rules \cite{farstad2015evolving}.
+Success within this field may result in more efficient use of materials,
+and higher computational densities.
 
+In \cite{demarse2005adaptive},
+living rat neurons are put in a microelectrode array (MEA) and successfully used to control an airplane in a flight simulator.
+Two of sixty electrodes were chosen to control the pitch and roll of the airplane.
+The internal 'weights' of the rat brain were trained by administering a series of electrical impulses to the same electrodes which then increase or decrease the action potential of the region,
+correcting behavior.
+The internal state of the system is unknown,
+with the MEA only exposing a limited resolution subset of the entire system state
+(around 60 electrodes).
+
+In \cite{farstad2015evolving}, the computational power of carbon nanotubes,
+instrumented in a microelectrode array,
+is used to evolve the state transition functions of all elementary Cellular Automata.
+Artificial Evolution is used to find the correct translation of input/output values to their respective electrodes.
+The internal state of the carbon nanotubes are again completely opaque to the higher computational layers.
+In addition, the number of electrodes present a limited resolution view of the substrate.
+
+In the ever-so-cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
+the Liquid State Machine metaphor is taken literally and a bucket of water is used as a physical reservoir.
+The bucket of water receives input via rotors mounted on the edge of the bucket.
+Input is then transformed from a temporal into a spatial, with a great deal of nonlinearity introduced by the bucket.
+Finally, the reservoir state is read out by taking pictures of the wave-patterns,
+using a simple perceptron to classify the resulting state.
+This setup correctly separates the xor problem as well as being able to classify the words'one' and 'zero' when yelled into the bucket.
+
+What these approaches have in common is that physical substrates,
+with varying degrees of perturbation ability and insight into the internal state,
+are used for computation.
+Their couplings to theoretical frameworks such as Reservoir Computing motivate the exploration of the effects of limited perturbation and readout possibilities on reservoir performance.
 
 \section{Viability of RBNs for Reservoir Computing}
 \label{section:pre-thesis-project}

@@ -35,10 +35,8 @@ In \cite{demarse2005adaptive} the authors use living rat neurons in a microelect
 Only subsets of the computational substrate are used,
 and the neuronal connections even change over time.
 In addition, the microelectrode array presents a limited resolution view of the computational substrate.
-Reinstrumenting such systems after the substrate evolves might be impractical.
 Questions include how the unused parts of the reservoir impact the parts used for computation,
 and how large the reservoir actually needs to be to solve the task at hand.
-Cost and energy savings from smaller physical reservoirs are always welcome.
 
 It has been shown that Reservoir Computing using Random Boolean Networks is a feasible approach to solving binary time-series problems,
 as well as being a potentially useful abstraction over physical Reservoir Computing devices.
@@ -52,6 +50,12 @@ The following questions will be answered in this thesis:
     \item Does one have to read the state of the entire reservoir to maintain task accuracy?
     \item Is there a correlation between the topological characteristics of the RBN (number of attractors, attractor length) and its performance as a reservoir?
 \end{enumerate}
+
+Questions two and three are of specific interest to the implementation of physical reservoirs and evolution-in-materio devices.
+What these approaches have in common is that physical substrates,
+with varying degrees of perturbation ability and insight into the internal state,
+are used for computation.
+Their couplings to theoretical frameworks such as Reservoir Computing motivate the exploration of the effects of limited perturbation and readout possibilities on reservoir performance.
 
 The thesis is structured as follows:
 Chapter \ref{chapter:background} provides background information on reservoir computing, random boolean networks, evo-materio, and using random boolean networks for reservoir computing (my pre-project thesis amongst others).
