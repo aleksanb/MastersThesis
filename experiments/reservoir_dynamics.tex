@@ -46,11 +46,37 @@ Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-par
 
 \subsection{Results}
 
-Figure \ref{fig:attractor-overview} plots the attractor/length distributions for the 500 RBNs generated on the TD3 and TD5 tasks,
-as well as the attractor/lengths of the RBNs scoring more than 95\% and 85\% accuracy on their respective tasks.
-It is difficult to find theoretical estimates for the means of attractor/lengths for connectivities other than 1 \cite{drossel2005number} and 2 \cite{samuelsson2003superpolynomial}.
-Figure \ref{fig:attractor-results}, showing the combined 1000 RBNs, is therefore used to get an intuition of which attractor/length combinations are common for reservoirs with $ K=3, p=0.5, N=26 $.
-Table \ref{tab:attractor-values} shows the means of the attractor lengths and number of attractors for each RBN population subset.
+The distributions of the attractors and corresponding lengths for each set of 500 generated RBNs for TD3 and TD5 are shown in figures \ref{fig:attractor-overview-TD3} and \ref{fig:attractor-overview-TD5}.
+The 273 RBNs which gained at least 95\% accuracy on TD3 are shown in figure \ref{fig:attractor-results-TD3}.
+For TD5 the threshold is lowered to 85\%,
+with the 116 matching RBNs this criteria shown in figure \ref{fig:attractor-results-TD5}.
+
+It is difficult to find theoretical estimates for the mean number of attractors and their lengths for RBNs with connectivities other than $ K = 1 $ \cite{drossel2005number} and $ K = 2 $ \cite{samuelsson2003superpolynomial}.
+The combined distribution of 1000 RBNs (500 from TD3, 500 from TD5) is therefore used to gain an empirical intuition of what the expected values might be,
+and is shown in figure \ref{fig:attractor-results-combined}.
+
+The means of the attractor lengths and corresponding number of attractors for each of the figures in \ref{fig:attractor-overview} are tabulated in table \ref{tab:attractor-values}.
+
+\begin{table}[h]
+    \centering
+    \caption{Means and medians of the different RBN subsets' attractor lengths and number of attractors}
+    \label{tab:attractor-values}
+    \begin{tabular}{llllll}
+        \hline
+        \hline
+        & \textbf{Minimum} & \multicolumn{2}{l}{\textbf{Attractor length}} & \multicolumn{2}{l}{\textbf{Number of attractors}} \\
+        & \textbf{Accuracy} & Mean & Median & Mean & Median \\
+        \hline
+        TD3 & 95\% & 13.90 & 8.67 & 5.97 & 5.00 \\
+            & ALL  & 13.45 & 8.50 & 5.98 & 5.00 \\
+
+        TD5 & 85\% & 11.79 & 7.90 & 6.20 & 5.00 \\
+            & ALL  & 12.44 & 7.67 & 6.09 & 5.00 \\
+
+        TD3+TD5 & ALL & 12.95 & 8.12 & 6.04 & 5.00 \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \begin{figure*}
     \centering
@@ -59,6 +85,8 @@ Table \ref{tab:attractor-values} shows the means of the attractor lengths and nu
         and the 273 of 500 that had an $ accuracy >= 0.95\% $ on TD3, respectively.
         Figures \ref{fig:attractor-overview-TD5} and \ref{fig:attractor-results-TD5} show the distribution of the 500 RBNs generated for TD5,
         and the 116 of 500 that had an $ accuracy >= 0.85\% $ on TD5, respectively.
+        Figure \ref{fig:attractor-results-combined} shows the combined distribution of mean attractor lengths and number of attractors for for all 1000 generated RBNs.
+        It is used as an estimate of the common values for RBNs with parameters $ K=3, p=0.5, N=26 $.
     }
     \label{fig:attractor-overview}
     \resizebox{\textwidth}{!}{
@@ -97,44 +125,17 @@ Table \ref{tab:attractor-values} shows the means of the attractor lengths and nu
                 {6}
         }
     }
-\end{figure*}
-
-\begin{figure*}
-    \centering
-    \caption{
-        Combined distribution of mean attractor lengths and number of attractors for for all 1000 generated RBNs
-        (500 from TD3 \ref{fig:attractor-overview-TD3} and 500 from TD5 \ref{fig:attractor-overview-TD5}).
-    }
-    \label{fig:attractor-results}
     \resizebox{0.5\textwidth}{!}{
-        \myheatmap
-            {experiments/results/sat-5/combined-3-5-data.dat}
-            {Number of attractors}
-            {Mean attractor length}
-            {10}
+        \subfloat[Combined distribution of all 1000 RBNs]{
+            \label{fig:attractor-results-combined}
+            \myheatmap
+                {experiments/results/sat-5/combined-3-5-data.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {10}
+        }
     }
 \end{figure*}
-
-\begin{table}[]
-    \centering
-    \caption{Means and medians of the different RBN subsets' attractor lengths and number of attractors}
-    \label{tab:attractor-values}
-    \begin{tabular}{llllll}
-        \hline
-        \hline
-        & \textbf{Minimum} & \multicolumn{2}{l}{\textbf{Attractor length}} & \multicolumn{2}{l}{\textbf{Number of attractors}} \\
-        & \textbf{Accuracy} & Mean & Median & Mean & Median \\
-        \hline
-        TD3 & 95\% & 13.90 & 8.67 & 5.97 & 5.00 \\
-            & ALL  & 13.45 & 8.50 & 5.98 & 5.00 \\
-
-        TD5 & 85\% & 11.79 & 7.90 & 6.20 & 5.00 \\
-            & ALL  & 12.44 & 7.67 & 6.09 & 5.00 \\
-
-        TD3+TD5 & ALL & 12.95 & 8.12 & 6.04 & 5.00 \\
-        \hline
-    \end{tabular}
-\end{table}
 
 \subsection{Discussion}
 
