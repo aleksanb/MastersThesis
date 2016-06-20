@@ -1,19 +1,19 @@
 \chapter{Methodology}
 \label{chapter:methodology}
 
-A series of experiments will be performed to investigate the following questions.
-They should shed some light on attributes of RBN reservoir Computing systems that might be relevant to the creation and instrumentation of matter reservoirs.
+A series of experiments will be performed to investigate the following research questions.
+They will shed some light on attributes of RBN RC systems that might be relevant to the creation and instrumentation of physical reservoirs.
 
 \begin{enumerate}
     \item How small can a RBN RC system be while still solving its task at $ \geq 98\% $ accuracy?
     \item Does the optimal amount of reservoir perturbation depend on the task at hand?
     \item Does one have to read the state of the entire reservoir to maintain task accuracy?
-    \item Is there a correlation between the topological characteristics of the RBN (number of attractors, attractor length) and its performance as a reservoir?
+    \item Is there a correlation between the topological characteristics of the RBN (it's number of attractors, attractor length) and its performance as a reservoir?
 \end{enumerate}
 
 \section{Experimental setup}
 
-The experimental setup used in this thesis is a further developed version of the RBN Reservoir Computing system used in my pre-thesis project.
+The experimental setup used in this thesis is a further developed version of the RBN RC system used in \cite{burkow2015evolving}.
 It has been extended too support variable output connectivity as well as input connectivity,
 and is visualized in figure \ref{figure:rbn-reservoir-subsets}.
 The software is written in the Python programming language,
@@ -39,10 +39,14 @@ Statistical and numerical operations are supplied by the NumPy library \cite{van
 
 \subsection{RBN parameters and Sample sizes}
 
-As the number of different RBNs per N-K combination is oppressively large,
+As the number of different RBNs per N-K combination is oppressively large
 $(\frac{2^{2^{K}}N!}{(N-K)!})^N$ \cite{gershenson2004introduction},
-the reservoir size, input, and output connectivity experiments will sample 50 RBNs from each experiment parameter combination.
+the reservoir size, input, and output connectivity experiments will sample 50 RBNs for each experiment parameter combination.
+This sample size was regarded adequate as a sample size of 30 was shown to give satisfactory results in \cite{burkow2015evolving}.
+
 For the attractor analysis, the number of samples is increased to 500 per experiment parameter combination.
+This larger value is chosen as the other experiments have at least 10 parameter combinations,
+resulting in at least 500 samples.
 
 Note that all our RBNs are of homogeneous connectivity,
 opposed to the heterogeneous connectivity used in \cite{rbn-reservoir}.
@@ -68,7 +72,7 @@ The RBN parameters shared for all experiments are shown in table
     \end{tabular}
 \end{table}
 
-\subsection{testing}
+\subsection{Testing}
 
 To verify that RBN simulation is working,
 a RBN is created randomly, initial state set to all zeros, and ran.
