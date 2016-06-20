@@ -11,7 +11,7 @@ allowing small topology changes to drastically change a network's position in th
 
 It was therefore proposed in both \cite{jaeger2002adaptive} as Echo State Networks (ESNs)
 and \cite{natschlager2002liquid} as Liquid State Machines (LSMs) to separate the RNN into two parts,
-the untrained reccurrent reservoir, and the trained readout layer.
+the untrained recurrent reservoir, and the trained readout layer.
 Both of these methods have been unified into the field of Reservoir Computing,
 now focusing on the separate training and evolution of the recurrent and readout parts \cite{lukovsevivcius2012reservoir}.
 Exiting applications of Reservoir Computing include speech and handwriting recognition,
@@ -29,14 +29,14 @@ as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
 
 A generalized structure of a Reservoir Computing system is shown in figure \ref{fig:rc-schema}.
 The main components are the reservoir and the readout layer.
-At each timestep in the core model,
+At each time step in the core model,
 the reservoir receives the current input signal as well as its previous state.
 The reservoir transforms the input, and passes it on to the readout layer.
 The readout layer frequently receives the input signal as well.
 The internal weights of the reservoir are usually randomized and left untrained,
 with the weights of the readout layer being adjusted by some learning algorithm.
 This can be linear or ridge regression for offline learning,
-or recursive least sqares for online learning \cite{Schrauwen2007}.
+or recursive least squares for online learning \cite{Schrauwen2007}.
 
 There are many extensions to the base model.
 The reservoir and output layers can receive a constant bias:
@@ -45,7 +45,7 @@ This isn't needed when using a model like ridge regression, which performs regul
 The reservoir's bias is used for stabilizing models which feeds the output layer back into the reservoir,
 which may be needed if the problem entails producing oscillating output \cite{Jaeger:2007}.
 Teacher forcing,
-that is forcing the states of the readout layer to those expected by the trainer for the first n timesteps,
+that is forcing the states of the readout layer to those expected by the trainer for the first n time steps,
 usually speed up the convergence of the learning method used,
 and may in some cases be required to at all achieve stability \cite{jaeger2002tutorial}.
 
@@ -68,7 +68,7 @@ They will be introduced in depth in section \ref{section:rbns}.
 
 Both CAs and RBNs have successfully been used in Reservoir Computing systems \cite{yilmaz2014reservoir} \cite{rbn-reservoir}.
 Both models are simple, and can be implemented in software,
-hardware (FPGAs), and in materio \cite{miller2002evolution} \cite{farstad2015evolving}.
+hardware such as FPGAs, and in materio \cite{miller2002evolution} \cite{farstad2015evolving}.
 
 This computational paradigm is known as Cellular Computing,
 and provides a potentially powerful alternative to classical computers,
@@ -77,25 +77,25 @@ leveraging extreme parallelism, simple components and local state \cite{sipper19
 \section{A Brief Introduction to Boolean Networks}
 \label{section:rbns}
 
-Random Boolean Networks, also known as Kaffman networks,
+Random Boolean Networks, also known as Kauffman networks,
 were originally developed as a model of gene regulatory networks \cite{kauffman1969metabolic},
 the complex system that regulates how genes in multicellular organisms interact with each other.
 The model requires no assumptions about the inner workings of the actual nodes,
 which allows it to model phenomena where the exact internal workings of the system may be unknown.
 
-The simplification of a system to a boolean model doesn't pose a problem,
-as any multi-valued network can be transformed to a corresponding binary one.
+The simplification of a system to a Boolean model doesn't pose a problem,
+as any multivalued network can be transformed to a corresponding binary one.
 
 A RBN is usually described by its number of nodes $N$ and the in-degree $K$ of the nodes,
 that is, how many nodes each node depends on (also known as its ancestors).
-RBNs can have both homogenous and heterogenous in-degrees.
-In heterogenous networks, one usually describes the average connectivity $\langle K \rangle$ instead.
+RBNs can have both homogeneous and heterogeneous in-degrees.
+In heterogeneous networks, one usually describes the average connectivity $\langle K \rangle$ instead.
 
 Each node can have a state of zero or one.
 The next state of the node is solely determined by the current combination of states of its ancestors.
 Each combination leads to a new state of zero or one,
 with the probability given by a binomial distribution usually having $\langle P \rangle = 0.5$.
-Figure \ref{figure:sample-homogenous-rbn} visualizes a homogenous RBN with $N=3, K=2, P=0.5$.
+Figure \ref{figure:sample-homogenous-rbn} visualizes a homogeneous RBN with $N=3, K=2, P=0.5$.
 
 \begin{figure}
   \centering
@@ -125,13 +125,13 @@ Figure \ref{figure:sample-homogenous-rbn} visualizes a homogenous RBN with $N=3,
       1 & 1 & 1 \\
     \end{tabular}
   }
-  \caption{An example homogenous RBN with $N=3, K=2, P=0.5$.}
+  \caption{An example homogeneous RBN with $N=3, K=2, P=0.5$.}
   \label{figure:sample-homogenous-rbn}
 \end{figure}
 
 In the simplest RBN updating scheme, all nodes update in lockstep.
 This is known as the Classical RBN updating scheme (CRBN).
-The states of the RBN at the next timestep $t+1$ therefore only depend on the states at the previous timestep $t$.
+The states of the RBN at the next time step $t+1$ therefore only depend on the states at the previous time step $t$.
 As the number of RBN states is finite ($2^{n\_nodes}$),
 the system will eventually revisit a previously visited state.
 This set of repeating states is known as an \emph{attractor},
@@ -142,7 +142,7 @@ The set of states leading towards an attractor is known as its \emph{basin of at
 A cycle attractor can be observed in figure \ref{figure:rbn-critical},
 while a point attractor is observed in figure \ref{figure:rbn-ordered}.
 
-A criticism of the classical model is that gene regulation networks are updating continiously,
+A criticism of the classical model is that gene regulation networks are updating continuously,
 as opposed to in lockstep \cite{gershenson2004introduction}.
 There are therefore a number of alternate updating schemes which can be categorized by whether they are deterministic or nondeterministic, as well as synchronous and asynchronous.
 
@@ -200,19 +200,19 @@ We do however, have the concept of perturbation,
 the external flipping of bits in the network's state,
 transition tables or edges.
 This can be utilized to create RBNs that take input,
-by continiously perturbing the RBN nodes by the bits of the input sequence.
+by continuously perturbing the RBN nodes by the bits of the input sequence.
 
 Questions that follow are how many bits should the network consume at a time,
-how many of the network nodes should be perturbed by the input at each timestep,
+how many of the network nodes should be perturbed by the input at each time step,
 and what dynamics must such a reservoir have to allow for the computation of interesting problems?
 
 \subsection{A working system}
 
 In \cite{rbn-reservoir} functioning RBN-RC systems are created and analyzed.
-These RBN-RC systems have heterogenous connectivity,
-consume one bit of input at each timestep ($I=1$),
+These RBN-RC systems have heterogeneous connectivity,
+consume one bit of input at each time step ($I=1$),
 perturbing $IC$ of the $N$ nodes in the process.
-The readout layer can be any node performing some kind of regression of the reservoir state against expected outout for the current task, e.g. linear regression.
+The readout layer can be any node performing some kind of regression of the reservoir state against expected output for the current task, e.g. linear regression.
 Such a setup is shown in figure \ref{figure:rbn-reservoir}.
 
 \begin{figure}
@@ -220,7 +220,7 @@ Such a setup is shown in figure \ref{figure:rbn-reservoir}.
   \includegraphics[width=\columnwidth]{background/RBN-Reservoir.pdf}
   \caption{
     RBN-Reservoir system with $I=1, IC=2, K=2, N=6$ with the entire reservoir sate used for regression.
-    The reservoir transforms the problem from a temporal one to a multidimentional spatial one.
+    The reservoir transforms the problem from a temporal one to a multidimensional spatial one.
     The readout layer the performs some kind of learning on the reservoir states against the expected output for the current task.}
   \label{figure:rbn-reservoir}
 \end{figure}
@@ -280,9 +280,9 @@ a high $\Delta$ is found to correlate with critical connectivity ($\langle K \ra
 For all RBN-reservoirs, $\Delta$ drops when increasing the required separation $t$,
 and is maximized when one doesn't have to remember anything at all ($t=0$).
 
-\subsection{Optimal perturbance}
+\subsection{Optimal perturbation}
 \label{section:optimal-perturbance}
-It is found that the optimal amount of reservoir perturbance,
+It is found that the optimal amount of reservoir perturbation,
 adjustable by the number of connections between the input layer and the reservoir,
 depends on both the task size, how many steps in time are required to be remembered,
 and the dynamics of the reservoir.
@@ -299,7 +299,7 @@ Able to forget as well as remember, they perform accurately independent of task 
 
 The field of evolution-in-materio \cite{miller2002evolution} concerns the harnessing of unconventional and complex physical materials,
 using them to perform computation.
-The process is usualy aided by Artificial Evolution for finding reasonable input-substrate-output mappings.
+The process is usually aided by Artificial Evolution for finding reasonable input-substrate-output mappings.
 The difference from classical computation is that the computation is moved from an abstraction over the hardware (e.g. a modern CPU), and into the material itself.
 This material can be anything from grown dendritic iron wires which discriminate sound \cite{pask1958physical} to carbon nanotubes used for evolving CA rules \cite{farstad2015evolving}.
 Success within this field may result in more efficient use of materials,
@@ -327,7 +327,7 @@ The bucket of water receives input via rotors mounted on the edge of the bucket.
 Input is then transformed from a temporal into a spatial, with a great deal of nonlinearity introduced by the bucket.
 Finally, the reservoir state is read out by taking pictures of the wave-patterns,
 using a simple perceptron to classify the resulting state.
-This setup correctly separates the xor problem as well as being able to classify the words'one' and 'zero' when yelled into the bucket.
+This setup correctly separates the xor problem as well as being able to classify the words 'one' and 'zero' when yelled into the bucket.
 
 What these approaches have in common is that physical substrates,
 with varying degrees of perturbation ability and insight into the internal state,
@@ -340,10 +340,10 @@ Their couplings to theoretical frameworks such as Reservoir Computing motivate t
 In the authors pre-thesis paper, the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC) was investigated.
 A functioning RBN Reservoir Computing system was implemented,
 and its results validated against and found in accordance with those from \cite{rbn-reservoir}.
-This self-written framework serves as the basis for the simulations and analysis perfored in this thesis as well.
+This self-written framework serves as the basis for the simulations and analysis performed in this thesis as well.
 
 A positive correlation between the computational capability (section \ref{section:computational-capability}) of a reservoir and its actual performance is found.
-The optimal connectivity for homogenous reservoirs is found to be $K=3$ as opposed to $\langle K \rangle = 2$ for heterogenous reservoirs \cite{rbn-reservoir}.
+The optimal connectivity for homogeneous reservoirs is found to be $K=3$ as opposed to $\langle K \rangle = 2$ for heterogeneous reservoirs \cite{rbn-reservoir}.
 Finally, the required input connectivity is found to rise with the presence of chaotic dynamics in the reservoir.
 The figures backing this conclusion are shown in \ref{figure:results:temporal-parity-3} and \ref{figure:results:temporal-parity-5}.
 
