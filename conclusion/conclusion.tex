@@ -3,34 +3,25 @@
 
 \section{Conclusion}
 
-This thesis covered four main topics within the field of RRC systems,
-all by experimentation and empirical observations:
+Experiments confirm that the required reservoir size increases with the difficulty of the task at hand,
+with the largest factor being how many bits of input the reservoir is required to remember.
+Simulation of RRC systems can therefore aid in deciding the optimal size of physical reservoirs,
+given a bridge between the computational power of the reservoir and RBNs can be deduced.
 
-\begin{enumerate}
-    \item Required reservoir sizes and optimal input connectivities.
-    \item Reservoir subset performance
-    \item Reservoir dynamics and their relation to task accuracy.
-\end{enumerate}
+Optimal reservoir perturbance is found to lie at roughly 50\% of the size of the reservoir for RBNs with $K=3$.
+When using smaller slices of a reservoir for computation,
+lower amounts of total perturbation will be required as long as these perturbations are located within the same topological area.
 
-Required reservoir sizes varied with the difficulty of the task at hand,
-the largest factor being how many timesteps the reservoir was required to remember back in time.
+Results also show that subsets of larger reservoirs will perform at least as well as a separate reservoir of equal size.
+Any interference from the unused parts of the reservoir is either minimal or slightly positive.
 
-It was found that for larger reservoirs, reading out a subset of equal size to the smallest sufficient reservoir is enough to complete the same task.
-Little interference from the unused part of the reservoir was observed,
-laying empirical evidence behind the fact that one doesn't have to read out an entire reservoir .
-
-Finally, there wasn't found a relationship between an RBNs attractors and its performance in a RRC system.
-One will have to continue to rely on RBN criticality as an indicator of RBN performance.
-
-\todo{Stuff about the connection to physical systems i guess?}
+Finally, no relationship was found between the attractors of an RBN and its performance in a RRC system.
+It can therefore not be used for guiding the construction of accurate RBNs.
 
 \section{Further work}
 
-While looking at the performance of reservoir subsets in section \ref{section:output_connectivity-discussion},
-changes to reservoir topology during computation was discussed.
-When using neurons for computation,
-as in the rat neuron airplane automation experiment \cite{demarse2005adaptive},
-neurons would mature, grow, and change connections by themselves over time.
+When using a computational substrate such as living rat neurons \cite{demarse2005adaptive},
+the connections and size of the substrate may change over time.
 It would be interesting to study how much of an RBN in a RC system can be manipulated before its predictive power collapses,
 and the readout layer has to be retrained.
 These changes would include flipping bits in transition tables and changing internal edges in the network.
