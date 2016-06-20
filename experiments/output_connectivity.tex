@@ -58,13 +58,6 @@ The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not pr
 
 \begin{figure*}[t]
     \centering
-    \caption[Reservoir subset performance for temporal parity 3]{
-        Accuracy plots for task TP3.
-        Figure \ref{fig:output-connectivity-TP3-composite} shows the best performing n-sized reservoirs up to a size of 100.
-        Figure \ref{fig:output-connectivity-TP3-subset} shows reservoir performance for subsets of reservoirs of size 100.
-        All n-sized subsets perform virtually identical to their same-sized reservoirs.
-    }
-    \label{fig:output-connectivity-TP3}
     \resizebox{\textwidth}{!}{
         \subfloat[Best n-sized reservoir performance on TP3]{
             \input{experiments/results/TP3-IO/boxplot-best-per-size.tex}
@@ -75,17 +68,17 @@ The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not pr
             \label{fig:output-connectivity-TP3-subset}
         }
     }
+    \caption[Reservoir subset performance for temporal parity 3]{
+        Accuracy plots for task TP3.
+        Figure \ref{fig:output-connectivity-TP3-composite} shows the best performing n-sized reservoirs up to a size of 100.
+        Figure \ref{fig:output-connectivity-TP3-subset} shows reservoir performance for subsets of reservoirs of size 100.
+        All n-sized subsets perform virtually identical to their same-sized reservoirs.
+    }
+    \label{fig:output-connectivity-TP3}
 \end{figure*}
 
 \begin{figure*}[t]
     \centering
-    \caption[Reservoir subset performance for temporal parity 5]{
-        Accuracy plots for task TP5.
-        Figure \ref{fig:output-connectivity-TP5-composite} shows the best performing n-sized reservoirs up to a size of 140,
-        Figure \ref{fig:output-connectivity-TP5-subset} shows reservoir performance for subsets of reservoirs of size 140.
-        All n-sized subsets perform virtually identical to their same-sized reservoirs.
-    }
-    \label{fig:output-connectivity-TP5}
     \resizebox{\textwidth}{!}{
         \subfloat[Best n-sized reservoir performance on TP5]{
             \input{experiments/results/TP5-IO/boxplot-best-per-size.tex}
@@ -96,6 +89,13 @@ The subset-accuracy plots for reservoir sizes $ \le 100 $ and $ \le 140 $ not pr
             \label{fig:output-connectivity-TP5-subset}
         }
     }
+    \caption[Reservoir subset performance for temporal parity 5]{
+        Accuracy plots for task TP5.
+        Figure \ref{fig:output-connectivity-TP5-composite} shows the best performing n-sized reservoirs up to a size of 140,
+        Figure \ref{fig:output-connectivity-TP5-subset} shows reservoir performance for subsets of reservoirs of size 140.
+        All n-sized subsets perform virtually identical to their same-sized reservoirs.
+    }
+    \label{fig:output-connectivity-TP5}
 \end{figure*}
 
 \subsection{Discussion}

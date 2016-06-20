@@ -77,12 +77,6 @@ The 90\% accuracy threshold is also included in table \ref{tab:accuracy-threshol
 
 \begin{figure}[ht]
     \centering
-    \caption[Required reservoir sizes to reach the 98\% accuracy threshold for all tasks]{
-        Accuracy plots for the required reservoir sizes to reach the 98\% accuracy threshold for each of the four tasks:
-        TP3 (Figure \ref{fig:threshold-TP3}), TP5 (Figure \ref{fig:threshold-TP5}), TD3 (Figure \ref{fig:threshold-TD3}) and TD5 (Figure \ref{fig:threshold-TD5}).
-        The x-axis for all plots has been normalized to the largest reservoir size, $N=90$.
-    }
-    \label{fig:accuracy-threshold-size}
     \resizebox{\textwidth}{!}{
         \subfloat[TP3, N=20]{
             \input{experiments/results/normalized-threshold-plots/boxplot-input_connectivity-N20-K3-S50.tex}
@@ -103,6 +97,12 @@ The 90\% accuracy threshold is also included in table \ref{tab:accuracy-threshol
             \label{fig:threshold-TD5}
         }
     }
+    \caption[Required reservoir sizes to reach the 98\% accuracy threshold for all tasks]{
+        Accuracy plots for the required reservoir sizes to reach the 98\% accuracy threshold for each of the four tasks:
+        TP3 (Figure \ref{fig:threshold-TP3}), TP5 (Figure \ref{fig:threshold-TP5}), TD3 (Figure \ref{fig:threshold-TD3}) and TD5 (Figure \ref{fig:threshold-TD5}).
+        The x-axis for all plots has been normalized to the largest reservoir size, $N=90$.
+    }
+    \label{fig:accuracy-threshold-size}
 \end{figure}
 
 \begin{table}[ht]
@@ -127,12 +127,6 @@ This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:rese
 
 \begin{figure*}[ht]
     \centering
-    \caption[Abridged plots for input connectivity against accuracy for temporal parity 3]{
-        Plots of input connectivity against accuracy on TP3. Reservoir sizes $[40..70]$ are omitted for brevity.
-        Note that the optimal input connectivity tends slightly to the right of the middle for all reservoir sizes.
-        The omitted plots are presented in figures \ref{fig:TP3-IC-1} and \ref{fig:TP3-IC-2} in appendix \ref{app:reservoir_size-input_connectivity}.
-        }
-    \label{fig:TP3-IC}
     \resizebox{\textwidth}{!}{
         \subfloat[N=10]{
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N10-K3-S50.tex}
@@ -157,6 +151,12 @@ This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:rese
             \input{experiments/results/TP3-IO/boxplot-input_connectivity-N100-K3-S50.tex}
         }
     }
+    \caption[Abridged plots for input connectivity against accuracy for temporal parity 3]{
+        Plots of input connectivity against accuracy on TP3. Reservoir sizes $[40..70]$ are omitted for brevity.
+        Note that the optimal input connectivity tends slightly to the right of the middle for all reservoir sizes.
+        The omitted plots are presented in figures \ref{fig:TP3-IC-1} and \ref{fig:TP3-IC-2} in appendix \ref{app:reservoir_size-input_connectivity}.
+        }
+    \label{fig:TP3-IC}
 \end{figure*}
 
 We confirm this skew by calculating the optimal input connectivity for each task as follows:

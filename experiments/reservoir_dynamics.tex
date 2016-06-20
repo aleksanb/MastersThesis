@@ -82,6 +82,52 @@ The means of the attractor lengths and corresponding number of attractors for ea
 
 \begin{figure*}
     \centering
+    \resizebox{\textwidth}{!}{
+        \subfloat[TD3 distribution (500)]{
+            \myheatmap
+                {experiments/results/sat-3/all-rbns-heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+            \label{fig:attractor-overview-TD3}
+        }
+        \subfloat[TD3 $accuracy >= 95\%$ (273)]{
+            \myheatmap
+                {experiments/results/sat-3/heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+            \label{fig:attractor-results-TD3}
+        }
+    }
+    \resizebox{\textwidth}{!}{
+        \subfloat[TD5 distribution (500)]{
+            \myheatmap
+                {experiments/results/sat-5/all-rbns-heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+            \label{fig:attractor-overview-TD5}
+        }
+        \subfloat[TD5 $accuracy >= 85\%$ (116)]{
+            \myheatmap
+                {experiments/results/sat-5/heatmap.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {6}
+            \label{fig:attractor-results-TD5}
+        }
+    }
+    \resizebox{0.5\textwidth}{!}{
+        \subfloat[Combined distribution of all 1000 RBNs]{
+            \myheatmap
+                {experiments/results/sat-5/combined-3-5-data.dat}
+                {Number of attractors}
+                {Mean attractor length}
+                {10}
+            \label{fig:attractor-results-combined}
+        }
+    }
     \caption[The number of attractors and their mean lengths for reservoirs accurate on the temporal density 3 and 5 tasks]{
         Figures \ref{fig:attractor-overview-TD3} and \ref{fig:attractor-results-TD3} show the distribution of the 500 RBNs generated for TD3,
         and the 273 of 500 that had an $ accuracy >= 0.95\% $ on TD3, respectively.
@@ -91,52 +137,6 @@ The means of the attractor lengths and corresponding number of attractors for ea
         It is used as an estimate of the common values for RBNs with parameters $ K=3, p=0.5, N=26 $.
     }
     \label{fig:attractor-overview}
-    \resizebox{\textwidth}{!}{
-        \subfloat[TD3 distribution (500)]{
-            \label{fig:attractor-overview-TD3}
-            \myheatmap
-                {experiments/results/sat-3/all-rbns-heatmap.dat}
-                {Number of attractors}
-                {Mean attractor length}
-                {6}
-        }
-        \subfloat[TD3 $accuracy >= 95\%$ (273)]{
-            \label{fig:attractor-results-TD3}
-            \myheatmap
-                {experiments/results/sat-3/heatmap.dat}
-                {Number of attractors}
-                {Mean attractor length}
-                {6}
-        }
-    }
-    \resizebox{\textwidth}{!}{
-        \subfloat[TD5 distribution (500)]{
-            \label{fig:attractor-overview-TD5}
-            \myheatmap
-                {experiments/results/sat-5/all-rbns-heatmap.dat}
-                {Number of attractors}
-                {Mean attractor length}
-                {6}
-        }
-        \subfloat[TD5 $accuracy >= 85\%$ (116)]{
-            \label{fig:attractor-results-TD5}
-            \myheatmap
-                {experiments/results/sat-5/heatmap.dat}
-                {Number of attractors}
-                {Mean attractor length}
-                {6}
-        }
-    }
-    \resizebox{0.5\textwidth}{!}{
-        \subfloat[Combined distribution of all 1000 RBNs]{
-            \label{fig:attractor-results-combined}
-            \myheatmap
-                {experiments/results/sat-5/combined-3-5-data.dat}
-                {Number of attractors}
-                {Mean attractor length}
-                {10}
-        }
-    }
 \end{figure*}
 
 \subsection{Discussion}
