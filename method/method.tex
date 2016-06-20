@@ -42,7 +42,7 @@ Statistical and numerical operations are supplied by the NumPy library \cite{van
 As the number of different RBNs per N-K combination is oppressively large
 $(\frac{2^{2^{K}}N!}{(N-K)!})^N$ \cite{gershenson2004introduction},
 the reservoir size, input, and output connectivity experiments will sample 50 RBNs for each experiment parameter combination.
-This sample size was regarded adequate as a sample size of 30 was shown to give satisfactory results in \cite{burkow2015evolving}.
+This sample size was regarded adequate as a sample size of 30 was shown to give satisfactory results for similar experiments in the pre-thesis work \cite{burkow2015evolving}.
 
 For the attractor analysis, the number of samples is increased to 500 per experiment parameter combination.
 This larger value is chosen as the other experiments have at least 10 parameter combinations,
@@ -50,8 +50,8 @@ resulting in at least 500 samples.
 
 Note that all our RBNs are of homogeneous connectivity,
 opposed to the heterogeneous connectivity used in \cite{rbn-reservoir}.
-This changes the optimal RBN connectivity for Reservoir Computing from $ \langle K \rangle = 2 $ to $ K = 3$,
-as found in my pre-thesis project in section \ref{section:pre-thesis-project}.
+This changes the optimal RBN connectivity for reservoir computing from $ \langle K \rangle = 2 $ to $ K = 3$,
+as shown in section \ref{section:pre-thesis-project}.
 
 The RBN parameters shared for all experiments are shown in table
 \ref{table:shared-rbn-parameters}.

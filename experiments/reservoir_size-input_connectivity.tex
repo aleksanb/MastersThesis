@@ -16,7 +16,7 @@ These will sometimes be referred to as TP3, TP5, TD3, and TD5.
 
 As the temporal density task is computationally less expensive than temporal parity \cite{rbn-reservoir},
 one can expect a smaller required reservoir size than for temporal parity.
-In addition, there should be a 'significant' bump in required reservoir size for larger task windows (section \ref{section:pre-thesis-project}).
+In addition, there should be a 'significant' bump in required reservoir size for larger task windows, as observed in section \ref{section:pre-thesis-project} and \cite{burkow2015evolving}.
 The expected relationship between the difficulties of the four tasks therefore becomes $ TD3 \leq TP3 \leq TD5 \leq TP5 $.
 
 \begin{table}[ht]
@@ -58,9 +58,9 @@ The expected relationship between the difficulties of the four tasks therefore b
 
 To find which input connectivity gives the greatest population accuracy,
 one iterates over all input connectivities, generating accuracy distributions for each one.
-In my pre-thesis project,
-the optimal input connectivity is empirically observed to lie around $ 0.5 \cdot n\_nodes $,
-with the chaotic reservoirs ($K=3$) having a slight skew to the right.
+In section \ref{section:pre-thesis-project},
+the optimal input connectivity is empirically observed to lie around $ 0.5 \cdot n\_nodes $.
+The chaotic reservoirs with $K=3$ have a slight skew to the right of 0.5.
 In addition,
 the temporal density task might have different input connectivity requirements than the temporal parity task.
 
@@ -190,8 +190,8 @@ The suspected ordering of the task difficulties,
 $ TD3 \leq TP3 \leq TD5 \leq TP5 $,
 is confirmed in figure \ref{fig:accuracy-threshold-size} and table \ref{tab:accuracy-thresholds}.
 A reservoir of size 20 is large enough to correctly predict TP3,
-quite a bit lower than the 100 nodes used in my pre-thesis project (figure \ref{fig:res:d-100-3-3}).
-A reservoir of size 90 appears sufficient for TP5, rather close to the 100 nodes used in the pre-thesis project (figure \ref{fig:res:d-100-5-3}).
+quite a bit lower than the 100 nodes used in section \ref{section:pre-thesis-project} (figure \ref{fig:res:d-100-3-3}).
+A reservoir of size 90 appears sufficient for TP5, rather close to the 100 nodes used in used in section \ref{section:pre-thesis-project} (figure \ref{fig:res:d-100-5-3}).
 The entire accuracy distribution doesn't increase significantly until 120 nodes,
 as seen in figure \ref{fig:TP5-IC-2} in the appendix.
 A tiny reservoir of size 10 is sufficient for TD3,
