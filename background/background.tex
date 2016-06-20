@@ -18,7 +18,7 @@ Exiting applications of Reservoir Computing include speech and handwriting recog
 as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
 
 \begin{figure}[ht]
-    \caption{
+    \caption[Schematic of a general reservoir computing system]{
         Schematic of a general Reservoir Computing system containing adjustable biases, feedback loops, reservoir and readout layers,
         which are described in section \ref{section:reservoir-computing-introduction}.
         Inspired by figures from \cite{Schrauwen2007} and \cite{Jaeger:2007}.
@@ -125,7 +125,7 @@ Figure \ref{figure:sample-homogenous-rbn} visualizes a homogeneous RBN with $N=3
       1 & 1 & 1 \\
     \end{tabular}
   }
-  \caption{An example homogeneous RBN with $N=3, K=2, P=0.5$.}
+  \caption[An example homogeneous RBN]{An example homogeneous RBN with $N=3, K=2, P=0.5$.}
   \label{figure:sample-homogenous-rbn}
 \end{figure}
 
@@ -170,8 +170,7 @@ The phases are visualized in figure \ref{figure:rbn-phases}.
     \includegraphics[width=0.3\columnwidth]{background/chaotic-phase.pdf}
     \label{figure:rbn-chaotic}
   }
-
-  \caption{
+  \caption[Trajectories through state space for RBNs with different connectivities] {
     Trajectories through state-space for RBNs with $N=30, K=[1,2,3]$, visualizing the different phases.
     Time flows downwards the lattice, while RBN states are shown along the X-axis.
     with the network states plotted horizontally, and time flowing downwards.
@@ -218,8 +217,8 @@ Such a setup is shown in figure \ref{figure:rbn-reservoir}.
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{background/RBN-Reservoir.pdf}
-  \caption{
-    RBN-Reservoir system with $I=1, IC=2, K=2, N=6$ with the entire reservoir sate used for regression.
+    \caption[An example RBN reservoir computing system]{
+    RBN reservoir computing system with $I=1, IC=2, K=2, N=6$ with the entire reservoir sate used for regression.
     The reservoir transforms the problem from a temporal one to a multidimensional spatial one.
     The readout layer the performs some kind of learning on the reservoir states against the expected output for the current task.}
   \label{figure:rbn-reservoir}
@@ -247,7 +246,7 @@ Both tasks will be used to benchmark the reservoirs created later in this paper.
     \includegraphics[width=\columnwidth]{background/temporal_parity-10-200-3-output.pdf}
   }
 
-  \caption{
+  \caption[The first elements of the temporal parity task]{
     The first 30 elements of a Temporal Parity task with $[n=3, t=0]$.
     A one is visualized as white, while a zero is black.
     We see that correct output at time $i$ is equal to there being an odd number of $1$s in inputs $[i, i-1, i-2]$
@@ -340,7 +339,7 @@ Their couplings to theoretical frameworks such as Reservoir Computing motivate t
 In the authors pre-thesis paper, the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC) was investigated.
 A functioning RBN Reservoir Computing system was implemented,
 and its results validated against and found in accordance with those from \cite{rbn-reservoir}.
-This self-written framework serves as the basis for the simulations and analysis performed in this thesis as well.
+The simulation software from the pre-thesis work has been greatly extended for use in this thesis.
 
 A positive correlation between the computational capability (section \ref{section:computational-capability}) of a reservoir and its actual performance is found.
 The optimal connectivity for homogeneous reservoirs is found to be $K=3$ as opposed to $\langle K \rangle = 2$ for heterogeneous reservoirs \cite{rbn-reservoir}.
@@ -362,7 +361,7 @@ The parameters for the Temporal Parity task used for all experiments is shown in
 
 \begin{figure*}[ht]
     \centering
-    \caption{
+    \caption[Computational capability and input connectivity for evolved RBNs]{
         Computational Capability and Input Connectivity distributions for RBNs evolved from a fixed readout layer.
         The Y-axis shows the CC and IC values for the readout layers original RBN.
     }
@@ -381,7 +380,7 @@ The parameters for the Temporal Parity task used for all experiments is shown in
 
 \begin{figure*}
     \centering
-    \caption{
+    \caption[Temporal parity 3: Accuracy and computational capability plots]{
         Plots for Temporal Parity with $N=3$.
         Figures \ref{fig:res:d-100-3-1}--\ref{fig:res:d-100-3-3} plot the accuracies of the sampled RBNs against their input connectivity,
         for K=1–3 respectively.
@@ -424,7 +423,7 @@ The parameters for the Temporal Parity task used for all experiments is shown in
 
 \begin{figure*}
     \centering
-    \caption{
+    \caption[Temporal parity 5: Accuracy and computational capability plots]{
         Plots for Temporal Parity with $N=5$.
         Figures \ref{fig:res:d-100-5-1}--\ref{fig:res:d-100-5-3} plot the accuracies of the sampled RBNs against their input connectivity,
         for K=1–3 respectively.
