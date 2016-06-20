@@ -39,10 +39,10 @@ This can be linear or ridge regression for offline learning,
 or recursive least squares for online learning \cite{Schrauwen2007}.
 
 There are many extensions to the base model.
-The reservoir and output layers can receive a constant bias:
+The reservoir and readout layers can receive a constant bias:
 The readout's bias is used for regularizing the reservoir state in case the problem is ill-posed.
 This isn't needed when using a model like ridge regression, which performs regularization internally \cite{Schrauwen2007}.
-The reservoir's bias is used for stabilizing models which feeds the output layer back into the reservoir,
+The reservoir's bias is used for stabilizing models which feeds the readout layer back into the reservoir,
 which may be needed if the problem entails producing oscillating output \cite{Jaeger:2007}.
 Teacher forcing,
 that is forcing the states of the readout layer to those expected by the trainer for the first n time steps,
