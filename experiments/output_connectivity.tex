@@ -17,13 +17,13 @@ To test this hypothesis,
 chosen subsets of larger reservoirs will be compared to separate reservoirs of that exact size.
 This subset should perform better, equal, or worse than the independent reservoir, and therefore answer the hypothesis.
 
-To reduce the search space, only Temporal Parity 3 and 5 will be used for these experiments.
+To reduce the search space, only temporal parity 3 and 5 will be used for these experiments.
 In addition, all reservoirs will have a fixed input connectivity of 50\%,
 backed by the findings of optimal IC from the previous section (as summarized in table \ref{tab:accuracy-thresholds}).
 Reservoir subsets will be chosen randomly from all available nodes,
 which only seems fitting given the random nature of the RBN and the lack of a meaningful physical projection.
 The reservoir parameters used for this experiment are shown in table \ref{tab:oc-reservoir-parameters},
-with the parameters for Temporal Parity staying the as for the previous experiments (table \ref{tab:tasks}).
+with the parameters for temporal parity staying the as for the previous experiments (table \ref{tab:tasks}).
 
 \begin{table}[ht]
     \centering
@@ -34,7 +34,7 @@ with the parameters for Temporal Parity staying the as for the previous experime
         \textbf{Parameter} & \textbf{Configuration} \\
         \hline
         \hline
-        Task                & Temporal Parity 3 and 5        \\
+        Task                & Temporal parity 3 and 5        \\
         Nodes               & 10 to (100, 140), step size=10 \\
         Connectivity        & 3                              \\
         Input connectivity  & $ n\_nodes / 2 $               \\

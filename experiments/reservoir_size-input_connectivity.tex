@@ -10,12 +10,12 @@ with their $K=\{1, 2\}$ brethren being unable to classify the task correctly.
 
 To find the minimum required reservoir size, as well as how it changes with the temporal memory requirements and complexity of the task at hand,
 we create a number of reservoirs with parameters from \ref{tab:ic-reservoir-parameters}.
-The four tasks used to benchmark the generated reservoirs are Temporal Parity 3 and 5 (the number being the window size),
-as well as Temporal Density 3 and 5.
+The four tasks used to benchmark the generated reservoirs are temporal parity 3 and 5 (the number being the window size),
+as well as temporal density 3 and 5.
 These will sometimes be referred to as TP3, TP5, TD3, and TD5.
 
-As the Temporal Density task is computationally less expensive than Temporal Parity \cite{rbn-reservoir},
-one can expect a smaller required reservoir size than for Temporal Parity.
+As the temporal density task is computationally less expensive than temporal parity \cite{rbn-reservoir},
+one can expect a smaller required reservoir size than for temporal parity.
 In addition, there should be a 'significant' bump in required reservoir size for larger task windows (section \ref{section:pre-thesis-project}).
 The expected relationship between the difficulties of the four tasks therefore becomes $ TD3 \leq TP3 \leq TD5 \leq TP5 $.
 
@@ -28,7 +28,7 @@ The expected relationship between the difficulties of the four tasks therefore b
         \textbf{Parameter} & \textbf{Configuration} \\
         \hline
         \hline
-        Task type               & Temporal Parity and Temporal Density \\
+        Task type               & Temporal parity and temporal density \\
         Training dataset length & 4 000                       \\
         Test dataset length     & 200                         \\
         $N$ (window size)       & 3 and 5                     \\
@@ -62,7 +62,7 @@ In my pre-thesis project,
 the optimal input connectivity is empirically observed to lie around $ 0.5 \cdot n\_nodes $,
 with the chaotic reservoirs ($K=3$) having a slight skew to the right.
 In addition,
-the Temporal Density task might have different input connectivity requirements than the Temporal Parity task.
+the temporal density task might have different input connectivity requirements than the temporal parity task.
 
 The resulting accuracy distributions will be plotted as box plots (as in section \ref{section:pre-thesis-project}).
 This should allow for visual identification of the minimum required reservoir sizes,
@@ -121,8 +121,8 @@ The 90\% accuracy threshold is also included in table \ref{tab:accuracy-threshol
 \end{table}
 
 The number of input connectivity plots resulting from the reservoir (table \ref{tab:ic-reservoir-parameters}) and task parameter (table \ref{tab:tasks}) combinations is quite large.
-Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the Temporal Parity 3 task is shown here (figure \ref{fig:TP3-IC}).
-There is a slight skew to each side of $ 0.5 \cdot n\ _nodes $ dependent on whether the task chosen is Temporal Parity or Temporal Density.
+Therefore only reservoir sizes of $ N=[10...30, 80...100]$ from the accuracy distributions on the temporal parity 3 task is shown here (figure \ref{fig:TP3-IC}).
+There is a slight skew to each side of $ 0.5 \cdot n\ _nodes $ dependent on whether the task chosen is temporal parity or temporal density.
 This is observable in figure \ref{fig:TP3-IC} for TP3 and appendix \ref{app:reservoir_size-input_connectivity} figures \ref{fig:TP3-IC-1} through \ref{fig:TD5-IC-2} for the remaining tasks.
 
 \begin{figure*}[ht]
@@ -176,8 +176,8 @@ with the chosen values of $ max\_accuracy\_ic_{n\_nodes}^{task} $ presented in t
         \hline
                          & \textbf{T=3} & \textbf{T=5} \\
         \hline
-        Temporal Parity  & 0.528          & 0.489 \\
-        Temporal Density & 0.439          & 0.443 \\
+        Temporal parity  & 0.528          & 0.489 \\
+        Temporal density & 0.439          & 0.443 \\
         \hline
     \end{tabular}
 \end{table}
@@ -198,7 +198,7 @@ A tiny reservoir of size 10 is sufficient for TD3,
 with a reservoir of size 5 achieving 90\% accuracy!
 There is a corresponding ramp-up in required reservoir size to 55 to achieve 98\% accuracy on TD5.
 
-For the same window size, Temporal Parity requires a larger reservoir than Temporal Density,
+For the same window size, temporal parity requires a larger reservoir than temporal density,
 and the additional computational requirements of remembering five time steps into the past requires a significant ramp-up in reservoir size.
 The memory capacity of an Echo State Network trained on Independent and identically distributed data (as both our tasks are) is bounded by the size of the reservoir \cite{Jaeger:2007}.
 A randomly generated reservoir is statistically unlikely to be able to attain this bound,
@@ -218,15 +218,15 @@ as cellular automata are a special case of RBNs.
 
 \subsubsection{Optimal input connectivity}
 
-Temporal Density had an optimal input connectivity of roughly 0.44, while Temporal Parity lay around roughly 0.50 (table \ref{tab:optimal-ic}).
+Temporal density had an optimal input connectivity of roughly 0.44, while temporal parity lay around roughly 0.50 (table \ref{tab:optimal-ic}).
 These values differed relatively little across tasks.
 This is to be expected, as the reservoir connectivity is the main factor in how large a reservoir perturbation is required \cite{rbn-reservoir},
 as discussed in section \ref{section:optimal-perturbance}.
 
-The net decrease in optimal IC from Temporal Parity 3 to 5 can be explained by the input needing to be remembered for longer in the network.
+The net decrease in optimal IC from temporal parity 3 to 5 can be explained by the input needing to be remembered for longer in the network.
 A lower amount of perturbation results in less overriding of already-stored information in the reservoir.
 This conclusion is a bit hairy however,
-as there isn't a corresponding decrease in optimal IC for temporal Density, which already lies at a low 0.44.
+as there isn't a corresponding decrease in optimal IC for temporal density, which already lies at a low 0.44.
 These variations could also be explained by variance the optimal IC sampling process described in subsection \ref{subsection:reservoir_size-input_connectivity:results}.
 
 Finally, these findings can be used to assist in choosing the degree of perturbation in a real-life reservoir computing system,

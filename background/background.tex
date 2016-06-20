@@ -144,7 +144,7 @@ A criticism of the classical model is that gene regulation networks are updating
 as opposed to in lockstep \cite{gershenson2004introduction}.
 There are therefore a number of alternate updating schemes which can be categorized by whether they are deterministic or nondeterministic, as well as synchronous and asynchronous.
 
-The dynamics of an RBN can be categorized as being in either the ordered, critical, or chaotic phase.
+The dynamics of a RBN can be categorized as being in either the ordered, critical, or chaotic phase.
 These phases can be identified by how large a part of the network state is able to change over time,
 whether similar states tend to converge or diverge over time,
 and the networks resistance to perturbations (outside changes to the network).
@@ -226,11 +226,11 @@ Such a setup is shown in figure \ref{figure:rbn-reservoir}.
 \label{section:tasks}
 
 To measure the real-life performance and accuracy of the RBN RC system,
-two tasks are introduced: Temporal Density and Temporal Parity \cite{rbn-reservoir}.
+two tasks are introduced: Temporal density and temporal parity \cite{rbn-reservoir}.
 Both require the reservoir to be able to retain information for a sliding window of size $ n $,
 offset by some value $ t $, back through the input stream.
-The Temporal Parity task requires us to determine if there were an odd number of ones in the sliding window,
-the Temporal Density task to determine whether there were a majority of ones.
+The temporal parity task requires us to determine if there were an odd number of ones in the sliding window,
+the temporal density task to determine whether there were a majority of ones.
 The Former is visualized in figure \ref{figure:temporal-parity}.
 
 Both tasks will be used to benchmark the reservoirs created later in this paper.
@@ -245,7 +245,7 @@ Both tasks will be used to benchmark the reservoirs created later in this paper.
   }
 
   \caption[The first elements of the temporal parity task]{
-    The first 30 elements of a Temporal Parity task with $[n=3, t=0]$.
+    The first 30 elements of a temporal parity task with $[n=3, t=0]$.
     A one is visualized as white, while a zero is black.
     We see that correct output at time $i$ is equal to there being an odd number of $1$s in inputs $[i, i-1, i-2]$
   }
@@ -254,7 +254,7 @@ Both tasks will be used to benchmark the reservoirs created later in this paper.
 
 \subsection{Computational capability}
 \label{section:computational-capability}
-For an RBN-reservoir to perform well at computational tasks,
+For a RBN-reservoir to perform well at computational tasks,
 it must be able to both forget past perturbations and keep two input streams that have begun converging separated \cite{bertschinger2004real}.
 
 These two properties are coined \textit{fading memory} and \textit{separation property},
@@ -267,7 +267,7 @@ If measuring \textit{separation property}, flip all bits up to bit $T-t$ in stre
 For both input streams, reset reservoir state, perturb the reservoir with the input stream,
 and store the final state.
 The score of the measure is then defined as the normalized hamming distance between the resulting states.
-The computational capability $\Delta$ of an RBN-reservoir is then defined as
+The computational capability $\Delta$ of a RBN-reservoir is then defined as
 \begin{equation}
   \Delta_{Tt} = separation\_property_{Tt} - fading\_memory_{T}
 \label{formula:accuracy}
@@ -355,7 +355,7 @@ In fact, the connectivity distributions of figure \ref{figure:evolved-connectivi
 This indicates that while there are many compatible reservoirs for a given readout layer,
 the distribution of these compatible reservoirs are likely the same as the distribution of reservoirs with the same connectivity in general.
 
-The parameters for the Temporal Parity task used for all experiments is shown in table \ref{table:pre-thesis-tasks} of appendix \ref{app:pre-thesis-bonus-content}.
+The parameters for the temporal parity task used for all experiments is shown in table \ref{table:pre-thesis-tasks} of appendix \ref{app:pre-thesis-bonus-content}.
 
 \begin{figure*}[ht]
     \centering
@@ -379,7 +379,7 @@ The parameters for the Temporal Parity task used for all experiments is shown in
 \begin{figure*}
     \centering
     \caption[Temporal parity 3: Accuracy and computational capability plots]{
-        Plots for Temporal Parity with $N=3$.
+        Plots for temporal parity with $N=3$.
         Figures \ref{fig:res:d-100-3-1}--\ref{fig:res:d-100-3-3} plot the accuracies of the sampled RBNs against their input connectivity,
         for K=1–3 respectively.
         Figures \ref{fig:res:c-100-3-1}--\ref{fig:res:c-100-3-3} plot the accuracy of the previous figures against their Computational Capability ($T=100, t=3$).
@@ -422,7 +422,7 @@ The parameters for the Temporal Parity task used for all experiments is shown in
 \begin{figure*}
     \centering
     \caption[Temporal parity 5: Accuracy and computational capability plots]{
-        Plots for Temporal Parity with $N=5$.
+        Plots for temporal parity with $N=5$.
         Figures \ref{fig:res:d-100-5-1}--\ref{fig:res:d-100-5-3} plot the accuracies of the sampled RBNs against their input connectivity,
         for K=1–3 respectively.
         Figures \ref{fig:res:c-100-5-1}--\ref{fig:res:c-100-5-3} plot the accuracy of the previous figures against their Computational Capability ($T=100, t=3$).

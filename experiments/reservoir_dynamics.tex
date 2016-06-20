@@ -20,9 +20,9 @@ by favoring those which generate an optimal set of attractors for instance.
 
 The number of attractors and their lengths will be calculated by help of the SAT-solver described in section \ref{section:computing-attractors}.
 It allows for reservoirs with a size of up to 26 to be analyzed within reasonable time limits.
-The task Temporal Density will be used to investigate the attractor-accuracy relationship,
+The task temporal density will be used to investigate the attractor-accuracy relationship,
 as $ n\_nodes = 26 $ is on the verge of solving TD5 with 90\% accuracy \ref{tab:accuracy-thresholds}.
-Temporal Parity would require too large a reservoir (at least 70).
+Temporal parity would require too large a reservoir (at least 70).
 Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-parameters}
 
 \begin{table}[h]
@@ -34,7 +34,7 @@ Parameters for the experiment are shown in table \ref{tab:reservoir-dynamics-par
         \textbf{Parameter} & \textbf{Configuration} \\
         \hline
         \hline
-        Task                & Temporal Density 3 and 5  \\
+        Task                & Temporal density 3 and 5  \\
         Nodes               & 26                        \\
         Connectivity        & 3                         \\
         Input connectivity  & 13                        \\
@@ -161,7 +161,7 @@ For RBNs with $ K=3, p=0.5, N=26 $,
 those with 4--5 attractors and mean lengths of 3--4 perform optimally;
 Or simply that for those parameters, most RBNs would fall within this range.
 The last conclusion is supported by figure \ref{fig:attractor-results-combined}.
-This would mean that an RBNs performance as a reservoir has little correlation to the properties of its attractors.
+This would mean that a RBNs performance as a reservoir has little correlation to the properties of its attractors.
 
 In \cite{rbn-reservoir} the authors note that due to continuous perturbation,
 computation cannot solely depend on the attractors of the system.
