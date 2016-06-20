@@ -1,22 +1,22 @@
 \chapter{Introduction}
 
 Reservoir Computing (RC) is a category of machine learning that sprang out from the study of recurrent neural networks (RNNs).
-In short, it utilizes the dynamics of some complex system dubbed a 'reservoir' to preprocess a time series problem,
+It utilizes untrained recurrent neural nets as a reservoir of dynamics to preprocess a time series problem,
 transforming it from a temporal to a spacial one in the reservoir,
 making it separable with a simple readout layer \cite{lukovsevivcius2012reservoir}.
 
-Reservoir Computing can be used both with physical and theoretical reservoirs.
+Reservoir Computing can be used both with physical or simulated reservoirs.
 The original theoretical Echo State Networks \cite{jaeger2002adaptive} and Liquid State Machines \cite{natschlager2002liquid} provided the original basis for theoretical Reservoir Computing systems.
 As alternative abstractions to RNNs,
 both cellular automata \cite{yilmaz2014reservoir} and random Boolean networks \cite{rbn-reservoir} were introduced and successfully used in reservoir computing frameworks.
-Random Boolean networks \cite{gershenson2004introduction} are an useful abstraction over many physical phenomena,
+Random Boolean networks (RBNs) \cite{gershenson2004introduction} are an useful abstraction over many physical phenomena,
 most famously used by Kauffman \cite{kauffman1969metabolic} as a model for the genetic regulatory network.
 In the author's pre-thesis paper,
 findings from \cite{rbn-reservoir} were reproduced and the reusability of trained readout layers investigated.
 A neutrality in the state-space of possible RBNs was discovered.
 
 Physical reservoirs take many shapes and forms.
-In the ever-so-cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
+In the frequently cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
 the authors use a bucket of water to successfully perform speech recognition.
 In \cite{farstad2015evolving},
 a carbon nanotube based substrate is successfully used to evolve binary logic gates as well as stable Cellular Automata.
@@ -29,8 +29,7 @@ is known as evolution-in-materio \cite{miller2002evolution}.
 
 When using nontraditional physical devices for computation, as in evolution-in-materio,
 one is often restricted in how one can perturb and read out the underlying substrate.
-It might be prohibitively expensive or technologically infeasible to read the entire state of the reservoir,
-and the values sampled might be affected by its neighborhood in unknown ways to us.
+It might be prohibitively expensive or technologically infeasible to read the entire state of the reservoir.
 In \cite{demarse2005adaptive} the authors use living rat neurons in a microelectrode array to control an airplane in a flight simulator.
 Only subsets of the computational substrate are used,
 and the neuronal connections even change over time.
@@ -48,7 +47,7 @@ The following questions will be answered in this thesis:
     \item How small can a RRC system be while still solving its task at $ \geq 98\% $ accuracy?
     \item Does the optimal amount of reservoir perturbation depend on the task at hand?
     \item Does one have to read the state of the entire reservoir to maintain task accuracy?
-    \item Is there a correlation between the topological characteristics of the RBN (number of attractors, attractor length) and its performance as a reservoir?
+    \item Is there a correlation between the topological characteristics of the RBN (it's number of attractors and their lengths) and its performance as a reservoir?
 \end{enumerate}
 
 Questions two and three are of specific interest to the implementation of physical reservoirs and evolution-in-materio devices.
@@ -62,6 +61,5 @@ Their couplings to theoretical frameworks such as Reservoir Computing motivate t
 The thesis is structured as follows:
 Chapter \ref{chapter:background} provides background information on reservoir computing, random Boolean networks, evolution-in-materio, and using RBNs for Reservoir Computing.
 Chapter \ref{chapter:methodology} describes the experimental setup and methodology used for performing experiments.
-Chapter \ref{chapter:experiments} contains an in-depth descriptions of each experiment,
-the results obtained, and a discussion thereof.
+Chapter \ref{chapter:experiments} contains an in-depth descriptions of each experiment, the results obtained, and a discussion.
 Chapter \ref{chapter:conclusion} concludes the thesis and mentions further work.
