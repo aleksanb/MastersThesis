@@ -2,6 +2,31 @@
 \addcontentsline{toc}{chapter}{Sammendrag}
 $\\[0.5cm]$
 
-\noindent Write your summary here...
+\noindent Reservoir computing (RC) er en relativt ny teknikk innen maskinlæring.
+Et utrent rekurrent nevralt nettverk benyttes som et reservoar fyllt av dynamikk for å preprossesere et temporært problem,
+og dermed gjøre det separerbart med et lineært avlesingslag.
+Alle glissne nettverk med tilbakekoblinger kan potensielt benyttes som et reservoar.
+Et slikt nettverk det tilfeldige Boolske nettverket (RBN),
+som tidligere har blitt brukt i RC-systemer.
+
+Reservoir computing kan benytte både fysiske og simulerte reservoar.
+Når et fysisk reservoar brukes for beregning, som i evolution-in-materio,
+har man ofte begrenset adgang til å påvirke samt lese ut verdier fra materialet.
+I denne avhandlingen vil følgende egenskaper ved RBN RC-systemer bli undersøkt og relatert til fysiske reservoarer:
+Hvordan kompleksiteten til oppgaven påvirker størrelsen på reservoaret,
+hvor mye påvirkning som er optimalt,
+hva ytelsen på subsett av større rerservoarer er,
+og hva forbindelsen mellom et RBNs tiltrekkere og dets ytelse som reservoar er.
+
+Våre eksperimenter bekrefter at den nødvendige størrelsen på reservoaret øker i takt med vanskelighetsgraden på oppgaven som skal løses.
+Den største faktoren er hvor mange bits med input som må huskes.
+Simuleringer av RBN RC-systemer kan derfor hjelpe i å avgjøre den optimale størrelsen på et fysisk reservoar,
+gitt man finner en bro mellom målet for beregningskraft på det simulerte og fysiske reservoaret.
+Optimal reservoarpåvirkning er funnet til å ligge på rundt 50\% av størrelsen på reservoaret (for RBN med konnektivitet 3).
+Når man bruker et subsett av et reservoar for beregning så trengs det mindre mengder med påvirkning, gitt at påvirkingen skjer i samme del av reservoaret som leses av.
+Våre resultater viser også at subsett av større reservoar yter like bra som separate reservoar av den størrelsen.
+En eventuell interferens mellom den ubrukte delen av reservoaret og den brukte er enten neglisjerbar eller svakt positiv.
+Det viste seg ingen sammenheng mellom tiltrekkerne til et RBN og dets ytelse i et RBN RC-system.
+Dette kan dermed ikke brukes for å guide konstruksjonen av nøyaktige RBN.
 
 \cleardoublepage

@@ -1,22 +1,22 @@
 \section*{\Huge Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 $\\[0.5cm]$
-%Working title: "RBN as A Model for Matter Reservoirs".
 
-% Introduction
-\noindent Reservoir Computing (RC), a relatively new approach to machine learning,
+\noindent Reservoir computing (RC), a relatively new approach to machine learning,
 utilizes untrained recurrent neural networks as a reservoir of dynamics to preprocess some temporal task,
 making it separable with a linear readout layer.
 Potentially any sparsely connected network containing feedback loops can be a reservoir.
 One such network is the random Boolean network (RBN),
 which has previously been used in a reservoir computing setting.
 
-% Problemstilling
 Reservoir computing can be performed with physical or simulated reservoirs.
-When using a physical device for computation, as in evolution-in-materio,
+When using a physical reservoir for computation, as in evolution-in-materio,
 one is often restricted in how one can perturb and read out the underlying substrate.
-The random Boolean network originated as a lightweight abstraction over physical phenomena.
-In this thesis, the following properties of RBN RC devices are investigated and related to physical reservoirs: How task difficulty affects required reservoir size; How much reservoir perturbation is optimal; The performance of reservoir subsets; and the relationship between an RBNs attractors and its performance as a reservoir.
+In this thesis, the following properties of RBN RC devices are investigated and related to physical reservoirs:
+How task difficulty affects required reservoir size,
+how much reservoir perturbation is optimal,
+the performance of reservoir subsets,
+and the relationship between an RBNs attractors and its performance as a reservoir.
 
 Experiments confirm that the required reservoir size increases with the difficulty of the task at hand,
 with the largest factor being how many bits of input the reservoir is required to remember.
