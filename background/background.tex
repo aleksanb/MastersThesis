@@ -9,8 +9,8 @@ are notoriously time consuming and difficult to train \cite{Schrauwen2007}.
 This is due to feedback from the recurrent connections during the training process,
 allowing small topology changes to drastically change a network's position in the fitness landscape.
 
-It was therefore proposed in both \cite{jaeger2002adaptive} (as Echo State Networks, or ESN)
-and \cite{natschlager2002liquid} (as Liquid State Machines, or LSM) to separate the RNN into two parts,
+It was therefore proposed in both \cite{jaeger2002adaptive} as Echo State Networks (ESNs)
+and \cite{natschlager2002liquid} as Liquid State Machines (LSMs) to separate the RNN into two parts,
 the untrained reccurrent reservoir, and the trained readout layer.
 Both of these methods have been unified into the field of Reservoir Computing,
 now focusing on the separate training and evolution of the recurrent and readout parts \cite{lukovsevivcius2012reservoir}.
@@ -27,37 +27,37 @@ as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
     \includegraphics[width=\columnwidth]{background/reservoir_computing_schema.pdf}
 \end{figure}
 
-A generalized structure of a Reservoir Computing system with all bells and whistles is shown in figure \ref{fig:rc-schema}.
+A generalized structure of a Reservoir Computing system is shown in figure \ref{fig:rc-schema}.
 The main components are the reservoir and the readout layer.
 At each timestep in the core model,
-the reservoir receives the current input signal as well as its previous state (it is recurrent after all).
-It transforms it, and passes it on to the readout layer.
-The output layer frequently receives the teacher input as well.
+the reservoir receives the current input signal as well as its previous state.
+The reservoir transforms the input, and passes it on to the readout layer.
+The readout layer frequently receives the input signal as well.
 The internal weights of the reservoir are usually randomized and left untrained,
 with the weights of the readout layer being adjusted by some learning algorithm.
 This can be linear or ridge regression for offline learning,
 or recursive least sqares for online learning \cite{Schrauwen2007}.
 
 There are many extensions to the base model.
-The reservoir and output layers can receive biases:
-The readout bias is used for regularizing the reservoir state in case the problem is ill-posed,
-but isn't needed when using a model like ridge regression, which performs regularization internally \cite{Schrauwen2007}.
-Reservoir bias is used for stabilizing models which feeds the output layer back into the reservoir,
+The reservoir and output layers can receive a constant bias:
+The readout's bias is used for regularizing the reservoir state in case the problem is ill-posed.
+This isn't needed when using a model like ridge regression, which performs regularization internally \cite{Schrauwen2007}.
+The reservoir's bias is used for stabilizing models which feeds the output layer back into the reservoir,
 which may be needed if the problem entails producing oscillating output \cite{Jaeger:2007}.
 Teacher forcing,
-that is forcing the states of the output layer to those expected by the trainer for the first n timesteps,
+that is forcing the states of the readout layer to those expected by the trainer for the first n timesteps,
 usually speed up the convergence of the learning method used,
 and may in some cases be required to at all achieve stability \cite{jaeger2002tutorial}.
 
 For a deeper dive into Reservoir Computing,
 consult papers \cite{Schrauwen2007}, \cite{lukovsevivcius2012reservoir}, and \cite{Jaeger:2007}.
 
-\section{Alternatives to Classical Reservoirs}
+\section{Alternatives to Traditional Reservoirs}
 
-Are there other types of complex systems that can be used as reservoirs?
+Any complex dynamical system can in principle be used in a reservoir computing setting.
 What properties must these reservoirs have to be able to solve problems?
 
-Complex networks similar to the sparsely connected RNNs used  ESN and LSM systems include Cellular Automata \cite{wolfram2002new} and Random Boolean Networks \cite{kauffman1969metabolic}.
+Complex networks similar to the sparsely connected ones used in ESN and LSM systems include Cellular Automata \cite{wolfram2002new} and Random Boolean Networks \cite{kauffman1969metabolic}.
 Cellular Automata are regular grids of cells containing some state,
 each cell connected to its neighbors in the grid.
 Cells then update in lockstep according to some shared transition table,

@@ -1,12 +1,12 @@
 \chapter{Introduction}
 
-Reservoir Computing (RC) is a category of machine learning that sprang out from the study of recurrent neural networks (RNNs).
+Reservoir computing (RC) is a category of machine learning that sprang out from the study of recurrent neural networks (RNNs).
 It utilizes untrained recurrent neural nets as a reservoir of dynamics to preprocess a time series problem,
 transforming it from a temporal to a spacial one in the reservoir,
 making it separable with a simple readout layer \cite{lukovsevivcius2012reservoir}.
 
-Reservoir Computing can be used both with physical or simulated reservoirs.
-The original theoretical Echo State Networks \cite{jaeger2002adaptive} and Liquid State Machines \cite{natschlager2002liquid} provided the original basis for theoretical Reservoir Computing systems.
+Reservoir computing can be used both with physical or simulated reservoirs.
+The original Echo State Networks \cite{jaeger2002adaptive} and Liquid State Machines \cite{natschlager2002liquid} provided the basis for reservoir computing.
 As alternative abstractions to RNNs,
 both cellular automata \cite{yilmaz2014reservoir} and random Boolean networks \cite{rbn-reservoir} were introduced and successfully used in reservoir computing frameworks.
 Random Boolean networks (RBNs) \cite{gershenson2004introduction} are an useful abstraction over many physical phenomena,
@@ -37,10 +37,10 @@ In addition, the microelectrode array presents a limited resolution view of the 
 Questions include how the unused parts of the reservoir impact the parts used for computation,
 and how large the reservoir actually needs to be to solve the task at hand.
 
-It has been shown that Reservoir Computing using Random Boolean Networks is a feasible approach to solving binary time-series problems,
-as well as being a potentially useful abstraction over physical Reservoir Computing devices.
+It has been shown that reservoir computing using Random Boolean Networks is a feasible approach to solving binary time-series problems,
+as well as being a potentially useful abstraction over physical reservoir computing devices.
 In this thesis, the properties of these RRC systems are further investigated,
-with the motivation of using the results as a template for instrumenting and performing computations on physical Reservoir Computing systems.
+with the motivation of using the results as a template for instrumenting and performing computations on physical reservoir computing systems.
 
 The following questions will be answered in this thesis:
 \begin{enumerate}
@@ -54,12 +54,12 @@ Questions two and three are of specific interest to the implementation of physic
 What these approaches have in common is that physical substrates,
 with varying degrees of perturbation ability and insight into the internal state,
 are used for computation.
-Their couplings to theoretical frameworks such as Reservoir Computing motivate the exploration of the effects of limited perturbation and readout possibilities on reservoir performance.
+Their couplings to theoretical frameworks such as reservoir computing motivate the exploration of the effects of limited perturbation and readout possibilities on reservoir performance.
 
 \section{Thesis structure}
 
 The thesis is structured as follows:
-Chapter \ref{chapter:background} provides background information on reservoir computing, random Boolean networks, evolution-in-materio, and using RBNs for Reservoir Computing.
+Chapter \ref{chapter:background} provides background information on reservoir computing, random Boolean networks, evolution-in-materio, and using RBNs for reservoir computing.
 Chapter \ref{chapter:methodology} describes the experimental setup and methodology used for performing experiments.
 Chapter \ref{chapter:experiments} contains an in-depth descriptions of each experiment, the results obtained, and a discussion.
 Chapter \ref{chapter:conclusion} concludes the thesis and mentions further work.
