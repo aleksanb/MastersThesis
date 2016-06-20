@@ -2,7 +2,7 @@
 \label{chapter:methodology}
 
 A series of experiments will be performed to investigate the following questions.
-They should shed some ligt on attributes of RBN reservoir Computing systems that might be relevant to the creation and instrumentation of matter reservoirs.
+They should shed some light on attributes of RBN reservoir Computing systems that might be relevant to the creation and instrumentation of matter reservoirs.
 
 \begin{enumerate}
     \item How small can a RRC system be while still solving its task at $ \geq 98\% $ accuracy?
@@ -22,7 +22,7 @@ It contains a fully functioning RRC system,
 the classification tasks from section \ref{section:tasks},
 RBN analytics tools,
 and a set of procedures for generating distribution statistics from experiment templates.
-The RRC system's readout layer uses scikit learn's lightweight ridge regression layer \cite{scikit-learn}.
+The RRC system's readout layer uses scikit-learn's lightweight ridge regression layer \cite{scikit-learn}.
 Statistical and numerical operations are supplied by the NumPy library \cite{van2011numpy}.
 
 \begin{figure}
@@ -44,8 +44,8 @@ $(\frac{2^{2^{K}}N!}{(N-K)!})^N$ \cite{gershenson2004introduction},
 the reservoir size, input, and output connectivity experiments will sample 50 RBNs from each experiment parameter combination.
 For the attractor analysis, the number of samples is increased to 500 per experiment parameter combination.
 
-Note that all our RBNs are of homogenous connectivity,
-opposed to the heterogenous connectivity used in \cite{rbn-reservoir}.
+Note that all our RBNs are of homogeneous connectivity,
+opposed to the heterogeneous connectivity used in \cite{rbn-reservoir}.
 This changes the optimal RBN connectivity for Reservoir Computing from $ \langle K \rangle = 2 $ to $ K = 3$,
 as found in my pre-thesis project in section \ref{section:pre-thesis-project}.
 
@@ -74,10 +74,10 @@ To verify that RBN simulation is working,
 a RBN is created randomly, initial state set to all zeros, and ran.
 The results are visualized in Figure \ref{figure:rbn-noperturb}.
 We see that the RBN exhibits stable dynamics, and enters into an attractor around $t=15$.
-In Figure \ref{figure:rbn-perturb} we continiously perturb the RBN with the input stream from the Temporal Parity task visualized in Figure \ref{figure:temporal-parity}.
-In the perturbed case, the state trajectory is continiously changed, preventing the RBN from settling into an attractor.
+In Figure \ref{figure:rbn-perturb} we continuously perturb the RBN with the input stream from the Temporal Parity task visualized in Figure \ref{figure:temporal-parity}.
+In the perturbed case, the state trajectory is continuously changed, preventing the RBN from settling into an attractor.
 Interestingly enough, there seems to be a visual similarity between the two cases.
-Such a pattern is sure to dissapear with a RBN in the chaotic phase.
+Such a pattern is sure to disappear with a RBN in the chaotic phase.
 
 This erratic pattern of state transitions is then fed into the readout layer,
 which is then tasked with finding a linear combination of the RBN states that results in the expected output for the given task.
@@ -93,7 +93,7 @@ which is then tasked with finding a linear combination of the RBN states that re
   }
   \caption{
     The same RBN ($N=100, K=2, P=0.5, IC=50$) shown both perturbed and unperturbed.
-    The boolean states of the RBN are plotted along the X-axis,
+    The Boolean states of the RBN are plotted along the X-axis,
     with time flowing downwards.
   }
 \end{figure}
@@ -108,14 +108,14 @@ We then either create a new RBN (initialize it randomly),
 or load a previously created RBN from disk.
 For each bit of input in each dataset,
 we perturb the input-connected nodes in the RBN.
-After each perturbance, the RBN is ran synchronously (CRBN mode) for one timestep.
+After each perturbation, the RBN is ran synchronously (CRBN mode) for one time step.
 The resulting RBN states are collected,
 and after the entire dataset is processed,
 forwarded to the readout layer.
 
 To find a suitable mapping from the set of reservoir states and the correct input classification,
 ridge regression \cite{hoerl1970ridge} is used.
-This version of least squares regression is more accurate when faced with input colinearities, as well as always being at least as accurate as ordinary least squares.  
+This version of least squares regression is more accurate when faced with input collinearity, as well as always being at least as accurate as ordinary least squares.  
 This process is repeated for all the datasets,
 and the final regression parameters are chosen as a combination of the parameters obtained for each individual dataset.
 Finally we measure the normalized accuracy of the trained reservoir on the test dataset,
@@ -130,7 +130,7 @@ Accuracy = 1 - \dfrac{sum(actual\_output \neq expected\_output)}{len(correct\_ou
 
 The number and length of attractors can vary greatly across different RBNs,
 but is largely determined by the connectivity of the system \cite{gershenson2004introduction}.
-There are a number of ways to estimate the numer of attractors and their properties of a specific RBN.
+There are a number of ways to estimate the number of attractors and their properties of a specific RBN.
 They generally fall somewhere on the spectrum between exact enumeration (exhaustively searching for attractors from all initial states) and numerical sampling (searching from a subset only).
 Numerical sampling is biased for $K\neq2$ \cite{berdahl2009random}, and cannot be used for our $K=3$ RBNs.
 A brute-force exhaustive search quickly becomes infeasible, as the number of RBN states is exponential in the number of nodes.
