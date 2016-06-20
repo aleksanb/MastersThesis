@@ -4,38 +4,29 @@ $\\[0.5cm]$
 %Working title: "RBN as A Model for Matter Reservoirs".
 
 % Introduction
-\noindent Reservoir Computing, a relatively new approach to machine learning,
-utilizes untrained recurrent neural nets as a reservoir of dynamics to preprocess some temporal task,
-making it separable with a linear readout layer
-Originating from the study of Liquid State Machines and Echo State Networks,
-potentially any sparsely connected network containing feedback loops can be a reservoir.
-Random Boolean networks are such sparsely connected network that may be suitable for Reservoir Computing.
+\noindent Reservoir Computing (RC), a relatively new approach to machine learning,
+utilizes untrained recurrent neural networks as a reservoir of dynamics to preprocess some temporal task,
+making it separable with a linear readout layer.
+Potentially any sparsely connected network containing feedback loops can be a reservoir.
+One such network is the random Boolean network (RBN),
+which has previously been used in a reservoir computing setting.
 
 % Problemstilling
-Reservoir Computing can be used with physical or simulated reservoirs.
-When using nontraditional physical devices for computation,
-as in evolution-in-materio,
+Reservoir computing can be performed with physical or simulated reservoirs.
+When using a physical device for computation, as in evolution-in-materio,
 one is often restricted in how one can perturb and read out the underlying substrate.
-Random Boolean network reservoir computing systems (RBN RC systems) may be a useful abstraction over a physical device.
+The random Boolean network originated as a lightweight abstraction over physical phenomena.
+In this thesis, the following properties of RBN RC devices are investigated and related to physical reservoirs: How task difficulty affects required reservoir size; How much reservoir perturbation is optimal; The performance of reservoir subsets; and the relationship between an RBNs attractors and its performance as a reservoir.
 
-% Method
-The properties of these RBN RC systems are investigated with a series of experiments simulated in a self developed reservoir computing toolbox.
-The findings are discussed in light of physical reservoirs,
-with the end goal of using RBNs as a model for physical reservoirs.
-
-% Resultater
 Experiments confirm that the required reservoir size increases with the difficulty of the task at hand,
 with the largest factor being how many bits of input the reservoir is required to remember.
 Simulation of RBN RC systems can therefore aid in deciding the optimal size of physical reservoirs,
 given a bridge between the computational power of the reservoir and RBNs can be deduced.
-
 Optimal reservoir perturbation is found to lie at roughly 50\% of the size of the reservoir for RBNs with $K=3$.
 When using smaller slices of a reservoir for computation,
 lower amounts of total perturbation will be required as long as these perturbations are located within the same topological area.
-
 Results also show that subsets of larger reservoirs will perform at least as well as a separate reservoir of equal size.
 Any interference from the unused parts of the reservoir is either minimal or slightly positive.
-
 Finally, no relationship is found between the attractors of a RBN and its performance in a RBN RC system.
 It can therefore not be used for guiding the construction of accurate RBNs.
 
