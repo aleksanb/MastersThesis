@@ -3,12 +3,12 @@
 
 \section{Conclusion}
 
-This thesis covered three main topics within the field of RRC systems,
+This thesis covered four main topics within the field of RRC systems,
 all by experimentation and empirical observations:
 
 \begin{enumerate}
     \item Required reservoir sizes and optimal input connectivities.
-    \item Required output connectivities.
+    \item Reservoir subset performance
     \item Reservoir dynamics and their relation to task accuracy.
 \end{enumerate}
 
@@ -26,16 +26,22 @@ One will have to continue to rely on RBN criticality as an indicator of RBN perf
 
 \section{Further work}
 
+While looking at the performance of reservoir subsets in section \ref{section:output_connectivity-discussion},
+changes to reservoir topology during computation was discussed.
+When using neurons for computation,
+as in the rat neuron airplane automation experiment \cite{demarse2005adaptive},
+neurons would mature, grow, and change connections by themselves over time.
+It would be interesting to study how much of an RBN in a RC system can be manipulated before its predictive power collapses,
+and the readout layer has to be retrained.
+These changes would include flipping bits in transition tables and changing internal edges in the network.
+If one can relate the network's robustness to perturbations to a regression model's resistance to variance in the predictor variables,
+a metric of RRC robustness can be developed.
+It would relate the amount of change in the RBN to the expected reduction of reservoir accuracy.
 
-Least subsets regression for Task 2,
-as well as looking at the spatial mapping of an RBN,
-using only bottom left f.ex and inputting half there, and reading out all there.
-Further work goes here \todo{Do i need some further workeh?}
-
-
-\todo{MOVE THIS TO FURTHER WORK?}
-A second concern is how a change in reservoir topology and size after instrumentation will affect performance.
-In the rat neuron airplane automation experiment of \cite{demarse2005adaptive} the neurons grow and change connections by themselves over time.
-The strength of its synapses also change directly in response to the electrical stimuli used.
-At some point one might have to retrain the model used due to changed dynamics,
-This case will not be considered in this thesis.
+Another question is in what degree does a reservoirs optimal input connectivity change with regards to what physical subset of the substrate is used?
+The topology of an RBN is randomly generated and doesn't inherently have a physical mapping,
+so one would have to be created for this experiment.
+In the water bucket RC system \cite{fernando2003pattern},
+one would expect that perturbing one part of the reservoir would result in a larger effect in that area rather than the other side of the bucket.
+If one were to observe this smaller part of the total reservoir only,
+the hypothesis would be that the perturbance within this restricted area would have to be smaller than if one were to use the entire reservoir for computation.
