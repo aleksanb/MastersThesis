@@ -50,6 +50,8 @@ The distributions of the attractors and corresponding lengths for each set of 50
 The 273 RBNs which gained at least 95\% accuracy on TD3 are shown in figure \ref{fig:attractor-results-TD3}.
 For TD5 the threshold is lowered to 85\%,
 with the 116 matching RBNs this criteria shown in figure \ref{fig:attractor-results-TD5}.
+This as there only were 24 RBNs with an accuracy of at least 90\%,
+a much too low number to say anything useful.
 
 It is difficult to find theoretical estimates for the mean number of attractors and their lengths for RBNs with connectivities other than $ K = 1 $ \cite{drossel2005number} and $ K = 2 $ \cite{samuelsson2003superpolynomial}.
 The combined distribution of 1000 RBNs (500 from TD3, 500 from TD5) is therefore used to gain an empirical intuition of what the expected values might be,
@@ -90,7 +92,7 @@ The means of the attractor lengths and corresponding number of attractors for ea
     }
     \label{fig:attractor-overview}
     \resizebox{\textwidth}{!}{
-        \subfloat[TD3 distribution]{
+        \subfloat[TD3 distribution (500)]{
             \label{fig:attractor-overview-TD3}
             \myheatmap
                 {experiments/results/sat-3/all-rbns-heatmap.dat}
@@ -98,7 +100,7 @@ The means of the attractor lengths and corresponding number of attractors for ea
                 {Mean attractor length}
                 {6}
         }
-        \subfloat[TD3, $accuracy >= 95\%$]{
+        \subfloat[TD3 $accuracy >= 95\%$ (273)]{
             \label{fig:attractor-results-TD3}
             \myheatmap
                 {experiments/results/sat-3/heatmap.dat}
@@ -108,7 +110,7 @@ The means of the attractor lengths and corresponding number of attractors for ea
         }
     }
     \resizebox{\textwidth}{!}{
-        \subfloat[TD5]{
+        \subfloat[TD5 distribution (500)]{
             \label{fig:attractor-overview-TD5}
             \myheatmap
                 {experiments/results/sat-5/all-rbns-heatmap.dat}
@@ -116,7 +118,7 @@ The means of the attractor lengths and corresponding number of attractors for ea
                 {Mean attractor length}
                 {6}
         }
-        \subfloat[TD5, $accuracy >= 85\%$]{
+        \subfloat[TD5 $accuracy >= 85\%$ (116)]{
             \label{fig:attractor-results-TD5}
             \myheatmap
                 {experiments/results/sat-5/heatmap.dat}
@@ -139,27 +141,40 @@ The means of the attractor lengths and corresponding number of attractors for ea
 
 \subsection{Discussion}
 
-Comparing plots \ref{fig:attractor-overview-TD3} to \ref{fig:attractor-results-TD3},
-and \ref{fig:attractor-overview-TD5} to \ref{fig:attractor-results-TD5},
+First we look at the total distribution of attractors and their lengths in figure \ref{fig:attractor-results-combined}.
+Observe from table \ref{tab:attractor-values} that the median number of attractors and lengths is 5.00 and 8.12 respectively.
+The most frequent mean attractor length is 3--4 however,
+with the means being heavily skewed upwards due to a few 256-length outliers.
+Most RBNs are located in the area of 2--7 attractors and a mean length of 2--8.
+
+While comparing the figures for TD3 and TD5 against their accuracy-restricted versions next to them,
 one notices a trend.
-The distribution of accurate reservoirs seems to largely mimic the overall reservoir distribution.
-The assumption is confirmed by comparing the average values for each group of RBNs in table \ref{tab:attractor-values}.
-There is a minisculine difference in the means and medians of TD3 95\% versus all TD3,
+For both TD3 (figures \ref{fig:attractor-overview-TD3} -- \ref{fig:attractor-results-TD3}) and TD5 (figures \ref{fig:attractor-overview-TD5} -- \ref{fig:attractor-results-TD5})
+the accuracy restricted versions seem to mimic the overall reservoir distributions for that task.
+This assumption is confirmed by for each task comparing the means and medians of the restricted versions to those not,
+in table \ref{tab:attractor-values}.
+There is but a minisculine difference in the means and medians of TD3 95\% versus all TD3,
 equally so for TD5 85\% versus all TD5.
 
-From this one could conclude that there's no correlation between the number of attractors, their length, and reservoir task performance.
-There are simply more RBNs with a mean number of attractors of 5 and mean length of ~8 than other values,
-resulting in a higher number of accurate reservoirs located around the same values.
-In \cite{rbn-reservoir} the authors note that for Reservoir Computing,
-computation cannot solely depend on the attractors of the system due the continious perturbation.
-The system can still enter attractors however,
-at which point computation would cease to be productive.
+There are two possible conclusions to be drawn from this:
+For RBNs with $ K=3, p=0.5, N=26 $,
+those with 4--5 attractors and mean lengths of 3--4 perform optimally;
+Or simply that for those parameters, most RBNs would fall within this range.
+The last conclusion is supported by figure \ref{fig:attractor-results-combined}.
+This would mean that an RBNs performance as a reservoir has little correlation to the properties of its attractors.
+
+In \cite{rbn-reservoir} the authors note that due to continious perturbance,
+computation cannot solely depend on the attractors of the system.
+The system can still be caught by an attractor,
+but it is unlikely,
+although not impossible,
+that it would permanently settle in one.
 For the RRC systems benched in this paper,
 the large amount of perturbation (input connectivities of 50\%) would require attractors to have humongous basins to successfully prevent computation.
 Small attractor basins and large transient times could still be indicators of reservoir performance,
-as they would allow for more paths through statespace, lessening the chance that a perturbation ends the system in an attractor.
-
-As criticality is an indicator of reservoir performance,
-looking into the relationship between criticality and network topology might be interesting.
-Finally, one can still use other metrics to evaluating RRC performance before the fact,
-such as computational capability (section \ref{section:computational-capability}).
+as they would allow for more unique paths through statespace without immediately leading to an attractor.
+Chaotic reservoirs are characterized by long transient times and a large sensitivity to perturbations,
+with states quickly diverging \cite{gershenson2004introduction}.
+This could explain why reservoirs with an homogenous connectivity of three perform better than those with a connectivity of two.
+Perturbations would result in large changes to the reservoir state,
+something that might lessen the burden on the algorithm tasked with finding a suitable mapping to a classification.
