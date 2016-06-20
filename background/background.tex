@@ -351,18 +351,13 @@ Even though such a genome will hit fewer points in the RBN fitness landscape tha
 a large amount of these points will still be usable for each instance of a working readout layer.
 There doesn't seem to be a tight correlation between the properties of the RBN from the original RBN RC system,
 and the equivalent RBNs found through artificial evolution.
-In fact, the connectivity distributions of figure \ref{figure:evolved-connectivity} and the computational capabilities of figure \ref{figure:evolved-ccs} seem much more representative of the general RBN population, as shown in figure \ref{fig:res:d-100-3-2}.
+In fact, the computational capabilities of figure \ref{figure:evolved-ccs} and the connectivity distributions of figure \ref{figure:evolved-connectivity} seem much more representative of the general RBN population, as shown in figure \ref{fig:res:d-100-3-2}.
 This indicates that while there are many compatible reservoirs for a given readout layer,
 the distribution of these compatible reservoirs are likely the same as the distribution of reservoirs with the same connectivity in general.
 
 The parameters for the temporal parity task used for all experiments is shown in table \ref{table:pre-thesis-tasks} of appendix \ref{app:pre-thesis-bonus-content}.
 
 \begin{figure*}[ht]
-    \centering
-    \caption[Computational capability and input connectivity for evolved RBNs]{
-        Computational Capability and Input Connectivity distributions for RBNs evolved from a fixed readout layer.
-        The Y-axis shows the CC and IC values for the readout layers original RBN.
-    }
     \resizebox{\textwidth}{!}{
         \subfloat[Evolved RBN input connectivity]{
             \input{background/pre-project/evolved-cc.tex}
@@ -374,90 +369,95 @@ The parameters for the temporal parity task used for all experiments is shown in
             \label{figure:evolved-connectivity}
         }
     }
+    \centering
+    \caption[Computational capability and input connectivity for evolved RBNs]{
+        Computational Capability and Input Connectivity distributions for RBNs evolved from a fixed readout layer.
+        The Y-axis shows the CC and IC values for the readout layers original RBN.
+    }
 \end{figure*}
 
 \begin{figure*}
     \centering
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=1]{
+            \input{background/pre-project/distribution-100-3-1.tex}
+            \label{fig:res:d-100-3-1}
+        }
+        \subfloat[K=1]{
+            \myscatterplot{background/pre-project/computational-power-100-3-1.dat}
+            \label{fig:res:c-100-3-1}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=2]{
+            \input{background/pre-project/distribution-100-3-2.tex}
+            \label{fig:res:d-100-3-2}
+        }
+        \subfloat[K=2]{
+            \myscatterplot{background/pre-project/computational-power-100-3-2.dat}
+            \label{fig:res:c-100-3-2}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=3]{
+            \input{background/pre-project/distribution-100-3-3.tex}
+            \label{fig:res:d-100-3-3}
+        }
+        \subfloat[K=3]{
+            \myscatterplot{background/pre-project/computational-power-100-3-3.dat}
+            \label{fig:res:c-100-3-3}
+        }
+    }
     \caption[Temporal parity 3: Accuracy and computational capability plots]{
-        Plots for temporal parity with $N=3$.
-        Figures \ref{fig:res:d-100-3-1}--\ref{fig:res:d-100-3-3} plot the accuracies of the sampled RBNs against their input connectivity,
-        for K=1–3 respectively.
-        Figures \ref{fig:res:c-100-3-1}--\ref{fig:res:c-100-3-3} plot the accuracy of the previous figures against their Computational Capability ($T=100, t=3$).
+        Plots for temporal parity 3.
+        The left column shows the accuracies of the sampled RBNs against their input connectivity for K=1--3 respectively.
+        The figures in the right column plot the accuracies of the figures to the left against their computational capabilities calculated for $T=100, t=3$.
     }
     \label{figure:results:temporal-parity-3}
-    \resizebox{\textwidth}{!}{
-        \subfloat[K=1]{
-            \label{fig:res:d-100-3-1}
-            \input{background/pre-project/distribution-100-3-1.tex}
-        }
-        \subfloat[K=1]{
-            \label{fig:res:c-100-3-1}
-            \myscatterplot{background/pre-project/computational-power-100-3-1.dat}
-        }
-    }
-
-    \resizebox{\textwidth}{!}{
-        \subfloat[K=2]{
-            \label{fig:res:d-100-3-2}
-            \input{background/pre-project/distribution-100-3-2.tex}
-        }
-        \subfloat[K=2]{
-            \label{fig:res:c-100-3-2}
-            \myscatterplot{background/pre-project/computational-power-100-3-2.dat}
-        }
-    }
-
-    \resizebox{\textwidth}{!}{
-        \subfloat[K=3]{
-            \label{fig:res:d-100-3-3}
-            \input{background/pre-project/distribution-100-3-3.tex}
-        }
-        \subfloat[K=3]{
-            \label{fig:res:c-100-3-3}
-            \myscatterplot{background/pre-project/computational-power-100-3-3.dat}
-        }
-    }
 \end{figure*}
 
 \begin{figure*}
     \centering
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=1]{
+            \input{background/pre-project/distribution-100-5-1.tex}
+            \label{fig:res:d-100-5-1}
+        }
+        \subfloat[K=1]{
+            \myscatterplot{background/pre-project/computational-power-100-5-1.dat}
+            \label{fig:res:c-100-5-1}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=2]{
+            \input{background/pre-project/distribution-100-5-2.tex}
+            \label{fig:res:d-100-5-2}
+        }
+        \subfloat[K=2]{
+            \myscatterplot{background/pre-project/computational-power-100-5-2.dat}
+            \label{fig:res:c-100-5-2}
+        }
+    }
+
+    \resizebox{\textwidth}{!}{
+        \subfloat[K=3]{
+            \input{background/pre-project/distribution-100-5-3.tex}
+            \label{fig:res:d-100-5-3}
+        }
+        \subfloat[K=3]{
+            \myscatterplot{background/pre-project/computational-power-100-5-3.dat}
+            \label{fig:res:c-100-5-3}
+        }
+    }
     \caption[Temporal parity 5: Accuracy and computational capability plots]{
-        Plots for temporal parity with $N=5$.
-        Figures \ref{fig:res:d-100-5-1}--\ref{fig:res:d-100-5-3} plot the accuracies of the sampled RBNs against their input connectivity,
-        for K=1–3 respectively.
-        Figures \ref{fig:res:c-100-5-1}--\ref{fig:res:c-100-5-3} plot the accuracy of the previous figures against their Computational Capability ($T=100, t=3$).
+        Plots for temporal parity 5.
+        The left column shows the accuracies of the sampled RBNs against their input connectivity for K=1--3 respectively.
+        The figures in the right column plot the accuracies of the figures to the left against their computational capabilities calculated for $T=100, t=3$.
+        Note that the accuracies are much lower in general,
+        with only $K=3$ performing adequately.
     }
     \label{figure:results:temporal-parity-5}
-    \resizebox{\textwidth}{!}{
-        \subfloat[K=1]{
-            \label{fig:res:d-100-5-1}
-            \input{background/pre-project/distribution-100-5-1.tex}
-        }
-        \subfloat[K=1]{
-            \label{fig:res:c-100-5-1}
-            \myscatterplot{background/pre-project/computational-power-100-5-1.dat}
-        }
-    }
-
-    \resizebox{\textwidth}{!}{
-        \subfloat[K=2]{
-            \label{fig:res:d-100-5-2}
-            \input{background/pre-project/distribution-100-5-2.tex}
-        }
-        \subfloat[K=2]{
-            \label{fig:res:c-100-5-2}
-            \myscatterplot{background/pre-project/computational-power-100-5-2.dat}
-        }
-    }
-
-    \resizebox{\textwidth}{!}{
-        \subfloat[K=3]{
-            \label{fig:res:d-100-5-3}
-            \input{background/pre-project/distribution-100-5-3.tex}
-        }
-        \subfloat[K=3]{
-            \label{fig:res:c-100-5-3}
-            \myscatterplot{background/pre-project/computational-power-100-5-3.dat}
-        }
-    }
 \end{figure*}
