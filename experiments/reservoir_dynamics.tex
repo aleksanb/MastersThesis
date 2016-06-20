@@ -53,7 +53,7 @@ with the 116 matching RBNs this criteria shown in figure \ref{fig:attractor-resu
 This as there only were 24 RBNs with an accuracy of at least 90\%,
 a much too low number to say anything useful.
 
-It is difficult to find theoretical estimates for the mean number of attractors and their lengths for RBNs with connectivities other than $ K = 1 $ \cite{drossel2005number} and $ K = 2 $ \cite{samuelsson2003superpolynomial}.
+It is difficult to find theoretical estimates for the mean number of attractors and their lengths for RBNs with connectivity other than $ K = 1 $ \cite{drossel2005number} and $ K = 2 $ \cite{samuelsson2003superpolynomial}.
 The combined distribution of 1000 RBNs (500 from TD3, 500 from TD5) is therefore used to gain an empirical intuition of what the expected values might be,
 and is shown in figure \ref{fig:attractor-results-combined}.
 
@@ -153,7 +153,7 @@ For both TD3 (figures \ref{fig:attractor-overview-TD3} -- \ref{fig:attractor-res
 the accuracy restricted versions seem to mimic the overall reservoir distributions for that task.
 This assumption is confirmed by for each task comparing the means and medians of the restricted versions to those not,
 in table \ref{tab:attractor-values}.
-There is but a minisculine difference in the means and medians of TD3 95\% versus all TD3,
+There is but a minuscule difference in the means and medians of TD3 95\% versus all TD3,
 equally so for TD5 85\% versus all TD5.
 
 There are two possible conclusions to be drawn from this:
@@ -163,7 +163,7 @@ Or simply that for those parameters, most RBNs would fall within this range.
 The last conclusion is supported by figure \ref{fig:attractor-results-combined}.
 This would mean that an RBNs performance as a reservoir has little correlation to the properties of its attractors.
 
-In \cite{rbn-reservoir} the authors note that due to continious perturbance,
+In \cite{rbn-reservoir} the authors note that due to continuous perturbation,
 computation cannot solely depend on the attractors of the system.
 The system can still be caught by an attractor,
 but it is unlikely,
@@ -172,9 +172,9 @@ that it would permanently settle in one.
 For the RRC systems benchmarked in this paper,
 the large amount of perturbation (50\% of the reservoir) would require attractors to have humongous basins to successfully prevent computation.
 Small attractor basins and large transient times could still be indicators of reservoir performance,
-as they would allow for more unique paths through statespace without immediately leading to an attractor.
+as they would allow for more unique paths through state space without immediately leading to an attractor.
 Chaotic reservoirs are characterized by long transient times and a large sensitivity to perturbations,
 with states quickly diverging \cite{gershenson2004introduction}.
-This could explain why reservoirs with an homogenous connectivity of three perform better than those with a connectivity of two.
+This could explain why reservoirs with an homogeneous connectivity of three perform better than those with a connectivity of two.
 Perturbations would result in large changes to the reservoir state,
 something that might lessen the burden on the algorithm tasked with finding a suitable mapping to a classification.

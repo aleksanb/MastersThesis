@@ -2,7 +2,7 @@
 
 \subsection{Description}
 
-One isn't always able to fully instrument a computational substrate used for reserervoir computing.
+One isn't always able to fully instrument a computational substrate used for reservoir computing.
 While a microelectrode array gives coarse-grained access to smaller substrates than ever,
 one is still limited to a number of samples equal to the number of microelectrodes in the array.
 Other reasons can include instrumentation being prohibitively expensive,
@@ -109,8 +109,8 @@ Additionally, as soon as the reservoir subset size is as large as the minimum re
 performance reaches a plateau with no need to further increase the size of the observed subset.
 
 There seems to be a slight increase in population accuracy for small values of N (10, 20) however.
-An even larger sample size would probably be needed to decide whether this is randomness or positive interferencce from the unused parts of the reservoir.
-Selecting 10 nodes from 100 or 140, of which 50 and 70 respectively rececive input each tick, might result in a heavy bias towards either side.
+An even larger sample size would probably be needed to decide whether this is randomness or positive interference from the unused parts of the reservoir.
+Selecting 10 nodes from 100 or 140, of which 50 and 70 respectively receive input each tick, might result in a heavy bias towards either side.
 Further, there is a possibility that slightly better subset performance could have been achieved by generating reservoirs for all ICs instead of using a flat IC of 50\%,
 and then selecting the best one.
 Even though the average optimal IC is quite close to 50\%,
@@ -130,10 +130,10 @@ Such a system is the sixty electrodes stuck into a large soup of rat neurons \ci
 Any redundancy in the neurons must surely be dominated by the nonlinearity each microelectrode aggregates from all nearby neurons,
 reducing the need for variable elimination.
 
-In a continiously growing and expaning reservoir,
+In a continuously growing and expanding reservoir,
 such as the one consisting of rat neurons,
 the computational capabilities of the system would presumably grow monotonically with the increase in matter to the system.
-These results indicate that as long as one has instrumented a large enough part of the resvoir in the first place,
+These results indicate that as long as one has instrumented a large enough part of the reservoir in the first place,
 one will not have to re-instrument it in the future (as long as the task doesn't change to a significantly more complex one requiring additional data points).
 The readout layer might have to be recalibrated, however.
 A regression model trained on a certain reservoir might not work as well on one with a slightly altered topology.

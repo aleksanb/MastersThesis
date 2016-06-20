@@ -56,16 +56,16 @@ The expected relationship between the difficulties of the four tasks therefore b
     \end{tabular}
 \end{table}
 
-To find which input connectivities give the greatest population accuracy,
-we iterates over the input connectivities, generating accuracy distributions for each one.
+To find which input connectivity gives the greatest population accuracy,
+one iterates over all input connectivities, generating accuracy distributions for each one.
 In my pre-thesis project,
 the optimal input connectivity is empirically observed to lie around $ 0.5 \cdot n\_nodes $,
 with the chaotic reservoirs ($K=3$) having a slight skew to the right.
 In addition,
 the Temporal Density task might have different input connectivity requirements than the Temporal Parity task.
 
-The resulting accuracy distributions wil be plotted as boxplots (as in section \ref{section:pre-thesis-project}).
-This should allow for visual identification of the minimun required reservoir sizes,
+The resulting accuracy distributions will be plotted as box plots (as in section \ref{section:pre-thesis-project}).
+This should allow for visual identification of the minimum required reservoir sizes,
 as well as the optimal input connectivities.
 
 \subsection{Results}
@@ -192,24 +192,24 @@ is confirmed in figure \ref{fig:accuracy-threshold-size} and table \ref{tab:accu
 A reservoir of size 20 is large enough to correctly predict TP3,
 quite a bit lower than the 100 nodes used in my pre-thesis project (figure \ref{fig:res:d-100-3-3}).
 A reservoir of size 90 appears sufficient for TP5, rather close to the 100 nodes used in the pre-thesis project (figure \ref{fig:res:d-100-5-3}).
-The entire accuracy distribution doesn't increase significantly untill 120 nodes,
+The entire accuracy distribution doesn't increase significantly until 120 nodes,
 as seen in figure \ref{fig:TP5-IC-2} in the appendix.
 A tiny reservoir of size 10 is sufficient for TD3,
 with a reservoir of size 5 achieving 90\% accuracy!
 There is a corresponding ramp-up in required reservoir size to 55 to achieve 98\% accuracy on TD5.
 
 For the same window size, Temporal Parity requires a larger reservoir than Temporal Density,
-and the additional computational requirements of remembering five timesteps into the past requires a significant ramp-up in reservoir size.
+and the additional computational requirements of remembering five time steps into the past requires a significant ramp-up in reservoir size.
 The memory capacity of an Echo State Network trained on Independent and identically distributed data (as both our tasks are) is bounded by the size of the reservoir \cite{Jaeger:2007}.
 A randomly generated reservoir is statistically unlikely to be able to attain this bound,
 as additional constraints on the reservoir topology are required \cite{Jaeger:2007}.
-One such specially crafted RRC system is the RRC consisting solely of nodes passing their states forward to the next node eah timestep,
+One such specially crafted RRC system is the RRC consisting solely of nodes passing their states forward to the next node each time step,
 only the first node being perturbed and all nodes read out.
 The memory bound for the RRC systems used here seem lower than their computationally more powerful ESN forefathers,
 which is corroborated by the significant increase in required reservoir size for tasks with window size 5.
 This isn't that surprising as the RBN Reservoir is a much simpler model of computation than the connected sigmoid nodes of the ESN.
 
-When using Reservoir Computing as an abstraction over a physical device (e.g. an evo-materio device),
+When using Reservoir Computing as an abstraction over a physical device (e.g. an evolution-in-materio device),
 empirical results from simulation can be used to aid in the suggestion of the required physical reservoir size.
 One would need a way to roughly quantify the computational power contained in the simulated RBN as well as that of the computational substrate,
 so that one can convert the results to meaningful physical sizes.
@@ -220,21 +220,21 @@ as cellular automata are a special case of RBNs.
 
 Temporal Density had an optimal input connectivity of roughly 0.44, while Temporal Parity lay around roughly 0.50 (table \ref{tab:optimal-ic}).
 These values differed relatively little across tasks.
-This is to be expected, as the reservoir connectivity is the main factor in how large a reservoir perturbance is required \cite{rbn-reservoir},
+This is to be expected, as the reservoir connectivity is the main factor in how large a reservoir perturbation is required \cite{rbn-reservoir},
 as discussed in section \ref{section:optimal-perturbance}.
 
-The net decrease in optimal IC from Temporal Darity 3 to 5 can be explained by the input needing to be remembered for longer in the network.
+The net decrease in optimal IC from Temporal Parity 3 to 5 can be explained by the input needing to be remembered for longer in the network.
 A lower amount of perturbation results in less overriding of already-stored information in the reservoir.
 This conclusion is a bit hairy however,
 as there isn't a corresponding decrease in optimal IC for temporal Density, which already lies at a low 0.44.
 These variations could also be explained by variance the optimal IC sampling process described in subsection \ref{subsection:reservoir_size-input_connectivity:results}.
 
-Finally, these findings can be used to assist in choosing the degree of perturbance in a real-life reservoir computing system,
+Finally, these findings can be used to assist in choosing the degree of perturbation in a real-life reservoir computing system,
 given a rough idea of what dynamical regime it may exist in (chaotic, critical, stable).
 When instrumenting the rat neurons for airplane automation in \cite{demarse2005adaptive},
 only two of the sixty available microelectrodes of the MEA were used even though the computational substrate stretched under all of them.
 The same two microelectrodes were used for both perturbing the substrate and reading out its state.
 This indicates that the required amount of perturbation may depend on how large a part of the reservoir one actually uses,
-due to the spatial locality of computiation in physical reservoirs.
+due to the spatial locality of computation in physical reservoirs.
 There might not be a need for additional perturbing of the neurons furthest away from the readout microelectrodes,
 as the effect might be minimal at the readout location.
