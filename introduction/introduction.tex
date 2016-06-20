@@ -8,7 +8,7 @@ making it separable with a simple readout layer \cite{lukovsevivcius2012reservoi
 Reservoir computing can be used both with physical or simulated reservoirs.
 The original Echo State Networks \cite{jaeger2002adaptive} and Liquid State Machines \cite{natschlager2002liquid} provided the basis for reservoir computing.
 As alternative abstractions to RNNs,
-both cellular automata \cite{yilmaz2014reservoir} and random Boolean networks \cite{rbn-reservoir} were introduced and successfully used in reservoir computing frameworks.
+both cellular automata (CA) \cite{yilmaz2014reservoir} and random Boolean networks \cite{rbn-reservoir} were introduced and successfully used in reservoir computing frameworks.
 Random Boolean networks (RBNs) \cite{gershenson2004introduction} are an useful abstraction over many physical phenomena,
 most famously used by Kauffman \cite{kauffman1969metabolic} as a model for the genetic regulatory network.
 In the author's pre-thesis paper,
@@ -19,9 +19,9 @@ Physical reservoirs take many shapes and forms.
 In the frequently cited 'Pattern recognition in a bucket' paper \cite{fernando2003pattern},
 the authors use a bucket of water to successfully perform speech recognition.
 In \cite{farstad2015evolving},
-a carbon nanotube based substrate is successfully used to evolve binary logic gates as well as stable Cellular Automata.
+a carbon nanotube based substrate is successfully used to evolve binary logic gates as well as stable cellular automata.
 These can then be used to build a CA-based computing paradigm over this unconventional hardware.
-As Cellular Automata are a special case of Random Boolean Networks,
+As cellular automata are a special case of random Boolean networks,
 any general findings about RBN RC systems may be applicable to RC systems using CAs.
 The wider category of attempting to harness the power of unconventional physical devices for computation,
 usually aided by artificial evolution,
@@ -37,14 +37,14 @@ In addition, the microelectrode array presents a limited resolution view of the 
 Questions include how the unused parts of the reservoir impact the parts used for computation,
 and how large the reservoir actually needs to be to solve the task at hand.
 
-It has been shown that reservoir computing using Random Boolean Networks is a feasible approach to solving binary time-series problems,
+It has been shown that reservoir computing using random Boolean networks is a feasible approach to solving binary time-series problems,
 as well as being a potentially useful abstraction over physical reservoir computing devices.
-In this thesis, the properties of these RRC systems are further investigated,
+In this thesis, the properties of these RBN RC systems are further investigated,
 with the motivation of using the results as a template for instrumenting and performing computations on physical reservoir computing systems.
 
 The following questions will be answered in this thesis:
 \begin{enumerate}
-    \item How small can a RRC system be while still solving its task at $ \geq 98\% $ accuracy?
+    \item How small can a RBN RC system be while still solving its task at $ \geq 98\% $ accuracy?
     \item Does the optimal amount of reservoir perturbation depend on the task at hand?
     \item Does one have to read the state of the entire reservoir to maintain task accuracy?
     \item Is there a correlation between the topological characteristics of the RBN (it's number of attractors and their lengths) and its performance as a reservoir?

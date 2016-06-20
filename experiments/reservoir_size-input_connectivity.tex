@@ -4,7 +4,7 @@
 \subsection{Description}
 
 In my pre-thesis project described in section \ref{section:pre-thesis-project},
-a plethora of RRC systems with $N=100, K=\{2, 3\}$ were able to solve the Temporal Parity 3 task with an accuracy of at least 98\% (as shown in figure \ref{figure:results:temporal-parity-3}).
+a plethora of RBN RC systems with $N=100, K=\{2, 3\}$ were able to solve the Temporal Parity 3 task with an accuracy of at least 98\% (as shown in figure \ref{figure:results:temporal-parity-3}).
 For Temporal Parity 5, reservoirs with $N=100, K=3$ are just able to solve the task,
 with their $K=\{1, 2\}$ brethren being unable to classify the task correctly (as shown in figure \ref{figure:results:temporal-parity-5}).
 
@@ -203,9 +203,9 @@ and the additional computational requirements of remembering five time steps int
 The memory capacity of an Echo State Network trained on Independent and identically distributed data (as both our tasks are) is bounded by the size of the reservoir \cite{Jaeger:2007}.
 A randomly generated reservoir is statistically unlikely to be able to attain this bound,
 as additional constraints on the reservoir topology are required \cite{Jaeger:2007}.
-One such specially crafted RRC system is the RRC consisting solely of nodes passing their states forward to the next node each time step,
+One such specially crafted RBN RC system is the one consisting solely of nodes passing their states forward to the next node each time step,
 only the first node being perturbed and all nodes read out.
-The memory bound for the RRC systems used here seem lower than their computationally more powerful ESN forefathers,
+The memory bound for the RBN RC systems used here seem lower than their computationally more powerful ESN forefathers,
 which is corroborated by the significant increase in required reservoir size for tasks with window size 5.
 This isn't that surprising as the RBN Reservoir is a much simpler model of computation than the connected sigmoid nodes of the ESN.
 

@@ -5,7 +5,7 @@ A series of experiments will be performed to investigate the following questions
 They should shed some light on attributes of RBN reservoir Computing systems that might be relevant to the creation and instrumentation of matter reservoirs.
 
 \begin{enumerate}
-    \item How small can a RRC system be while still solving its task at $ \geq 98\% $ accuracy?
+    \item How small can a RBN RC system be while still solving its task at $ \geq 98\% $ accuracy?
     \item Does the optimal amount of reservoir perturbation depend on the task at hand?
     \item Does one have to read the state of the entire reservoir to maintain task accuracy?
     \item Is there a correlation between the topological characteristics of the RBN (number of attractors, attractor length) and its performance as a reservoir?
@@ -18,18 +18,18 @@ It has been extended too support variable output connectivity as well as input c
 and is visualized in figure \ref{figure:rbn-reservoir-subsets}.
 The software is written in the Python programming language,
 and is available online on GitHub \cite{masters-thesis-code-github}.
-It contains a fully functioning RRC system,
+It contains a fully functioning RBN RC system,
 the classification tasks from section \ref{section:tasks},
 RBN analytics tools,
 and a set of procedures for generating distribution statistics from experiment templates.
-The RRC system's readout layer uses scikit-learn's lightweight ridge regression layer \cite{scikit-learn}.
+The RBN RC system's readout layer uses scikit-learn's lightweight ridge regression layer \cite{scikit-learn}.
 Statistical and numerical operations are supplied by the NumPy library \cite{van2011numpy}.
 
 \begin{figure}
     \centering
     \caption[Illustration of the RBN reservoir computing system used in this thesis]{
         Illustration of the RBN Reservoir system used in this thesis.
-        RRC parameters are Input Nodes = 1, Input Connectivity IC = 2, Output Connectivity OC = 3, Number of nodes N = 6.
+        RBN RC parameters are Input Nodes = 1, Input Connectivity IC = 2, Output Connectivity OC = 3, Number of nodes N = 6.
         The Input Connectivity and Output Connectivity is adjustable,
         and is shown with a shaded background.
     }
@@ -100,7 +100,7 @@ which is then tasked with finding a linear combination of the RBN states that re
 
 \subsection{Training}
 
-To train the RRC system we require large training datasets,
+To train the RBN RC system we require large training datasets,
 as well as different, smaller datasets for testing the trained system.
 We will use the datasets described in section \ref{subsection:rbn-reservoir-systems}.
 

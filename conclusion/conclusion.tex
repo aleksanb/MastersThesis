@@ -5,7 +5,7 @@
 
 Experiments confirm that the required reservoir size increases with the difficulty of the task at hand,
 with the largest factor being how many bits of input the reservoir is required to remember.
-Simulation of RRC systems can therefore aid in deciding the optimal size of physical reservoirs,
+Simulation of RBN RC systems can therefore aid in deciding the optimal size of physical reservoirs,
 given a bridge between the computational power of the reservoir and RBNs can be deduced.
 
 Optimal reservoir perturbation is found to lie at roughly 50\% of the size of the reservoir for RBNs with $K=3$.
@@ -15,7 +15,7 @@ lower amounts of total perturbation will be required as long as these perturbati
 Results also show that subsets of larger reservoirs will perform at least as well as a separate reservoir of equal size.
 Any interference from the unused parts of the reservoir is either minimal or slightly positive.
 
-Finally, no relationship is found between the attractors of an RBN and its performance in a RRC system.
+Finally, no relationship is found between the attractors of an RBN and its performance in a RBN RC system.
 It can therefore not be used for guiding the construction of accurate RBNs.
 
 \section{Further work}
@@ -26,7 +26,7 @@ It would be interesting to study how much of an RBN in a RC system can be manipu
 and the readout layer has to be retrained.
 These changes would include flipping bits in transition tables and changing internal edges in the network.
 If one can relate the network's robustness to perturbations to a regression model's resistance to variance in the predictor variables,
-a metric of RRC robustness can be developed.
+a metric of RBN RC robustness can be developed.
 It would relate the amount of change in the RBN to the expected reduction of reservoir accuracy.
 
 Another question is in what degree does a reservoirs optimal input connectivity change with regards to what physical subset of the substrate is used?

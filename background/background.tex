@@ -12,7 +12,7 @@ allowing small topology changes to drastically change a network's position in th
 It was therefore proposed in both \cite{jaeger2002adaptive} as Echo State Networks (ESNs)
 and \cite{natschlager2002liquid} as Liquid State Machines (LSMs) to separate the RNN into two parts,
 the untrained recurrent reservoir, and the trained readout layer.
-Both of these methods have been unified into the field of Reservoir Computing,
+The LSM and ESN methods have been unified into the field of Reservoir Computing,
 now focusing on the separate training and evolution of the recurrent and readout parts \cite{lukovsevivcius2012reservoir}.
 Exiting applications of Reservoir Computing include speech and handwriting recognition,
 as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
@@ -27,7 +27,7 @@ as well as controlling robotics \cite{lukovsevivcius2012reservoir}.
     \includegraphics[width=\columnwidth]{background/reservoir_computing_schema.pdf}
 \end{figure}
 
-A generalized structure of a Reservoir Computing system is shown in figure \ref{fig:rc-schema}.
+A generalized model of a Reservoir Computing system is shown in figure \ref{fig:rc-schema}.
 The main components are the reservoir and the readout layer.
 At each time step in the core model,
 the reservoir receives the current input signal as well as its previous state.
@@ -58,27 +58,24 @@ Any complex dynamical system can in principle be used in a reservoir computing s
 What properties must these reservoirs have to be able to solve problems?
 
 Complex networks similar to the sparsely connected ones used in ESN and LSM systems include Cellular Automata \cite{wolfram2002new} and Random Boolean Networks \cite{kauffman1969metabolic}.
-Cellular Automata are regular grids of cells containing some state,
+Cellular automata are regular grids of cells containing some state,
 each cell connected to its neighbors in the grid.
 Cells then update in lockstep according to some shared transition table,
 creating a new generation.
 RBNs can be seen upon as an abstraction over CAs again,
 allowing for nonlocal neighbors and variable updating rules.
-They will be introduced in depth in section \ref{section:rbns}.
-
-Both CAs and RBNs have successfully been used in Reservoir Computing systems \cite{yilmaz2014reservoir} \cite{rbn-reservoir}.
-Both models are simple, and can be implemented in software,
-hardware such as FPGAs, and in materio \cite{miller2002evolution} \cite{farstad2015evolving}.
-
 This computational paradigm is known as Cellular Computing,
 and provides a potentially powerful alternative to classical computers,
 leveraging extreme parallelism, simple components and local state \cite{sipper1999emergence}.
 
+Both CAs and RBNs have successfully been used in reservoir computing systems \cite{yilmaz2014reservoir} \cite{rbn-reservoir}.
+Both models are simple, and can be implemented in software,
+hardware such as FPGAs, and in materio \cite{miller2002evolution} \cite{farstad2015evolving}.
+
 \section{A Brief Introduction to Boolean Networks}
 \label{section:rbns}
 
-Random Boolean Networks, also known as Kauffman networks,
-were originally developed as a model of gene regulatory networks \cite{kauffman1969metabolic},
+Random Boolean networks were originally developed as a model of gene regulatory networks \cite{kauffman1969metabolic},
 the complex system that regulates how genes in multicellular organisms interact with each other.
 The model requires no assumptions about the inner workings of the actual nodes,
 which allows it to model phenomena where the exact internal workings of the system may be unknown.
@@ -190,10 +187,10 @@ although one could still find networks with such dynamics for different values o
 
 A thorough introduction to the field of RBNs is available in \cite{gershenson2004introduction}.
 
-\section{RBN Reservoir systems}
+\section{RBN Reservoir Computing systems}
 \label{subsection:rbn-reservoir-systems}
 
-How does one adapt a RBN for use as a reservoir in a RBN-RC device?
+How does one adapt a RBN for use as a reservoir in a RBN RC device?
 RBNs aren't usually designed to take external input.
 We do however, have the concept of perturbation,
 the external flipping of bits in the network's state,
@@ -207,8 +204,8 @@ and what dynamics must such a reservoir have to allow for the computation of int
 
 \subsection{A working system}
 
-In \cite{rbn-reservoir} functioning RBN-RC systems are created and analyzed.
-These RBN-RC systems have heterogeneous connectivity,
+In \cite{rbn-reservoir} functioning RBN RC systems are created and analyzed.
+These RBN RC systems have heterogeneous connectivity,
 consume one bit of input at each time step ($I=1$),
 perturbing $IC$ of the $N$ nodes in the process.
 The readout layer can be any node performing some kind of regression of the reservoir state against expected output for the current task, e.g. linear regression.
@@ -227,7 +224,7 @@ Such a setup is shown in figure \ref{figure:rbn-reservoir}.
 \subsection{Tasks}
 \label{section:tasks}
 
-To measure the real-life performance and accuracy of the RBN Reservoir systems,
+To measure the real-life performance and accuracy of the RBN RC system,
 two tasks are introduced: Temporal Density and Temporal Parity \cite{rbn-reservoir}.
 Both require the reservoir to be able to retain information for a sliding window of size $ n $,
 offset by some value $ t $, back through the input stream.
@@ -336,7 +333,7 @@ Their couplings to theoretical frameworks such as Reservoir Computing motivate t
 \section{Validating RBNs for Reservoir Computing}
 \label{section:pre-thesis-project}
 
-In the authors pre-thesis paper, the dynamics, performance, and viability of RBNs used for Reservoir Computing (RRC) was investigated.
+In the authors pre-thesis paper, the dynamics, performance, and viability of RBN RC systems was investigated.
 A functioning RBN Reservoir Computing system was implemented,
 and its results validated against and found in accordance with those from \cite{rbn-reservoir}.
 The simulation software from the pre-thesis work has been greatly extended for use in this thesis.
@@ -346,12 +343,12 @@ The optimal connectivity for homogeneous reservoirs is found to be $K=3$ as oppo
 Finally, the required input connectivity is found to rise with the presence of chaotic dynamics in the reservoir.
 The figures backing this conclusion are shown in \ref{figure:results:temporal-parity-3} and \ref{figure:results:temporal-parity-5}.
 
-Finally, a one-to-many mapping between the readout layer of an already-trained RRC system and different RBN reservoirs is found,
+Finally, a one-to-many mapping between the readout layer of an already-trained RBN RC system and different RBN reservoirs is found,
 with there being a seemingly large set of interchangeable reservoirs for each readout layer.
-This neutrality in the space of possible RBNs make the potential use of a smaller generative genome for evolving RRC systems interesting.
+This neutrality in the space of possible RBNs make the potential use of a smaller generative genome for evolving RBN RC systems interesting.
 Even though such a genome will hit fewer points in the RBN fitness landscape than a fixed genome,
 a large amount of these points will still be usable for each instance of a working readout layer.
-There doesn't seem to be a tight correlation between the properties of the RBN from the original RRC system,
+There doesn't seem to be a tight correlation between the properties of the RBN from the original RBN RC system,
 and the equivalent RBNs found through artificial evolution.
 In fact, the connectivity distributions of figure \ref{figure:evolved-connectivity} and the computational capabilities of figure \ref{figure:evolved-ccs} seem much more representative of the general RBN population, as shown in figure \ref{fig:res:d-100-3-2}.
 This indicates that while there are many compatible reservoirs for a given readout layer,
