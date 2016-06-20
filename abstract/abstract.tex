@@ -1,13 +1,41 @@
 \section*{\Huge Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 $\\[0.5cm]$
-
-\noindent Write your summary here...
 %Working title: "RBN as A Model for Matter Reservoirs".
 
-% Abstract
-% Kort oppsummering, motivasjon, metode, resultater.
-% På kunnskapsnivået at du kjenner til greierne
+% Introduction
+\noindent Reservoir Computing, a relatively new approach to machine learning,
+utilizes untrained recurrent neural nets as a reservoir of dynamics to preprocess some temporal task,
+making it separable with a linear readout layer
+Originating from the study of Liquid State Machines and Echo State Networks,
+potentially any sparsely connected network containing feedforward and feedback loops can be a reservoir.
+Random Boolean Networks are such sparsely connected network that may be suitable for Reservoir Computing.
 
+% Problemstilling
+Reservoir Computing can be used with physical or simulated reservoirs.
+When using nontraditional physical devices for computation,
+as in evolution-in-materio,
+one is often restricted in how one can perturb and read out the underlying substrate.
+Random Boolean network reservoir computing systems (RRC systems) may be a useful abstraction over a physical device.
+
+The properties of these RRC systems are investigated with a self self developed RRC toolbox,
+and a series of experiments are performed.
+The end goal is using RBNs as a model for matter reservoirs.
+
+% Resultater
+Experiments confirm that the required reservoir size increases with the difficulty of the task at hand,
+with the largest factor being how many bits of input the reservoir is required to remember.
+Simulation of RRC systems can therefore aid in deciding the optimal size of physical reservoirs,
+given a bridge between the computational power of the reservoir and RBNs can be deduced.
+
+Optimal reservoir perturbance is found to lie at roughly 50\% of the size of the reservoir for RBNs with $K=3$.
+When using smaller slices of a reservoir for computation,
+lower amounts of total perturbation will be required as long as these perturbations are located within the same topological area.
+
+Results also show that subsets of larger reservoirs will perform at least as well as a separate reservoir of equal size.
+Any interference from the unused parts of the reservoir is either minimal or slightly positive.
+
+Finally, no relationship is found between the attractors of an RBN and its performance in a RRC system.
+It can therefore not be used for guiding the construction of accurate RBNs.
 
 \cleardoublepage
